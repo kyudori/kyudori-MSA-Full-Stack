@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@font-face {
+	font-family: 'RixMomsBlanketR';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/RixMomsBlanketR.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RixMomsBlanketR';
+}
+
+a {
+	text-decoration: none;
+	font-size: 2em;
+	margin: 10px;
+}
+</style>
+</head>
+<body>
+	<h1>DOM 프로그래밍</h1>
+	<hr>
+	<a href="http://www.daum.net" onclick="return go();">다음으로가자</a>
+	<a href="http://www.naver.com/" onclick="return go();">네이버로가자</a>
+	<a href="http://www.google.com" onclick="return go();">구글로가자</a>
+
+	<script>
+		function go() {
+			const answer = window.confirm("정말 갈겨?");
+			console.log(answer ? "간답니다~~" : "안간다네요~~");
+			return answer;
+		}
+	</script>
+</body>
+</html>

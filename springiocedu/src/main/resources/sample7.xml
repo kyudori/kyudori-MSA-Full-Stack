@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="developer" class="sample7.Developer">
+	<constructor-arg value="dooly"/>
+	<constructor-arg value="1500000"/>
+	<property name="dept"   value="Development 1 Team"/>
+</bean>
+
+<bean id="engineer" class="sample7.Engineer">
+	<constructor-arg   value="duke"/>
+	<constructor-arg   value="2500000"/>
+	<property name="dept"   value="Technology 1 Team"/>	
+</bean>
+
+</beans>

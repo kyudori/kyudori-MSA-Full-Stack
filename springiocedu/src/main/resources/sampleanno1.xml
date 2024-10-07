@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<context:component-scan base-package="sampleanno1"/>
+
+<bean id="favoriteFood" class="sampleanno1.Food" >
+	<property name="foodName"  value="Bread"/>
+	<property name="foodPrice"  value="1500"/>
+</bean>
+<bean id="unFavoriteFood" class="sampleanno1.Food">
+	<property name="foodName"  value="Noodle"/>
+	<property name="foodPrice"  value="2500"/>
+</bean>
+</beans>

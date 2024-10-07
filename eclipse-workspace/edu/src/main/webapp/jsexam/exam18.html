@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>가변아규먼트 처리 함수 만들기</h1>
+	<hr>
+	<script>
+	function out() {
+		document.write("아규먼트 갯수 : "+arguments.length+"<br>");
+		for(let i of arguments) 
+			console.log(i);
+		console.log('-----------------------');
+	}
+	
+	out();
+	out(10); 
+	out(10,20); 
+	out('a', 'b', 'c'); 
+	out(1,2,3,4,5,6,7,8);
+</script>
+</body>
+</html>

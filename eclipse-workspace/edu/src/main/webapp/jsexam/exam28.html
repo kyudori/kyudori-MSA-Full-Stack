@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>자바스크립트의 객체 생성과 사용(생성자 함수)</h1>
+<hr>
+<script src="util.js"></script>
+<script>
+	function Student(name, kor, eng, math) {
+			this.name = name;
+			this.kor = kor;
+			this.eng = eng;
+			this.math = math;
+	}
+	
+	Student.prototype.getName = function() {
+		return this.name;
+	};
+	
+	Student.prototype.getSum = function() {
+			return this.kor+this.eng+this.math;
+	};
+	Student.prototype.getAvg = function() {
+			return this.getSum() / 3 ;
+	};
+	Student.prototype.toString = function() {
+			return this.name+"학생의 총점은 "+this.getSum()+"입니다.";
+	};
+	Student.getSchoolName = function() {
+		return "코사 학교";
+	}
+	
+	const ary = [];
+	ary.push(new Student("둘리", 100, 100, 100));
+	ary.push(new Student("또치", 90, 100, 90));
+	ary.push(new Student("도우너", 100, 90, 80));
+	
+	writeColor("["+Student.getSchoolName()+"]", "h1", "magenta")
+	for (let e in ary) {		
+		write("총점 : "+ary[e].getSum(), "h3");
+		write("평균 : "+ary[e].getAvg().toFixed(2), "h3");
+		writeColor(ary[e], "h3", "red");
+	}
+</script>
+</body>
+</html>
+
+
+
+
+

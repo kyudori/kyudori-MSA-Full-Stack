@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exercise10</title>
+<style>
+@font-face {
+	font-family: 'RixMomsBlanketR';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/RixMomsBlanketR.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RixMomsBlanketR';
+}
+
+a {
+	text-decoration: none;
+	font-size: 2em;
+	margin: 10px;
+}
+</style>
+</head>
+<body onload="goAlertAndNavigate()">
+	<h1>exercise10</h1>
+<script>
+    function goAlertAndNavigate() {
+        const answer = window.confirm("이동하시겠습니까?");
+        const randomValue = Math.floor(Math.random() * 3) + 1;
+
+        if(answer) {
+        	go(randomValue);
+        } else {
+            window.location.href = "../first.html";
+        }
+    }
+
+    function go(randomValue) {
+        
+        switch(randomValue) {
+            case 1:
+                window.location.href = "http://www.daum.net";
+                break;
+            case 2:
+                window.location.href = "http://www.naver.com";
+                break;
+            case 3:
+                window.location.href = "http://www.google.com";
+                break;
+            default:
+                window.location.href = "../first.html";
+        }
+    }
+</script>
+	
+</body>
+</html>

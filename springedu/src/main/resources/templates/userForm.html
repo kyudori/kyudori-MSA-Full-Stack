@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter member information</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<h1>입력 폼</h1>
+<form action="/userSave" method="post">
+    <table>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="userName" value=""/></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="address" value=""/></td>
+        </tr>
+        <tr>
+            <td>좋아하는 과일</td>
+            <td>
+                <div th:each="fruit:${popularFruit}">
+                    <input type="checkbox" name="favoriteFruit" th:value="${fruit}">[[${fruit}]]
+                </div>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="전송"/>
+</form>
+</body>
+</html>    

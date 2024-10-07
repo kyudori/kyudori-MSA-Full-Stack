@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Ajax테스트</title>     
+   </head>
+   <body>
+	  <h3>계정과 패스워드를 입력해 주세요.</h3>
+	  <form id="loginf" action="content/login.jsp">
+		  <table>
+			  <tr>
+				 <td><label for="id">계정</label></td>
+				 <td><input type="text" id="id" name="id" required/></td>
+			  </tr>
+			  <tr>
+				 <td><label for="passwd">패스워드</label></td>
+				 <td><input type="password" id="passwd" name="passwd" required/></td>
+			  </tr>
+			  <tr>
+				 <td><input type="submit" id="loginb" value="로그인" /></td>
+				 <td><output></output></td>
+			 </tr>
+		  </table>
+	  </form>
+	  <script>
+	  window.addEventListener("load", function() {
+	     document.getElementById("loginb").onclick = handleButtonPress;
+	  });
+	  let xhr;
+	  let id, form;
+	  function handleButtonPress(e){
+	     e.preventDefault();
+	     xhr =  new XMLHttpRequest();
+	     form = document.querySelector("#loginf");
+	     id = document.querySelector("#id");
+	     const passwd = document.querySelector("#passwd");
+	     const queryString = `id=${id.value}&passwd=${passwd.value}`;
+	     xhr.addEventListener("load", handleResponse);
+	     xhr.open("POST", form.action, true);
+	     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	     xhr.send(queryString);
+	  }
+	  function handleResponse() {
+		 const jsonObj = JSON.parse(xhr.responseText);
+	     const output = document.querySelector("output");
+		 if (jsonObj.result == "ok") {
+			 output.textContent="로그인 성공!!";
+			 output.style.color = "blue";
+		 } else if (jsonObj.result == "fail") {
+		  	 output.textContent="로그인 실패!!";
+		  	 output.style.color = "red";
+			 form.reset();
+			 id.focus();
+         }
+	  }								
+      </script>
+   </body>
+</html>

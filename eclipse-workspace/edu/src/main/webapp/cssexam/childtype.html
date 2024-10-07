@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	h3:nth-child(1) {
+		color : red;
+	} 
+	h3:nth-child(3) {
+		background-color : pink;
+	} 
+
+	h3:nth-of-type(3) {
+		background-color : lime;
+	} 
+	main {
+		border : 3px solid blue;
+	}
+	aside {
+		border : 3px solid green;
+	}
+</style>
+</head>
+<body>
+<h1>nth-child 와 nth-of-type 테스트</h1>
+<mark>:nth-child - 형제 관계의 태그들 중에서 부모를 기준으로 지정된 순위의 자식 + 태그명이 일치하면 찾음</mark><br>
+<mark>:nth-of-type - 형제 관계의 태그들 중에서 지정된 태그들중에서 지정된 순위의 태그 찾음</mark>
+<hr>
+<main>
+	<section>
+		<h3>둘리</h3>
+		<h2>또치	</h2>
+		<h3>희동이</h3>
+		<h2>도우너</h2>
+		<h3>마이콜</h3>
+	</section>
+	<article>
+		<div>
+			<h3>둘리</h3>
+			<h2>또치	</h2>
+			<h3>희동이</h3>
+			<h2>도우너</h2>
+			<h3>마이콜</h3>
+		</div>
+	</article>
+	<article>
+		<h3>희동이</h3>
+	</article>
+	<article>
+		<h3>마이콜</h3>
+	</article>
+</main>
+<hr>
+<aside>
+	<h3>둘리</h3>
+	<h2>또치	</h2>
+	<h3>희동이</h3>
+	<h2>도우너</h2>
+	<h3>마이콜</h3>
+</aside>
+</body>
+</html>

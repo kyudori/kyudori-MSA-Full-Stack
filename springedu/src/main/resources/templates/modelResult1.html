@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JSP 테스트 예제</title>
+</head>
+<body>
+<h2>Receiving data from the controller</h2>
+<hr>
+<ul>
+<li th:text="${v1}">Thymeleaf</li>
+<hr>
+<li>Array</li>
+	<ul>
+	<li th:text="${v2[0]}">Thymeleaf</li>
+	<li th:text="${v2[1]}">Thymeleaf</li>
+	<li th:text="${v2[2]}">Thymeleaf</li>
+	<li th:text="${v2[3]}">Thymeleaf</li>
+	</ul>
+	<br>
+	<ul th:each="elem : ${v2}">
+		<li th:text="${elem}">Thymeleaf</li>
+	</ul>
+<hr>
+<li th:text="${v3}">Thymeleaf</li>
+	<ul>
+	<li th:text="${v3.myColor}">Thymeleaf</li>
+	<li th:text="${v3.myNumber}">Thymeleaf</li>
+	</ul>
+<li th:text="${v4}">Thymeleaf</li>
+<li>List</li>
+	<ul>
+	<li th:text="${v5[0].myColor}">Thymeleaf</li>
+	<li th:text="${v5[1].myColor}">Thymeleaf</li>
+	</ul>
+	<br>
+	<ul th:each="elem : ${v5}">
+		<li th:text="${elem.myColor}">Thymeleaf</li>
+	</ul>
+</ul> 
+</body>
+</html>
+
+

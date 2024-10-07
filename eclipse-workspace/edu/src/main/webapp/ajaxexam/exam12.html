@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX</title>
+	<style>
+		img {
+			width : 100px;
+			height : 120px;
+		}
+	</style>
+</head>
+<body>
+	<h1>JSON 형식의 요청 바디를 가지고 POST 방식 AJAX 요청</h1>
+	<button data-pname="둘리" data-page="10"><img src="/edu/images/dooly.png"></button>
+	<button data-pname="또치" data-page="11"><img src="/edu/images/ddochi.png"></button>
+	<button data-pname="도우너" data-page="12"><img src="/edu/images/dauner.png"></button>
+	<hr>
+	<h2 id="msg_area" ></h2>
+	<script>
+		const buttons = document.querySelectorAll("button");
+		function postAjaxRequest(event) {
+			let xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				if (xhr.status == 200) {
+					//alert(xhr.responseText);
+					const data  = JSON.parse(xhr.responseText);
+					document.querySelector("#msg_area").textContent = `${data.name}는 ${data.age}세입니당~~`;
+				}
+			};
+			xhr.open('POST', "http://localhost:8088/edu/jsexam/ajaxexam/content/postjson.jsp", true);
+			xhr.setRequestHeader( 'content-type', 'application/json');
+			xhr.send(JSON.stringify({
+				name : event.currentTarget.getAttribute("data-pname"),
+				age : event.currentTarget.getAttribute("data-page")
+			}));
+		}
+		buttons.forEach( function(elem) {
+			elem.addEventListener("click", postAjaxRequest);
+		});
+	</script>
+</body>
+</html>
+
+
+

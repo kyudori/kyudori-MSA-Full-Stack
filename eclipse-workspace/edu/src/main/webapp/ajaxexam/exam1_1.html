@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		h3 {
+			color : red;
+		}
+		h4 {
+			color : blue;
+			padding-left : 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>AJAX 통신 테스트(서울시 열린 데이터 광장)</h1>
+	<a href="http://openapi.seoul.go.kr:8088/796143536a756e69313134667752417a/json/LampScpgmtb/1/3/">하이퍼링크로요청</a>
+	<hr>
+	<button
+		onclick="location.href='http://openapi.seoul.go.kr:8088/796143536a756e69313134667752417a/json/LampScpgmtb/1/3/';">버튼을클릭하여요청</button>
+	<hr>
+	<button onclick="requestAjax();">버튼을클릭하여요청(AJAX사용)</button>
+	<hr>
+	<div id="result"></div>
+	<script>
+		function requestAjax() {
+			const xhr = new XMLHttpRequest();
+			xhr.onload = function () {
+				const result = document.getElementById("result");
+				const jsonObj = JSON.parse(xhr.responseText);
+				result.innerHTML += "<h2>"+jsonObj.LampScpgmtb.RESULT.MESSAGE+"</H2>";	
+				const target = jsonObj.LampScpgmtb.row;				
+				for(let i in target) {					
+					result.innerHTML += "<h3>"+target[i].UP_NM+"</H3>";
+					result.innerHTML += "<h4>"+target[i].PGM_NM+"</H4>";
+				}
+				result.innerHTML += "<hr>";
+			}
+			xhr.open("GET", "http://openapi.seoul.go.kr:8088/796143536a756e69313134667752417a/json/LampScpgmtb/1/3/", true);
+			xhr.send();
+		}
+	</script>
+</body>
+
+</html>

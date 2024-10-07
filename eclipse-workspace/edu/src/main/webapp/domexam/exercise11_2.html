@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <h1>이벤트 모델-인라인</h1>
+    <hr>
+    <button id="redButton">빨강색</button>
+    <button id="blueButton">파란색</button>
+    <button id="yellowButton">노란색</button>
+	<hr>
+    <h3 id="dateDisplay"></h3>
+
+    <script>
+        window.onload = function() {
+            const date = new Date();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            document.getElementById('dateDisplay').innerText = `오늘은 ${month}월 ${day}일입니다`;
+        };
+
+        function test1() {
+            dateDisplay.style.color = "red";
+        }
+
+        function test2() {
+            dateDisplay.style.color = "blue";
+        }
+
+        function test3() {
+            dateDisplay.style.color = "yellow";
+        }
+        
+		var redButton = document.querySelector("#redButton");
+		var blueButton = document.querySelector("#blueButton");
+		var yellowButton = document.querySelector("#yellowButton");
+		redButton.onclick = test1;
+		blueButton.onclick = test2;
+		yellowButton.onclick = test3;
+		
+    </script>
+</body>
+</html>

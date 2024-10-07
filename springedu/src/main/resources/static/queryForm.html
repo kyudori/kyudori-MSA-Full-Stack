@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Get the Query String as a Model object(VO)</h1>
+<hr>
+<a href="/querystring5?testName=aaa&testAge=10&testAddr=bbb">querystring5-Request(Include query)</a>
+<hr>
+<a href="/querystring5">querystring5-Request(Exclude query)</a>
+<hr>
+<form method="get"  action="/querystring5">
+<input type="text" placeholder="Please enter your name" name="testName" required><br>
+<input type="number" placeholder="Please enter your age" name="testAge" required><br>
+<input type="text" placeholder="Please enter your address" name="testAddr" required><br>
+<input type="submit" value="querystring5-Request">
+</form>
+<hr>
+<form method="post"  action="/querystring6">
+<input type="text" placeholder="Please enter your name" name="testName" required><br>
+<input type="number" placeholder="Please enter your age" name="testAge" required><br>
+<input type="text" placeholder="Please enter your address" name="testAddr" required><br>
+<input type="submit" value="querystring6-Request">
+</form>
+<hr>
+<form method="post"  action="/querystring7">
+<input type="text" placeholder="Please enter your name" name="testName" required><br>
+<input type="number" placeholder="Please enter your age" name="testAge" required><br>
+<input type="text" placeholder="Please enter your address" name="testAddr" required><br>
+<input type="submit" value="querystring7-Request">
+</form>
+<hr>
+<a href="/locale/mine">locale-Request</a>
+</body>
+</html>

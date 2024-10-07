@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	function highOrderFunction(p) {
+		if (typeof p == 'function') {
+			p('ㅋㅋㅋ');		
+		} else {
+			alert(p);  // window.alert()
+		}
+	}
+	highOrderFunction(function (msg) {document.write(msg);});
+	highOrderFunction(function (msg) {console.log(msg);});
+	highOrderFunction();
+</script>
+</body>
+</html>

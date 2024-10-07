@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="foo0" class="sample2.Foo" scope="prototype"  /> <!-- prototyp/sigleton(default) scope="prototype" -->
+<bean id="foo1" class="sample2.Foo">
+	<constructor-arg value="XYZ"/>	
+</bean>
+<bean id="foo2" class="sample2.Foo">
+	<constructor-arg  value="ABC"/>
+	<constructor-arg  value="100"/>
+</bean>
+<bean id="foo3" class="sample2.Foo">
+	<constructor-arg index="1"  type="int"  value="50"/>
+	<constructor-arg index="0"  type="java.lang.String" value="xyz"/>
+	<constructor-arg index="2"  type="boolean" value="true"/>
+</bean>
+<bean id="foo4" class="sample2.Foo">
+	<constructor-arg ref="bar" />
+</bean>
+<bean id="bar"  class="sample2.Bar" />	
+
+</beans>
+
+
+
+
+
+
+
+

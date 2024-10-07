@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Data URL 형식 테스트!!!</h1>
+<img width="500" src="">
+<script>
+    window.addEventListener("load", () => {
+        fetch("/dataurl")
+        .then((res) => {
+           return res.text();
+        }).then((content) => {
+           alert(content)
+           document.querySelector("img").src = content;
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+cuteone,http://unico2013.dothome.co.kr/image/1.jpg
+cutetwo,http://unico2013.dothome.co.kr/image/2.jpg
+cutethree,http://unico2013.dothome.co.kr/image/3.jpg
+cutefour,http://unico2013.dothome.co.kr/image/4.jpg
+cutefive,http://unico2013.dothome.co.kr/image/5.jpg
+cutesix,http://unico2013.dothome.co.kr/image/6.jpg
+cuteseven,http://unico2013.dothome.co.kr/image/7.jpg
+cuteeight,http://unico2013.dothome.co.kr/image/8.jpg
+cutenine,http://unico2013.dothome.co.kr/image/9.jpg
+cuteten,http://unico2013.dothome.co.kr/image/10.jpg

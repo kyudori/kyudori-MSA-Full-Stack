@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="userService" class="sample3.UserServiceImpl"  scope="prototype"/>
+<bean id="obj1" class="sample3.UserVo">
+	<constructor-arg value="Dooly"/>	
+</bean>
+<bean id="obj2" class="sample3.UserVo">
+	<constructor-arg value="Duke"/>	
+</bean>
+</beans>

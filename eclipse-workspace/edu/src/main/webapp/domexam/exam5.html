@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>고전 이벤트 모델과 표준 이벤트 모델의 차이</h1>
+	<hr>
+	<button>고전 이벤트 모델</button>
+	<button>표준 이벤트 모델</button>
+	<script>
+		var doms = document.querySelectorAll("button");
+		var dom1 = doms[0];
+		var dom2 = doms[1];
+
+		dom1.onclick = function() {
+			alert("첫 번째 핸들러 수행(고전)");
+		};
+		dom1.onclick = function() {
+			alert("두 번째 핸들러 수행(고전)");
+		};
+		dom2.addEventListener("click", function() {
+			alert("첫 번째 핸들러 수행(표준)");
+		});
+		dom2.addEventListener("click", function() {
+			alert("두 번째 핸들러 수행(표준)");
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(객체리터럴)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		const obj = {
+			name : "듀크",
+			eat : function(food) {
+				write(this.name + "가 " + food + "를 먹어요.", "h3")
+			}
+		};
+
+		obj.eat("바나나");
+		obj.eat("딸기");
+		hr();
+		write(typeof obj, "h2");
+		obj.project = "자바스크립트";
+		obj.study = function() {
+			write(this.name + "는 " + this.project + "를 공부해요.", "h3");
+		};
+		obj.study();
+		for ( var key in obj) {
+			write(key + ":" + obj[key], "h3"); // 객체.속성명, 객체['속성명'], 객체.메서드명()
+		}
+		delete obj.study;
+		hr();
+		for ( var key in obj) {
+			write(key + ":" + obj[key], "h3");
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+

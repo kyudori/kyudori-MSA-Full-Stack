@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>시간정보 출력하기</h1>
+	<hr>
+	<button onclick="startTime()">시간을 알려주라옹...</button>
+	<button onclick="stopTime()">시간 출력을 종료하라옹...</button>
+	<output></output>
+	<!-- HTML5에서 추가 : 자바스크립트의 수행 결과를 출력 -->
+	<script>
+		const target = document.getElementsByTagName("output")[0];
+		function startTime() {
+			if (target.innerHTML) {
+				window.alert("그만 클릭하라옹... 이미 시간 출력하고 있음!!");
+			} else {
+				const d = new Date();
+				target.innerHTML = "<h2>" + d.toLocaleString() + "</h2>";
+			}
+		}
+		function stopTime() {
+			target.innerHTML = "";
+		}
+	</script>
+</body>
+</html>

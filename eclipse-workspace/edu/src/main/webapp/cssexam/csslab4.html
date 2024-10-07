@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>csslab4</title>
+<style>
+	h1 {
+		text-align: center;
+	}
+	.box {
+		margin: auto;
+		width : 900px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	.box img {
+		width: 150px;
+		height: 150px;
+		border: 3px solid black;
+		border-radius: 10px;
+		box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+		transition: transform 0.3s ease;
+	}
+
+	.box img:hover {
+		transform: scale(1.1);
+	}
+</style>
+</head>
+<body>
+	<h1>원하는 상품을 클릭하세요~~</h1>
+	<hr>
+	<figure>
+	<div class="box">
+		<img src="../images/1.jpg" alt="상품 1">
+		<img src="../images/2.jpg" alt="상품 2">
+		<img src="../images/3.jpg" alt="상품 3">
+		<img src="../images/4.jpg" alt="상품 4">
+		<img src="../images/5.jpg" alt="상품 5">
+		<img src="../images/6.jpg" alt="상품 6">
+		<img src="../images/7.jpg" alt="상품 7">
+		<img src="../images/8.jpg" alt="상품 8">
+		<img src="../images/9.jpg" alt="상품 9">
+		<img src="../images/10.jpg" alt="상품 10">
+	</div>
+	</figure>
+</body>
+</html>

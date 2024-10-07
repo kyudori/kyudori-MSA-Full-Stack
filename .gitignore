@@ -1,0 +1,4 @@
+# Git에 업로드하지 않으려는 폴더들
+apache-tomcat-9.0.94/
+eclipse/
+eclipse-workspace/.metadata/

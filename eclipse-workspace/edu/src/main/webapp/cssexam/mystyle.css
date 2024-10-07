@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+}
+
+header {
+	width: 100%;
+	height: 100px;
+	background-color:  rgb(208, 176, 198);
+}
+
+nav {
+	width: 30%;
+	height: 500px;
+	float: left;
+	background-color: pink;
+}
+
+section {
+	width: 70%;
+	height: 500px;
+	float: right;
+	background-color: skyblue;
+}
+
+article {
+	width: 80%;
+	height: 200px;
+	background-color: magenta;
+	margin: 10px auto;
+}
+
+footer {
+	width: 100%;
+	height: 50px;
+	clear: both;
+	background-color: lightgray;
+}

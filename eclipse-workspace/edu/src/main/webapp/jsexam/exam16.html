@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>배열 객체의 주요 메서드 활용</h1>
+	<hr>
+	<script>
+		var ary1 = [ '둘리', '또치', '도우너', '희동이', '고길동' ];
+		document.write(ary1.length + "<br>");
+		document.write(ary1 + "<br>");
+
+		var ary2 = ary1.sort();
+		document.write(ary1 + "<br>");
+		document.write(ary2 + "<br>");
+		document.write("<hr>");
+
+		var ary3 = [ 30, 11, 5, 27, 9 ];
+		document.write(ary3 + "<br>");
+		document.write(ary3.sort() + "<br>");
+		document.write(ary3.sort(function(a, b) {
+			return a - b;
+		}) + "<br>");
+		document.write(ary3.sort(function(a, b) {
+			return b - a;
+		}) + "<br>");
+		document.write("<hr>");
+
+		var ary5 = [];
+		ary5.push(100);
+		ary5.push(200);
+		ary5.push(500);
+		document.write(ary5 + "<br>");
+		ary5[7] = 1000;
+		document.write(ary5 + "<br>");
+		document.write(ary5.length + "<br>");
+	</script>
+</body>
+</html>

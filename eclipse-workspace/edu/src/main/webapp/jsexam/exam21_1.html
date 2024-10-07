@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script src="util.js"></script>
+	<script>
+		function action(type) {
+			if (type == "add")
+				return function(a, b) {
+					write(a + b, "h2");
+				};
+			else if (type == "sub")
+				return function(a, b) {
+					write(a - b, "h2");
+				};
+			else
+				return function(a, b) {
+					write(a * b, "h2");
+				};
+		}
+		action("add")(10, 20);
+		action("sub")(10, 20);
+		action("")(10, 20);
+	</script>
+</body>
+</html>

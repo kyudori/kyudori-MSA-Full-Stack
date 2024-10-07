@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function outerFunction() {
+			return function() {
+				document.write('<H1>Hello World .. !</h1>');
+			};
+		}
+		outerFunction()();
+		var result = outerFunction();
+		result();
+		result();
+	</script>
+</body>
+</html>

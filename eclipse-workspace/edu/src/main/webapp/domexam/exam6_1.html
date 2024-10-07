@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../util.js"></script>
+</head>
+<body>
+	<h1 id="test">DOM 객체를 찾자</h1>
+	<h1>그래 DOM 객체를 찾자</h1>
+	<hr>
+	<script>
+		let dom = document.getElementsByTagName("h1");
+		writeNewLine(dom);
+		writeNewLine(dom.length);
+		writeNewLine(dom[0]);
+		writeNewLine(dom[0].textContent); // innerText
+		writeNewLine(dom[0].innerHTML);
+		writeNewLine(dom[1]);
+		writeNewLine(dom[1].textContent); // innerText
+		writeNewLine(dom[1].innerHTML);
+		writeNewLine("------------------------------");
+		dom = document.getElementById("test");
+		writeNewLine(dom);
+		writeNewLine(dom.textContent);
+		window.setTimeout(function() {
+			dom.textContent = "오늘은 월요일";
+			dom.style.color = "red";
+			//dom.style.backgroundColor ="lime"; // background-color, font-weight -> fontWeight
+			dom.style["background-color"] = "yellow";
+		}, 5000);
+	</script>
+</body>
+</html>

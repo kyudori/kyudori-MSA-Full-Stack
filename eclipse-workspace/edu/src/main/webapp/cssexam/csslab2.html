@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>csslab2</title>
+<style>
+	h1{
+		text-shadow : 2px 2px 5px black;
+	}
+	button {
+		border-radius: 10px;
+	}
+	input {
+    border-radius: 10px;
+    height : 20px;
+    width: 200px;
+	}
+</style>
+</head>
+<body>
+	<h1>회원 정보를 입력하십시오.</h1>
+	<hr>
+	<form id="myForm" method="post" action="......">
+		<input type="text" placeholder="이름을 입력하세요" name="stname" required><br>
+		<input id=phone name=phone type=tel 
+        placeholder="전화번호를 입력하세요" 
+        pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"> <!-- HTML5 --><br>
+        <input type="text" placeholder="계정을 입력하세요" name="stname" required><br>
+        <input type="password" placeholder="패스워드를 입력하세요" name="stname" required><br>
+		<br>
+		<button type="submit">등록</button>
+		<button type="reset">재작성</button>
+	</form>
+</body>
+</html>

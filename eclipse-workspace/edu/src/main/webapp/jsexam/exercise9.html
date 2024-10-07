@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 실습(9)</title>
+<script src="util.js"></script>
+<script>
+	writeColor("자바스크립트 실습(9)", "h1", "blue");
+	hr();
+
+	function printObject(p) {
+		if (typeof p !== 'object') {
+			return;
+		}
+
+		writeColor(p.msg, p.tag, p.color);
+	}
+
+	const objects = [ {
+		tag : 'h1',
+		color : 'green',
+		msg : 'obj1'
+	}, {
+		tag : 'h2',
+		color : 'red',
+		msg : 'obj2'
+	}, {
+		tag : 'h3',
+		color : 'blue',
+		msg : 'obj3'
+	}, {
+		tag : 'h4',
+		color : 'purple',
+		msg : 'obj4'
+	}, {
+		tag : 'h5',
+		color : 'orange',
+		msg : 'obj5'
+	} ];
+
+	for (let i = 0; i < objects.length; i++) {
+		printObject(objects[i]);
+	}
+</script>
+</head>
+<body>
+</body>
+</html>

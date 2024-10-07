@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로또 번호 입력</title>
+    <style>
+        .lotto-form {
+            border: 1px solid black;
+            padding: 20px;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lotto-form">
+        <h1 style="color:red"> 로또 번호를 맞춰보세요!!!</h1>
+        <hr>
+        <form action="/edu/lotto" method="get">
+            <h1>1부터 6까지의 숫자를 입력하세요: 
+            <input type="number" id="number" name="number" min="1" max="6" required> 
+            <input type="image" src="clover.png" width="35px" alt="submit">
+            </h1>
+        </form>
+    </div>
+</body>
+</html>

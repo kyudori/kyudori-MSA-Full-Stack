@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 생성자를 통한 객체 생성 -->
+<bean id="developer" class="sample8.Developer">
+	<constructor-arg name="emp"  ref="emp1" />
+	<constructor-arg name="dept"  value="Development 1 Team"/>
+</bean>
+<bean id="engineer" class="sample8.Engineer">
+	<constructor-arg name="emp"  ref="emp2" />
+	<constructor-arg name="dept"  value="Technology 1 Team"/>
+</bean>
+
+<bean id="emp1" class="sample8.Emp">
+	<constructor-arg name="name"  value="Dooly"/>
+	<constructor-arg name="salary"  value="1500000"/>
+</bean>
+<bean id="emp2" class="sample8.Emp">
+	<constructor-arg name="name"  value="Duke"/>
+	<constructor-arg name="salary"  value="2500000"/>
+</bean>
+</beans>
+
+
+
+
+

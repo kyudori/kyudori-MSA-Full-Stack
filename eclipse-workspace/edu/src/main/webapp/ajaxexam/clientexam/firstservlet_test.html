@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>서블릿 요청 테스트</h1>
+<hr>
+<h3>링크 기능으로 요청</h3>
+<a href = "http://localhost:8088/edu/FirstServlet">서블릿 요청 1</a>
+<a href = "/edu/FirstServlet?gname=마이콜">서블릿 요청 2</a>
+<a href = "http://localhost:8088/edu/FirstServlet?name=고길동">서블릿 요청 3</a>
+<hr>
+<h3>입력폼으로 요청</h3>
+<form method = "post" action = "/edu/FirstServlet">
+	<input type = "text" name = "gname" placeholder = "이름을 입력하세요">
+	<input type = "submit" value = "요청">
+</form>
+</body>
+</html>

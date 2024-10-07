@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exercise12</title>
+<style>
+@font-face {
+	font-family: 'RixMomsBlanketR';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/RixMomsBlanketR.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RixMomsBlanketR';
+}
+
+
+h1 {
+	color: #800080;
+	text-align: center;
+	text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* 글자 그림자 추가 */
+}
+
+button {
+	font-size: 1.5em;
+	margin: 10px;
+	padding: 10px;
+	border: 2px solid #800080;
+	border-radius: 10px;
+	background-color: purple;
+	color: white;
+	cursor: pointer;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* 버튼 그림자 추가 */
+}
+
+button:hover {
+	background-color: red;
+}
+
+#buttonContainer {
+    padding: 20px;
+    border: 3px solid #800080;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+    width: 300px;
+    text-align: center;
+}
+
+
+#weatherImage {
+	display: block;
+	margin: 20px auto;
+	width: 200px;
+	height: 200px;
+}
+</style>
+</head>
+<body>
+	<h1>이벤트 처리 실습</h1>
+	<hr>
+	<div id="buttonContainer" style="text-align: center;">
+		<button data-weather="sun">맑음</button>
+		<button data-weather="cloud">흐림</button>
+		<button data-weather="rain">비</button>
+	</div>
+	<hr>
+	<img id="weatherImage" style="display: none;">
+
+	<script>
+		function displayWeather(event) {
+			const weatherType = event.target.getAttribute('data-weather');
+			const weatherImage = document.getElementById('weatherImage');
+
+			if (weatherType === 'sun') {
+				weatherImage.src = '../images/sun.png';
+			} else if (weatherType === 'cloud') {
+				weatherImage.src = '../images/cloud.png';
+			} else if (weatherType === 'rain') {
+				weatherImage.src = '../images/rain.png';
+			}
+
+			weatherImage.style.display = 'block';
+		}
+
+		document.querySelector("div").addEventListener("click", function(event) {
+			if (event.target.tagName === "BUTTON") {
+				displayWeather(event);
+			}
+		});
+	</script>
+</body>
+</html>

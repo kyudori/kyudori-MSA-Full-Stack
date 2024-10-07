@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	const child = window.open('/edu/first.html', '', 'width=300, height=200');
+	const width = screen.width;
+	const height = screen.height;
+	child.moveTo(0, 0);
+	child.resizeTo(width, height);
+	window.setInterval(function() {
+		child.resizeBy(-20, -20);
+		child.moveBy(10, 10);
+	}, 2000);
+</script>
+</head>
+<body>
+</body>
+</html>
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트의 제어문</title>
+<style>
+	#if  ~ h3 {
+		color : red;
+	}
+	#switch  ~  h3 {
+		color : blue;
+	}	
+</style>
+</head>
+<body>
+<h1>자바스크립트의 제어문</h1>
+<hr>
+<h2 id="if">[ if 문의 처리 결과]</h2>
+<script>
+	var day = new Date().getDay();
+	if ( day == 4 || day == 5 ) {
+  		document.write("<h3>곧 주말이 됩니다ㅎㅎ</h3>");
+	} else if ( day == 0 || day == 6 ) { 
+  		document.write("<h3>주말~~~~</h3>");
+	} else { 
+  		document.write("<h3>주말은 아직 멀었습니다ㅠㅠ</h3>");
+	}
+</script>
+<h2 id="switch">[ switch 문의 처리 결과]</h2>
+<script>
+	switch (day) {
+	case 4:
+	case 5:
+  		document.write("<h3>곧 주말이 됩니다ㅎㅎ</h3>");
+  		break;
+	case 0:
+	case 6:
+  		document.write("<h3>주말~~~~</h3>");
+  		break;
+	default:
+  		document.write("<h3>주말은 아직 멀었습니다ㅠㅠ</h3>");
+	}
+</script>
+</body>
+</html>

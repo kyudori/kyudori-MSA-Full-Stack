@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>자바스크립트의 객체 생성과 사용(객체리터럴)</h1>
+<hr>
+<script src="util.js"></script>
+<script>
+	const person = { };        
+	person.이름 = '홍길동';
+	person.취미 = '악기';
+	person.특기 = '프로그래밍';
+	person.장래희망 = '생명공학자';
+	for(var key in person)
+		writeColor(person[key], "h3", "red");
+	document.writeln("==================");
+	delete person.취미;
+	for(var key in person)
+		writeColor(person[key], "h3", "blue");
+</script>
+</body>
+</html>
+
+
+
+
+

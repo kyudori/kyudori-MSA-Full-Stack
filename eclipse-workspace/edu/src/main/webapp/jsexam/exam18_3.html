@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>가변아규먼트 처리 함수 만들기(ES6)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+	function printSum(tag, color, ...p) {
+		let result = 0;
+		for(var i=0; i < p.length; i++) 
+			result += p[i];
+		writeColor(result, tag, color);
+	}
+	printSum('h3', 'red');
+	printSum('h3', 'green', 10);
+	printSum('h3', 'yellow', 10, 20);  
+	printSum('h3', 'lime', 10, 20, 30); 
+	printSum('h3', 'blue', 1, 2, 3, 4, 5, 6, 7, 8);
+	printSum('h3', 'orange', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+</script>
+</body>
+</html>

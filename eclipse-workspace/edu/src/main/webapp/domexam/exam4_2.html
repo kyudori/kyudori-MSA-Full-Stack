@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+	<h1>로드 이벤트를 테스트 합니다.(표준 이벤트 모델)</h1>
+	<hr>
+	<p>로드(load) 이벤트가 무엇인가요?</p>
+	<p>문서의 모든 콘텐츠(images, script, css, etc)가 로드된 후 브라우저에서 자동으로 발생하는 이벤트</p>
+	<script>
+		window.addEventListener("load", function() {
+			window.alert('반갑습니다!! 오늘은 즐거운 ' + getKorDay() + '욜입니다.')
+		});
+		function getKorDay() {
+			var kordayname = [ "일", "월", "화", "수", "목", "금", "토" ];
+			return kordayname[new Date().getDay()];
+		}
+	</script>
+</body>
+</html>

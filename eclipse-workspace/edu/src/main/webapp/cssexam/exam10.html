@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p:nth-child(2) {
+            color : red;
+        }
+        p:nth-of-type(2) {
+            color : blue;
+        }
+        section > h1 {
+            color : green;
+        }
+        section h1 {
+            background-color : pink;
+        }
+        img {
+            width : 150px;
+        }
+        img[src$=gif] {
+            border : 1px dotted red;
+        }
+    </style>
+</head>
+<body>
+<div>
+<h3>어린 왕자</h3>
+<p>1장 </p>
+<p>2장 </p>
+</div>
+<section>
+    <h1>섹션제목</h1>
+    <article>
+        <h1>아티클제목</h1>
+    </article>
+</section>
+<img src="../images/duke.png">
+<img src="../images/java_duke.gif">
+</body>
+</html>

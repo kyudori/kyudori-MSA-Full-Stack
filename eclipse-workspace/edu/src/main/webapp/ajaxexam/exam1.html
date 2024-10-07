@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>AJAX 통신 테스트</h1>
+	<a href="/edu/first.html">하이퍼링크로요청</a>
+	<hr>
+	<button
+		onclick="location.href='/edu/first.html';">버튼을클릭하여요청</button>
+	<hr>
+	<button onclick="requestAjax();">버튼을클릭하여요청(AJAX사용)</button>
+	<hr>
+	<div id="result"></div>
+	<script>
+		function requestAjax() {
+			const xhr = new XMLHttpRequest();
+			xhr.onload = function () {                // onreadystatechange = 함수
+				const result = document.getElementById("result");
+				result.innerHTML += xhr.responseText + "<hr>";				
+			}
+			xhr.open("GET", "/edu/first.html", true);  // GET, POST, HEAD, PUT, DELETE
+			xhr.send();
+		}
+	</script>
+</body>
+
+</html>

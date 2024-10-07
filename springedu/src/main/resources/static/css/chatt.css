@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+*{
+	box-sizing: border-box;
+}
+
+#chatt{
+	width: 600px;
+	margin: 20px auto;
+}
+
+#chatt #talk{
+	width: 600px;
+	height: 300px;
+	overflow: scroll;
+	border : 1px solid #aaa;
+	margin-bottom : 10px;
+}
+#chatt #msg{
+	width: 540px;
+	height:50px;
+	display: inline-block;
+}
+
+#chatt #sendZone > *{
+	vertical-align: top;
+	
+}
+#chatt #btnSend{
+	width: 54px;
+	height: 50px;
+}
+
+#chatt #talk div{
+	width: 70%;
+	display: inline-block;
+	padding: 6px;
+	border-radius:10px;
+	
+}
+
+#chatt .me{
+	background-color : #ffc;
+	margin : 1px 0px 2px 30%;	
+}
+
+#chatt .other{
+	background-color : #eee;
+	margin : 2px;
+}

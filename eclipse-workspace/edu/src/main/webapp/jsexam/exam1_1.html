@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트학습</title>
+<style>
+	h1 {
+		color : red;
+	}
+	h2 {
+		color : green;
+	}
+	h3 {
+		color : blue;
+	}
+</style>
+</head>
+<body>
+<h1>자바스크립트의 수행 결과 출력</h1>
+<hr>
+<script>
+window.alert("(1) 어디에 출력될까?");
+console.log("(2) 어디에 출력될까?");
+document.write("(3) 어디에 출력될까?"); 
+document.getElementsByTagName("h3")[0].textContent = "(4) 어디에 출력될까?"; //<h3>태그 DOM 객체 생성 전이므로 에러
+</script>
+<h2>자바스크립트를 재미있게 학습합시다...</h2>
+<h3></h3>
+</body>
+</html>
+
+
+
+

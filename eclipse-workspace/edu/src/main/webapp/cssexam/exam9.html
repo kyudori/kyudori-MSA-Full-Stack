@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>HTML 학습</title>
+<style>
+h1 {
+	text-align: center;
+}
+
+nav {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	margin: 10px;
+}
+
+figure, section {
+	margin-right: auto;
+	margin-left: auto;
+	width: 600px;
+}
+
+hr {
+	background-color: magenta;
+	height: 10px;
+}
+
+figure {
+	text-align: center;
+}
+
+ * {
+	border: 1px dotted blue;
+}
+ul {
+	width : 120px;
+	margin : 2px auto; 
+}
+</style>
+</head>
+<body>
+	<h1>주요 HTML 태그 학습</h1>
+	<hr>
+	<nav>
+		<a href="http://www.w3.org/">W3C</a> 
+		<a href="http://www.w3schools.com">W3Schools</a> 
+		<a href="http://www.python.org/">PYTHON</a>
+	</nav>
+	<hr>
+	<figure>
+		<a href="http://java.sun.com/"> 
+		<img src="../images/duke.png" width="100">
+		</a>
+		<img src="../images/sundie.png" width="200">
+		<img src="../images/duke_luau.png" width="100">
+		<figcaption>듀크 이미지 모음</figcaption>
+	</figure>
+	<hr>
+	<section>
+		<h1>정보 입력</h1>
+		<form method="get" action="......">
+			이름 <input type="text" name="stname" placeholder="필수입력" required>
+			<br> 암호 <input type="password" name="stpwd" placeholder="필수입력"
+				required> <br> 나이 <input type="number" name="stnum">
+			<br> 칼라 <input type="color" name="stcolor"> <br> 
+			날짜 <input type="date" name="stdate"> <br> 
+			날짜와 시간 <input type="datetime-local" name="stdatetime"> <br> 
+			성별 <input type="radio" name="gender" value="female">
+			여성 <input type="radio" name="gender" value="male">
+			남성<br> 취미 <input type="checkbox" name="hobby" value="등산"> 
+			등산 <input type="checkbox" name="hobby" value="수영"> 
+			수영 <input type="checkbox" name="hobby" value="골프"> 
+			골프 <input type="checkbox" name="hobby" value="여행"> 
+			여행 <br> 
+			<select name="year">
+				<option value="2000">2000</option>
+				<option value="2001">2001</option>
+				<option value="2002">2002</option>
+				<option value="2003">2003</option>
+				<option value="2004">2004</option>
+				<option value="2005">2005</option>
+			</select><br> 남기고자 하는 글<br>
+			<textarea rows="10" cols="60"></textarea>
+			<br> <input type="file" name="uploadfile"> 
+			<input type="submit" value="보내기"> 
+			<input type="reset" value="재작성하기">
+		</form>
+		<ul>
+			<li>수요일</li>
+			<li>목요일</li>
+		</ul>
+	</section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

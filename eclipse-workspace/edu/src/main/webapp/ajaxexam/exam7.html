@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <meta charset='UTF-8'>
+     <title>Ajax테스트</title>
+     <style>
+     table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid black;
+     } 
+
+     td {
+        border: 1px solid black;
+        padding-left : 5px;
+     }
+     </style>
+     <script>	
+     window.onload = function() {
+ 		const xhr = new XMLHttpRequest();
+ 		xhr.onload = function() {
+ 			if (xhr.status == 200) {
+ 				const str = xhr.responseText;
+ 				const target = document.getElementById('output');
+ 				target.innerHTML = str;
+ 			}
+ 		};
+ 		xhr.open('GET', 'content/rss.jsp', true);
+ 		xhr.send(); 		
+ 	};
+		
+     </script>
+    </head>
+    <body>
+        <h2 style="text-align : center">실시간 날씨 정보입니다.</h2>
+        <div id="output" style="width:350px; margin : 10px auto"></div>
+    </body>
+</html>

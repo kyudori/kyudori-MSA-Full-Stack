@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#output {
+	width: 50%;
+	background-color: yellow;
+}
+</style>
+</head>
+<body>
+	<h1 id="t1">컨텐트1</h1>
+	<h2 id="t2">컨텐트2</h2>
+	<p id="t3">컨텐트3</p>
+	<div id="t4">컨텐트4</div>
+	<img id="t5" src="../../images/totoro.png" width="100">
+	<hr id="t6">
+	<ul id="t7">
+		<li>컨텐트5</li>
+		<li>컨텐트6</li>
+	</ul>
+	<ol id="t8">
+		<li>컨텐트7</li>
+		<li>컨텐트8</li>
+	</ol>
+	<hr>
+	<div id="output"></div>
+	<script>
+		const outDom = document.getElementsByTagName("div")[1];
+		const doms = [];
+		doms.push(document.getElementsByTagName("h1")[0]);
+		doms.push(document.getElementsByTagName("h2")[0]);
+		doms.push(document.getElementsByTagName("p")[0]);
+		doms.push(document.getElementsByTagName("div")[0]);
+		doms.push(document.getElementsByTagName("img")[0]);
+		doms.push(document.getElementsByTagName("hr")[0]);
+		doms.push(document.getElementsByTagName("ul")[0]);
+		doms.push(document.getElementsByTagName("ol")[0]);
+
+		for (let i = 0; i < 8; i++)
+			outDom.innerHTML += `<h4>${doms[i]}</h4>`;
+	</script>
+</body>
+</html>

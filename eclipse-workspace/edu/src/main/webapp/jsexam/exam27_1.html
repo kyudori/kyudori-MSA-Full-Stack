@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(객체리터럴)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		const student1 = {
+			name: '둘리',
+			kor: 90,
+			eng: 80,
+			math: 95,
+			getSum: function () {
+				return this.kor + this.eng + this.math;
+			},
+			getAvg: function () {
+				return this.getSum() / 3;
+			},
+			toString: function () {
+				return this.name + "학생의 총점은 " +
+					this.getSum() + "입니다.";
+			}
+		};
+		const student2 = {
+			name: '또치',
+			kor: 95,
+			eng: 70,
+			math: 85,
+			getSum: function () {
+				return this.kor + this.eng + this.math;
+			},
+			getAvg: function () {
+				return this.getSum() / 3;
+			},
+			toString: function () {
+				return this.name + "학생의 총점은 " +
+					this.getSum() + "입니다.";
+			}
+		};
+		const student3 = {
+			name: '도우너',
+			kor: 80,
+			eng: 80,
+			math: 80,
+			getSum: function () {
+				return this.kor + this.eng + this.math;
+			},
+			getAvg: function () {
+				return this.getSum() / 3;
+			},
+			toString: function () {
+				return this.name + "학생의 총점은 " +
+					this.getSum() + "입니다.";
+			}
+		};
+		writeColor(student1, "h3", "red");
+		writeColor(student2, "h3", "blue");
+		writeColor(student3, "h3", "green");
+	</script>
+</body>
+</html>
+
+
+
+
+

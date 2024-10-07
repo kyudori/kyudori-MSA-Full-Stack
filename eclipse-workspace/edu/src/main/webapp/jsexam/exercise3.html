@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style>
+	h1 {
+		color: blue;
+	}
+</style>
+</head>
+<body>
+<h1>자바스크립트 실습(3)</h1>
+<hr>
+<script>
+	var num = window.prompt();
+	console.log("입렫된 숫자:" + num);
+	
+	var sum = 0;
+	for (var i = 1; i <= parseInt(num); i++) {
+		sum += i;
+	}
+	
+	document.write("<h2>" + " 1부터 " + num + " 까지의 합은 " + sum + " 입니다.</h2>");
+	
+	if(num === null || num.trim() === '') {
+		document.write("<h3>"+ "비어있는 입력"+"</h3>");
+	} 
+	if(isNaN(num)) {
+		document.write("<h3>"+ "숫자가 아닌 입력"+"</h3>");
+	}
+</script>
+</body>
+</html>

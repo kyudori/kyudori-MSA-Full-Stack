@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 실습(6)</title>
+    <script src="util.js"></script>
+    <style>
+        h1 {
+            color: blue;
+        }
+
+        h2 {
+            color: red;
+        }
+
+        ul {
+            list-style-type: circle;
+        }
+    </style>
+    <script>
+        writeColor("자바스크립트 실습(6)", "h1", "blue");
+        hr();
+
+        function getMaxValue(arr) {
+            let max = arr[0];
+            arr.forEach(function(num) {
+                if (num > max) {
+                    max = num;
+                }
+            });
+            return max;
+        }
+
+        function getMinValue(arr) {
+            let min = arr[0];
+            arr.forEach(function(num) {
+                if (num < min) {
+                    min = num;
+                }
+            });
+            return min;
+        }
+
+        function getSum(arr) {
+            let sum = 0;
+            arr.forEach(function(num) {
+                sum += num;
+            });
+            return sum;
+        }
+
+        function getCountOddNum(arr) {
+            let count = 0;
+            arr.forEach(function(num) {
+                if (num % 2 !== 0) {
+                    count++;
+                }
+            });
+            return count;
+        }
+
+        function getCountEvenNum(arr) {
+            let count = 0;
+            arr.forEach(function(num) {
+                if (num % 2 === 0) {
+                    count++;
+                }
+            });
+            return count;
+        }
+
+        const numbers = [10, 5, 7, 21, 4, 8, 18];
+
+        const totalSum = getSum(numbers);
+        writeColor("모든 원소의 합 : " + totalSum, "h2", "red");
+        hr();
+
+        const maxValue = getMaxValue(numbers);
+        const minValue = getMinValue(numbers);
+        const countEven = getCountEvenNum(numbers);
+        const countOdd = getCountOddNum(numbers);
+
+        document.write("<ul>");
+        document.write("<li>최대값 : " + maxValue + "</li>");
+        document.write("<li>최소값 : " + minValue + "</li>");
+        document.write("<li>짝수의 갯수 : " + countEven + "</li>");
+        document.write("<li>홀수의 갯수 : " + countOdd + "</li>");
+        document.write("</ul>");
+    </script>
+</head>
+<body>
+</body>
+</html>

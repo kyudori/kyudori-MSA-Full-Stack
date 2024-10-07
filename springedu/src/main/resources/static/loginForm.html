@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>로그인</h1>
+<hr>
+<form>
+<input type="text" name="id" placeholder="아이디" required><br>
+<input type="password" name="passwd" placeholder="패스워드" required><br>
+<input type="submit" value="로그인" onclick="login_proc();return false;">
+</form>
+<script>
+function login_proc(){
+	let dom1 = document.querySelector("[type='text']"); 
+	let dom2 = document.querySelector("[type='password']");
+	let param = "id="+encodeURIComponent(dom1.value)+"&passwd="+encodeURIComponent(dom2.value);
+	let xhr = new XMLHttpRequest();
+	xhr.onload = function() {
+		let resultDom = JSON.parse(xhr.responseText);
+		if(resultDom.result == "ok")
+			alert("로그인 성공");
+		else 
+			alert("로그인 실패");
+	}
+	xhr.open("POST", "/login", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");	
+	xhr.send(param);
+}
+</script>
+</body>
+</html>

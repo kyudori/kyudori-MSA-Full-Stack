@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JSP test example</title>
+</head>
+<body>
+<h1>Counting Result</h1>
+<hr>
+<h2>count1 : [[${ session.count1.countNum }]]</h2>
+<h2 th:text="|count2 : ${ session.count2.countNum }|"></h2>
+</body>
+</html>
+
+
+

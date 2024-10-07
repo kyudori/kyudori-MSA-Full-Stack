@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="messageBean1" class="sample1.MessageBeanImpl" >
+		<constructor-arg>
+			<value>strawberry</value>
+		</constructor-arg>	
+		<property name="cost"> <!-- property name-->
+			<value>3000</value>
+		</property>
+	</bean>	
+	
+	<bean id="messageBean2" class="sample1.MessageBeanImpl" >
+		<constructor-arg>
+			<value>peach</value>
+		</constructor-arg>	
+		<property name="cost"  value="2000" />	
+	</bean>	
+</beans>

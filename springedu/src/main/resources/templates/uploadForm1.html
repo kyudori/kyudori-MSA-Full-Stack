@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JSP Test Example</title>
+</head>
+<body>
+<h2>SpringMVC FileUpload</h2>
+<hr>
+	<form th:unless="${ msg }" action="/upload1"  enctype="multipart/form-data" method="post">
+    	<input type="file" name="uploadFile" />
+    	<input type="submit" value="업로드"/>
+	</form>
+
+	 <h2 th:if="${ msg }" th:text="${ msg }"></h2>
+</body>
+</html>
+
+

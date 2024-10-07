@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<style>
+		div {			
+			background-color : yellow;
+		}
+	</style>
+</head>
+<body>
+	<h1>다양한 자원으로의 AJAX 요청</h1>
+    <hr>
+    <div></div>
+<script>
+	window.addEventListener("load", function(){
+		let url = "/edu/first.html";
+		//let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=75474bdfc6c0a4eb738939dd66c101b5&targetDt=20240714";
+		//let url = "http://openapi.seoul.go.kr:8088/796143536a756e69313134667752417a/json/LampScpgmtb/1/100/";
+		//let url = "http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?ServiceKey=%2BjzsSyNtwmcqxUsGnflvs3rW2oceFvhHR8AFkM3ao%2Fw50hwHXgGyPVutXw04uAXvrkoWgkoScvvhlH7jgD4%2FRQ%3D%3D&strSrch=360"
+	
+		const xhr = new XMLHttpRequest();
+
+		xhr.addEventListener("load", function() {
+       				document.getElementsByTagName('div')[0].textContent = xhr.responseText;       
+    	});
+    	xhr.open("GET", url, true);
+    	xhr.send();
+	});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

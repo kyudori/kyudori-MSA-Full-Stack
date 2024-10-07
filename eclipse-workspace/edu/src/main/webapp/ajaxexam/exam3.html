@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='UTF-8'>
+      <title>Ajax테스트</title>   
+      <script>		 
+      window.onload = function () {
+         const xhr = new XMLHttpRequest();
+         xhr.onload = function () {
+            const str = xhr.responseText;   
+            const result = JSON.parse(str);     
+            let output = "";
+            for(var i in result)
+                output += `<h3>${result[i]}</h3>`;                         
+            document.body.innerHTML += output;                            
+         };         
+         xhr.open('GET', 'content/sample.json', true);
+         xhr.send();                
+      };
+      </script>
+   </head>
+   <body>
+      <h2>onload 속성 사용 - JSON응답</h2>
+      <hr>
+   </body>
+</html>
+
+
+

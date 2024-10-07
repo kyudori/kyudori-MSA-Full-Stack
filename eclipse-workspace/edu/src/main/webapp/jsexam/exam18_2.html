@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>가변아규먼트 처리 함수 만들기(ES6)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+	function sum(...p) {  // ES6 Rest Parameter
+		let result = 0;
+		for(var i=0; i < p.length; i++) 
+			result += p[i];
+		return result;
+	}
+	writeColor(sum(), 'h3', 'red');
+	writeColor(sum(10), 'h3', 'green');
+	writeColor(sum(10,20), 'h3', 'yellow'); 
+	writeColor(sum(10, 20, 30), 'h3', 'lime'); 
+	writeColor(sum(1,2,3,4,5,6,7,8), 'h3', 'blue');
+	writeColor(sum(1,2,3,4,5,6,7,8,9,10), 'h3', 'orange');
+</script>
+</body>
+</html>

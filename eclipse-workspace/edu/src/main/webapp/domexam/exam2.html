@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>DOM 프로그래밍</h1>
+	<hr>
+	<button onclick="update(1);">innerHTML</button>
+	<button onclick="update(2);">textContent</button>
+	<button onclick="update(3);">innerHTML로 추가</button>
+	<br>
+	<hr>
+	<div></div>
+	<script>
+		console.log(document.body);
+		const dom = document.getElementsByTagName("div")[0];
+		function update(num) {
+			if (num == 1)
+				dom.innerHTML = "<h2>테스트하자</h2>";
+			else if (num == 2)
+				dom.textContent = "<h2>테스트하자</h2>";
+			else
+				dom.innerHTML += "<h2>테스트하자</h2>";
+			//dom.innerHTML = dom.innerHTML + "<h2>테스트하자</h2>";
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="messageBean" class="sample6.MessageBeanImpl">
+	<constructor-arg  value="Dooly"/>	
+	<property name="phone"  value="123-4567"/>
+	<property name="outputter" ref="outputRef"/>
+</bean>
+
+<bean id="outputRef" class="sample6.FileOutput">
+	<property name="filePath">
+		<value>c:/Temp/data.txt</value>
+	</property>
+</bean>
+
+</beans>
+
+
+
+

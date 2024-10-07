@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JSP test example</title>
+</head>
+<body>
+<h1>RequestBody Test!!!!</h1>
+<hr>
+<h2 id="msg_area" th:text="${msg}? ${msg} :'전달된 메시지 없음'"></h2>
+<hr>
+<h3>&lt;FORM&gt; 태그를 통한 요청</h3>
+<form method="post" action="/rb1">
+    <input type="text" name="name" value="유니코"><br>
+    <input type="number" name="age" value="20"><br>
+    <input type="submit" value="전송">
+</form>
+<hr>
+<h3>AJAX를 통한 요청</h3>
+<button id="rb2" data-pname="둘리">데이터 전송(JSON문자열추출)</button>
+<button id="rb3" data-pname="또치">데이터 전송(VO객체추출)</button>
+<button id="rb4" data-pname="도우너">데이터 전송(Map객체추출)</button>
+<script>
+    const buttons = document.querySelectorAll("button");
+    const postData = event => {
+        console.log("데이터 전송");
+        fetch("/"+event.target.id, {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body : JSON.stringify({
+                name : event.target.getAttribute("data-pname"),
+                age : "10"
+            })
+       })
+       .then((response) => response.json())
+       .then((data) => {
+           console.log('성공:', data);
+           document.querySelector("#msg_area").textContent = `${data.name}:${data.age}`;
+       });
+    };
+    buttons.forEach( elem =>  elem.addEventListener("click", postData));
+</script>
+</body>
+</html>
+
+
+

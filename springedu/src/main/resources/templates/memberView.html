@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원 정보</h1>
+	<hr>
+	<ul th:if="${ member == null and memberDTO == null}" style="color:red">
+		<li>회원 이름1 : [[${ name }]]</li>
+		<li>회원 전화번호1 : [[${ phone }]]</li>
+		<li>회원 계정1  : [[${ id }]]</li>
+		<li>회원 암호1  : [[${ password }]]</li>		
+	</ul>
+	<ul th:if="${member != null and memberDTO == null}" style="color:magenta">
+		<li>회원 이름2 : [[${member.name }]]</li>
+		<li>회원 전화번호2 : [[${member.phone }]]</li>
+		<li>회원 계정2 : [[${member.id }]]</li>
+		<li>회원 암호2 : [[${member.password }]]</li>
+	</ul>	
+
+	<ul th:if="${member == null and memberDTO != null}" style="color:blue">
+		<li>회원 이름3 : [[${memberDTO.name }]]</li>
+		<li>회원 전화번호3 : [[${memberDTO.phone }]]</li>
+		<li>회원 계정3 : [[${memberDTO.id }]]</li>
+		<li>회원 암호3 : [[${memberDTO.password }]]</li>
+	</ul>
+	
+	<hr>
+	<a th:href="${refinfo}">입력화면</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JSP 테스트 예제</title>
+</head>
+<body>
+<h2>SpringMVC FileUpload(Multiple)-MultipartRequest</h2>
+<hr>
+	<form  th:unless="${ msg }" action="/upload3"  enctype="multipart/form-data" method="post">
+    	<input type="file" name="mfile" multiple/>
+    	<input type="submit" value="파일올리기"/>
+	</form>
+	<h2 th:if="${ msg }" th:utext="${ msg }"></h2>
+</body>
+</html>

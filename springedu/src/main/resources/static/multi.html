@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	a, form, button {
+		margin : 10px;
+	}
+</style>
+</head>
+<body>
+<h1>MultiController Request</h1>
+<hr>
+<a href="/select?pageno=100" style="text-decoration:none">SELECT Request</a><br>
+<hr>
+<button onclick="location.href='/search?pageno=1000'">SEARCH Request</button>
+<hr>
+<form method="get" action="/insert">
+<input type="hidden" name="pageno" value="10">
+<input type="submit" value="INSERT Request(GET)">
+</form>
+<hr>
+<form method="post" action="/insert">
+<input type="hidden" name="pageno" value="10">
+<input type="submit" value="INSERT Request(POST)">
+</form>
+</body>
+</html>

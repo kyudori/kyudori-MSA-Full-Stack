@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>오늘의 날씨 정보</title>
+</head>
+<body>
+    <h1>오늘의 날씨 정보 - <span id="wtext" style='color:#ff0a00'></span></h1>
+    <hr>
+    <h4>기준 시간: <span id="time">로딩 중...</span></h4>
+    <h4>기온: <span id="temp">로딩 중...</span>°C</h4>
+    <img id="weatherImg" alt="날씨 이미지" />
+    
+    <script>
+        function getWeather() {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                        const jsonObj = JSON.parse(xhr.responseText);
+
+                        const time = jsonObj.time;
+                        const temp = jsonObj.temp;
+                        const wtext = jsonObj.wtext;
+    
+                        document.getElementById("time").textContent = time;
+                        document.getElementById("temp").textContent = temp;
+                        document.getElementById("wtext").textContent = wtext;
+                        
+                        let weatherImgSrc = "";
+                        switch (wtext) {
+                            case "구름 많음":
+                                weatherImgSrc = "../images/cloud.png";
+                                break;
+                            case "구름 조금":
+                                weatherImgSrc = "../images/cloud_sun.png";
+                                break;
+                            case "맑음":
+                                weatherImgSrc = "../images/sun.png";
+                                break;
+                            case "비":
+                                weatherImgSrc = "../../images/rain.png";
+                                break;
+                            case "눈":
+                                weatherImgSrc = "../images/snow.png";
+                                break;
+                        }
+                        document.getElementById("weatherImg").src = weatherImgSrc;
+            };
+            xhr.open("GET", "content/weather.jsp", true);
+            xhr.send();
+        }
+    
+        window.onload = getWeather;
+    </script>
+</body>
+</html>

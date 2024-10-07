@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 실습(7)</title>
+    <script src="util.js"></script>
+    <script>
+        writeColor("자바스크립트 실습(7)", "h1", "green");
+        hr();
+
+        function getKorDay(y, m, d) {
+            if (arguments.length !== 3) return undefined;
+
+            if (typeof y !== 'number' || typeof m !== 'number' || typeof d !== 'number') {
+                return undefined;
+            }
+
+            const date = new Date(y, m - 1, d);
+            if (isNaN(date)) return undefined;
+
+            const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+            return days[date.getDay()];
+        }
+
+        const yearInput = prompt("년을 입력하세요 (예: 2024):");
+        const monthInput = prompt("월을 입력하세요 (1-12):");
+        const dayInput = prompt("일을 입력하세요 (1-31):");
+
+        const year = Number(yearInput);
+        const month = Number(monthInput);
+        const day = Number(dayInput);
+
+        const dayName = getKorDay(year, month, day);
+
+        if (dayName === undefined) {
+            writeColor("결과 없음", "h1", "red");
+        } else {
+            writeColor(`${year}년 ${month}월 ${day}일은 ${dayName}입니다`, "h1", "blue");
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>함수 정의와 활용(1)-선언적(명시적) 함수 정의</h1>
+<hr>
+<script>
+	function f1() {
+		document.write('f1() 호출<br>');
+	}
+	function f2(p1, p2) {
+		document.write('f2() 호출-'+(p1+p2)+'<br>');
+	}
+	f1();
+	f2(10,20);
+	document.write('<hr>');
+	var result1 = f1();
+	var result2 = f2(100,200);
+	document.write('result1 : '+result1+' result2 : '+result2);
+	if(result1 == undefined) {//if(!result1) {
+		document.write('<br>리턴값이 없군요!!');
+	}
+	document.write('<hr>');
+	f1(100);
+	f2(100);
+</script>
+
+</body>
+</html>
+
+
+

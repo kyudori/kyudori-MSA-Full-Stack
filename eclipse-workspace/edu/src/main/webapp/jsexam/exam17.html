@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(1)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		var d = new Date();
+		writeColor(d, "h2", "red");
+		writeColor(d.toLocaleString(), "h2", "blue");
+		writeColor(d.getFullYear(), "h2", "green");
+		writeColor(d.getMonth(), "h2", "magenta");
+		writeColor(d.getDate(), "h2", "orange"); // 0 : 일요일
+		writeColor(d.getDay(), "h2", "magenta");
+		writeColor(d.getTime(), "h2", "brown");
+		writeColor(Date.now(), "h2", "red");
+		hr();
+		var d1 = new Date(2024, 7, 13);
+		writeColor(d1, "h2", "magenta");
+		writeColor(d1.getFullYear(), "h2", "green");
+		writeColor(d1.getDate(), "h2", "orange");
+		writeColor(d1.getDay(), "h2", "lime");
+		hr()
+		var list = new Array(); // [ ]
+		writeNewLine(list.length);
+		list.push(1);
+		writeNewLine(list.length);
+		list.push('가나다');
+		writeNewLine(list.length);
+		list.push(100);
+		writeNewLine(list.length);
+		list.push("abc");
+		writeNewLine(list.length);
+		list.push(true);
+		writeNewLine(list.length);
+		writeNewLine("리스트의 모든 엘리먼트 : " + list);
+		hr();
+		for ( var i in list) {
+			writeNewLine(list[i]);
+		}
+		hr();
+		for (var i = 0; i < list.length; i += 2) {
+			writeNewLine(list[i]);
+		}
+		hr();
+		var list2 = [ 10, 20, 30, 40, 50 ]
+		for ( var i in list2) {
+			writeNewLine(list2[i]);
+			writeNewLine(i);
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+</head>
+<body>
+	<p id="demo">위치정보를 추출하려면 실행 버튼을 클릭하세요:</p>
+	<button onclick="getLocation()">실행</button>
+	<script>
+		const x = document.getElementById("demo");
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition,
+						showError);
+			} else {
+				x.innerHTML = " 이 브라우저는 geolocation을 지원하지 않습니다.";
+			}
+		}
+		function showPosition(position) {
+			window.alert("위도: " + position.coords.latitude + "\n경도: "
+					+ position.coords.longitude);
+			console.log("위도: " + position.coords.latitude + "\n경도: "
+					+ position.coords.longitude);
+		}
+		function showError(error) {
+			switch (error.code) {
+			case error.PERMISSION_DENIED:
+				x.innerHTML = "사용자가 위치 기능 사용을 거부했습니다."
+				break;
+			case error.POSITION_UNAVAILABLE:
+				x.innerHTML = "위치를 구할 수 없습니다.";
+				break;
+			case error.TIMEOUT:
+				x.innerHTML = "사용자가 위치 기능 사용을 거부했습니다.";
+				break;
+			case error.UNKNOWN_ERROR:
+				x.innerHTML = "기타 에러";
+			}
+		}
+	</script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style>
+	h1 {
+		color: red;
+	}
+</style>
+</head>
+<body>
+<h1>자바스크립트 실습(2)</h1>
+<hr>
+<script>
+	var start = Math.floor(Math.random() * 10) + 1;  // 1~10 사이 난수
+	var end = Math.floor(Math.random() * 10) + 11;   // 11~20 사이 난수
+	
+	var sum = 0;
+	for (var i = start; i <= end; i++) {
+		sum += i;
+	}
+	
+	document.write("<h2>" + start + " 부터 " + end + " 까지의 합은 " + sum + " 입니다.</h2>");
+</script>
+</body>
+</html>

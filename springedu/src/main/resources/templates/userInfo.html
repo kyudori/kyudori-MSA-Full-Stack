@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+<meta charset="UTF-8">
+<title>Output member information</title>
+</head>
+<body>
+<h2 th:text="${msg}">${msg}</h2>
+<hr>
+<ul>
+<li>이름 : [[${ userVO.userName }]] </li>
+<li>성공 : [[${ userVO.address }]] </li>
+<li>
+좋아하는 과일 : <span th:each="fruit:${userVO.favoriteFruit}" th:text="${fruit}+'&nbsp;'"></span>
+</li>
+</ul>
+<a th:href="${refinfo}">입력화면</a>
+</body>
+</html>

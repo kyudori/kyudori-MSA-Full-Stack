@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<pre>
+<script>
+	let g_v = "전역변수";
+	function myFunc1() {
+		let l_v = "myFunc1()의 지역 변수";
+		document.writeln("myFunc1() 함수의 스코프 영역");
+		document.writeln("l_v : " + l_v);
+		document.writeln("g_v : " + g_v);
+	}
+	var myFunc2 = function(p) {
+		let l_v = "myFunc2()의 지역 변수";
+		document.writeln("myFunc2() 함수의 스코프 영역");
+		document.writeln("l_v : " + l_v);
+		document.writeln("g_v : " + g_v);
+		if (p) {
+			let l_b_v = "블럭스코프 지역변수";
+			document.writeln("l_b_v : " + l_b_v);
+		}
+		document.writeln("^^ : " + l_b_v); // let 은 블럭 스코프 지원
+	}
+	myFunc1();
+	document.writeln();
+	myFunc2(true);
+</script>
+</pre>
+	<hr>
+	<script>
+		document.writeln();
+		document.writeln("전역(글로벌) 스코프 영역");
+		document.writeln("g_v : " + g_v);
+	</script>
+</body>
+</html>
+
+
+
+
+
+

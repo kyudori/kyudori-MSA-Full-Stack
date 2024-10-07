@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>New Web Project</title>
+</head>
+<body>
+	<h1>JavaScript 로 구현하는 AJAX 프로그램 - Spring 요청</h1>
+	<button onclick="get()">GET요청</button>
+	<button onclick="post()">POST요청</button>
+	<hr>
+	<output id="result"></output>
+<script>
+	function get() {
+		let xhr = new XMLHttpRequest();
+		xhr.onload = function() {
+			if (xhr.status == 200) {
+				let result = document.getElementById("result");
+				result.textContent = xhr.responseText;				
+			}
+		};
+		xhr.open('GET', '/body/json/GETUNICO', true);
+		xhr.send();
+	}
+	function post() {
+		let xhr = new XMLHttpRequest();
+		xhr.onload = function() {
+			if (xhr.status == 200) {
+				let result = document.getElementById("result");
+				result.textContent = xhr.responseText;				
+			}
+		};
+		xhr.open('POST', '/body/json/POSTUNICO', true);
+		xhr.setRequestHeader("content-type", 
+				"application/x-www-form-urlencoded");
+		xhr.send("");
+	}
+</script>
+</body>
+</html>
+
+
+
+
+

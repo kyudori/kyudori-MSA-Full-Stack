@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 실습(8)</title>
+    <script src="util.js"></script>
+    <script>
+        writeColor("자바스크립트 실습(8)", "h1", "blue");
+        hr();
+
+        function calc(...args) {
+            if (args.length === 0) {
+                return 0;
+            }
+
+            let sum = 0;
+
+            for (let arg of args) {
+                if (isNaN(Number(arg))) {
+                    return "숫자만 전달하세요";
+                }
+                sum += Number(arg);
+            }
+            return sum;
+        }
+
+        function displayResult(content) {
+            write("<h3>" + content + "</h3>");
+        }
+
+        const result1 = calc();
+        displayResult(result1);
+
+        const result2 = calc(10, 20, '30');
+        displayResult(result2);
+
+        const result3 = calc(10, '가나다', 20);
+        displayResult(result3);
+
+        const result4 = calc(1, 2, 3, 4, 5);
+        displayResult(result4);
+        
+    </script>
+</head>
+<body>
+</body>
+</html>

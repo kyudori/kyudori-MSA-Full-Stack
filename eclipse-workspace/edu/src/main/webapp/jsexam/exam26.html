@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>자바스크립트의 객체 생성과 사용(생성자 함수)</h1>
+<hr>
+<script src="util.js"></script>
+<script>
+	function Student(name, korean, math, english, science) {
+	    this.이름 = name;
+	    this.국어 = korean;
+	    this.수학 = math;
+	    this.영어 = english;
+	    this.과학 = science;    
+	}
+	var st1 = new Student('둘리', 96, 98, 92, 98);
+	var st2 = new Student('또치', 92, 98, 96, 98);
+	var st3 = new Student('도우너', 76, 96, 94, 90);
+	
+	write(st1.이름+ " : " + st1.국어+ ", " + st1.수학+ ", " +  st1.영어+ ", " +  st1.과학, "h2");
+	write(st2.이름+ " : " + st2.국어+ ", " + st2.수학+ ", " +  st2.영어+ ", " +  st2.과학, "h2");
+	write(`${st3.이름} : ${st3.국어}, ${st3.수학}, ${st3.영어}, ${st3.과학}`, "h2"); //ECMAScript -> 템플릿리터럴, 템플릿문자열
+	
+	writeColor(st1, "h1", "red");
+	writeColor(st1.toString(), "h1", "red");
+	
+</script>
+</body>
+</html>
+
+
+
+
+

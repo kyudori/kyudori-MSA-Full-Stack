@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>링크로 서블릿 요청하기</h1>
+<a href="/edu/queryget?guestName=둘리&num=11&food=갈비&food=떡볶이">둘리</a>
+<br>
+<a href="/edu/queryget?guestName=또치&num=22">또치</a>
+<br>
+<a href="/edu/queryget?guestName=듀크&num=33&food=쌀국수">
+<img src="/edu/images/duke.png" width="100" height=100></a>
+<hr>
+<h1>이름과 좋아하는 숫자 전달하기(GET)</h1>
+<form method="get" action="/edu/queryget">
+<input type="text" name="guestName" 
+         placeholder="이름을 입력하세요" required><br>
+<input type="number" name="num" 
+ placeholder="좋아하는 숫자를 입력하세요" required><br>
+<input type="checkbox" name="food" value="볶음밥">볶음밥
+<input type="checkbox" name="food" value="탕수육">탕수육
+<input type="checkbox" name="food" value="피자">피자
+<input type="checkbox" name="food" value="파스타">파스타<br>
+<input type="submit" value="요청(GET)">
+</form>
+<br>
+<hr>
+<h1>이름과 좋아하는 숫자 전달하기(POST)</h1>
+<form method="post" action="/edu/querypost">
+<input type="text" name="guestName" 
+         placeholder="이름을 입력하세요" required><br>
+<input type="number" name="num" 
+ placeholder="좋아하는 숫자를 입력하세요" required><br>
+<input type="checkbox" name="food" value="볶음밥">볶음밥
+<input type="checkbox" name="food" value="탕수육">탕수육
+<input type="checkbox" name="food" value="피자">피자
+<input type="checkbox" name="food" value="파스타">파스타<br>
+<input type="submit" value="요청(POST)">
+</form>
+</body>
+</html>
+
+
+
+

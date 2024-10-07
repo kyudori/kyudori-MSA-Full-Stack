@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>csslab3</title>
+<style>
+@font-face {
+	font-family: 'ONE-Mobile-POP';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'ONE-Mobile-POP';
+}
+
+.form {
+	font-family: 'ONE-Mobile-POP';
+	width: 600px;
+	height: 220px;
+	margin: 5px auto;
+	padding: 25px;
+	border: 5px solid purple;
+	border-radius: 20px;
+	background-image: linear-gradient(to bottom, yellow, white, green);
+}
+
+input {
+	margin-bottom: 15px;
+}
+
+button {
+	margin-top: 10px;
+	background-color: lightgreen;
+	height: 35px;
+	width: 100px;
+	margin: 5px auto;
+	border-radius: 15px;
+	transition: transform 0.3s ease;
+}
+
+button:hover {
+	transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+	<h1>펜션 예약 서비스</h1>
+	<hr>
+	<div class="form">
+		<form id="myForm" method="post" action="/edu/reservation">
+			예약자명: <input type="text" name="reservName"><br>
+			예약암호: <input type="password" name="reservPw"><br>
+			룸선택: 
+			<input type="radio" name="roomType" value="둘리" required>둘리 
+			<input type="radio" name="roomType" value="희동" required>희동 
+			<input type="radio"	name="roomType" value="도우너" required>도우너 
+			<input type="radio" name="roomType"	value="또치" required>또치
+			<br> 
+			추가요청사항: 
+			<input type="checkbox" name="addRequest" value="바베큐"> 바베큐 
+			<input type="checkbox" name="addRequest" value="수영장"> 수영장 
+			<input type="checkbox" name="addRequest" value="낚시"> 낚시 
+			<input type="checkbox" name="addRequest" value="조식"> 조식
+			<br> 
+			<label>예약날짜: <input type="date" name="reservDate" required/>
+			</label>
+			<hr>
+			<button type="submit">보내기</button>
+			<button type="reset">다시작성하기</button>
+		</form>
+	</div>
+</body>
+</html>

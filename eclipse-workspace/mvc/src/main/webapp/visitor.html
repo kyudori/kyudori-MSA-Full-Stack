@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<header>
+<h1>방명록</h1>
+<nav>
+	<button onclick="location.href='/mvc/visitor'">방명록 리스트 보기</button>
+	<button onclick="displayTag('insert')">방명록 작성하기</button>
+	<button onclick="displayTag('search')">방명록 검색하기</button>
+</nav>
+</header>
+<section>
+<article id="insert" style="display:none">
+<h2>글을 남겨 주세요</h2>
+<hr>
+<form method="post" action="/mvc/visitor">    
+<input type="hidden" name="action" value="insert">    
+이름 : <input type="text" name="name" size="15"><br>
+남기고자 하는 의견 : <br>
+<textarea  name= "memo" rows="10" cols="50"></textarea>
+<input type="submit" value="등록 ">
+<input type="reset"  value="재작성">
+</form>
+</article>
+<article id="search" style="display:none">
+<h2>검색하고자 하려는 단어를 입력하세요</h2>
+<hr>
+<form method="get" action="/mvc/visitor"> 
+<input type="hidden" name="action" value="search">    
+검색어 : <input type="search" name="keyword" size="15">
+<input type="submit" value="검색 ">
+</form>
+</article>
+</section>
+<script>
+	function displayTag(target) {
+		document.querySelectorAll("section > *").forEach(function(elem) {elem.style.display = "none"});
+		let dom = document.querySelector("#"+target);
+		dom.style.display = "block";
+	}
+</script>
+</body>
+</html>
+

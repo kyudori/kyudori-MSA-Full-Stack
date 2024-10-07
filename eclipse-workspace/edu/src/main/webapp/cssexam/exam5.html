@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 학습</title>
+<style>
+    h1 {
+        text-align : center;
+    }
+	div {
+		width : 60%;
+		height : 50px;
+		margin : 20px auto;
+		padding-top : 110px;
+		padding-bottom : 90px;
+		text-align : center;
+	}  
+	div:nth-of-type(1) {
+		background-color : yellow;
+		border : 2px solid red;
+		border-radius : 30px;
+	}
+	div:nth-of-type(2) {
+		background-color : lightgreen;
+		border : 2px dotted magenta;
+		border-radius : 20px 40px 60px 80px;
+	}
+	div:nth-of-type(3) {
+		background-color : #000000;
+		border : 5px dashed #ffffff;
+	}
+	div:nth-of-type(4) {
+		background-color : silver;
+		border : 15px inset #ffffff;
+	}
+	div:nth-of-type(5) {
+		background-color : gold;
+		border : 15px outset #ffffff;
+		height : 100px;
+	}
+</style>
+</head>
+<body>
+<h1>둥근 보더 만들기</h1>
+<div>텍스트를 출력합니다.</div>
+<div>텍스트를 출력합니다.</div>
+<div style="color:white">텍스트를 출력합니다.</div>
+<div>텍스트를 출력합니다.</div>
+<div>
+    <img src="../images/olaf.jpg" width="100" height="100">
+    <img src="../images/totoro.png" width="100" height="100">
+    <img src="../images/duke.png" width="100" height="100">
+</div>
+</body>
+</html>

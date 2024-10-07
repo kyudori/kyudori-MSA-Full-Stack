@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트 배열과 for 문</h1>
+	<script src="util.js"></script>
+	<script>
+	var ary = [10, 20, 30];
+	for(let i=0; i < ary.length; i++)
+		writeColor(ary[i], "h3", "blue");
+	hr();
+	for(let i in ary) // foreach
+		writeColor(ary[i], "h3", "red");
+	hr();
+	for(let e of ary) // ECMAScript 6(ES 6)
+		writeColor(e, "h3", "green");
+</script>
+</body>
+</html>
