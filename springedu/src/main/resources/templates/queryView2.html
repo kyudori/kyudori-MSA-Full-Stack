@@ -7,10 +7,10 @@
 <body>
 <h2>Forward from QueryStringController2 to queryView2.html</h2>
 <hr>
-	<ul th:if="${queryVO != null}">
-			<li>[[${ queryVO.testName }]]</li>
-			<li>[[${ queryVO.testAge }]]</li>
-			<li>[[${ queryVO.testAddr }]]</li>
+	<ul th:if="${queryDTO != null}">
+			<li>[[${ queryDTO.testName }]]</li>
+			<li>[[${ queryDTO.testAge }]]</li>
+			<li>[[${ queryDTO.testAddr }]]</li>
 	</ul>
 <h3>Total Query String : [[${ spring }]]</h3>
 <hr>
