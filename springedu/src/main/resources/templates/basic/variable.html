@@ -9,19 +9,19 @@
 <ul>
     <li>${user.userName} = <span th:text="${user.userName}"></span></li>
     <li>${user['userName']} = <span th:text="${user['userName']}"></span></li>
-    <li>${user.getuserName()} = <span th:text="${user.getUserName()}"></span></li>
+    <li>${user.getUserName()} = <span th:text="${user.getUserName()}"></span></li>
 </ul>
 <h3>List</h3>
 <ul>
-    <li>${users[0].userName} span> = <span th:text="${users[1].userName}"></span></li>
-    <li>${users[0]['userName']} = <span th:text="${users[1]['userName']}"></span></li>
-    <li>${users[0].getuserName()} = <span th:text="${users[1].getUserName()}"></span></li>
+    <li>${users[1].userName} = <span th:text="${users[1].userName}"></span></li>
+    <li>${users[1]['userName']} = <span th:text="${users[1]['userName']}"></span></li>
+    <li>${users[1].getUserName()} = <span th:text="${users[1].getUserName()}"></span></li>
 </ul>
 <h3>Map</h3>
 <ul>
 	<li>${userMap['userA'].userName} = <span th:text="${userMap['userA'].userName}"></span></li>
     <li>${userMap['userA']['userName']} = <span th:text="${userMap['userA'] ['userName']}"></span></li>
-    <li>${userMap['userA'].getuserName()} = <span th:text="${userMap['userA'].getUserName()}"></span></li>
+    <li>${userMap['userA'].getUserName()} = <span th:text="${userMap['userA'].getUserName()}"></span></li>
 </ul>
 <h1>지역 변수 - (th:with)</h1>
 <ul th:with="first=${users[0]}">

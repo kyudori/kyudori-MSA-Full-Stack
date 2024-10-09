@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ div {
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+}
+
+.shadow img {
+	transition: .5s ease;
+}
+
+.shadow img:hover {
+	box-shadow: 1px 1px #d9d9d9, 2px 2px #d9d9d9, 3px 3px #d9d9d9, 4px 4px
+		#d9d9d9, 5px 5px #d9d9d9, 6px 6px #d9d9d9;
+	transform: translateX(-3px);
+	transition: .5s ease;
+}
+</style>
+</head>
+<body>
+<h1>Lotto Game</h1>
+<div><a href="/lotto?lottoNum=1" class ="shadow"><img src="images/1.png" alt="1"></a></div>
+<div><a href="/lotto?lottoNum=2" class ="shadow"><img src="images/2.png" alt="2"></a></div>
+<div><a href="/lotto?lottoNum=3" class ="shadow"><img src="images/3.png" alt="3"></a></div>
+<div><a href="/lotto?lottoNum=4" class ="shadow"><img src="images/4.png" alt="4"></a></div>
+<div><a href="/lotto?lottoNum=5" class ="shadow"><img src="images/5.png" alt="5"></a></div>
+<div><a href="/lotto?lottoNum=6" class ="shadow"><img src="images/6.png" alt="6"></a></div>
+</body>
+</html>
