@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title></head>
+<body>
+<h1>SpringEL 표현식</h1>
+<h3>Object</h3>
+<ul>
+    <li>${user.userName} = <span th:text="${user.userName}"></span></li>
+    <li>${user['userName']} = <span th:text="${user['userName']}"></span></li>
+    <li>${user.getuserName()} = <span th:text="${user.getUserName()}"></span></li>
+</ul>
+<h3>List</h3>
+<ul>
+    <li>${users[0].userName} span> = <span th:text="${users[1].userName}"></span></li>
+    <li>${users[0]['userName']} = <span th:text="${users[1]['userName']}"></span></li>
+    <li>${users[0].getuserName()} = <span th:text="${users[1].getUserName()}"></span></li>
+</ul>
+<h3>Map</h3>
+<ul>
+	<li>${userMap['userA'].userName} = <span th:text="${userMap['userA'].userName}"></span></li>
+    <li>${userMap['userA']['userName']} = <span th:text="${userMap['userA'] ['userName']}"></span></li>
+    <li>${userMap['userA'].getuserName()} = <span th:text="${userMap['userA'].getUserName()}"></span></li>
+</ul>
+<h1>지역 변수 - (th:with)</h1>
+<ul th:with="first=${users[0]}">
+    <li>첫 번째 사람의 이름은 '<span th:text="${first.userName}"></span>'</li>
+    <li>첫 번째 사람의 나이는 '<span th:text="${first.age}"></span>'</li>
+</ul>
+<ul th:with="unico=${users[1]}">
+    <li>두 번째 사람의 이름은 '<span th:text="${unico.userName}"></span>'</li>
+    <li>두 번째 사람의 나이는 '<span th:text="${unico.age}"></span>'</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>if, unless</h1>
+<hr>
+<h3 th:text="'시청 불가'" th:if="${age lt 14}"></h3>
+<h3 th:text="'시청 가능'" th:unless="${age lt 14}"></h3>
+<hr>
+<ul th:if="${movie == '겨울왕국'}">
+    <li>엘사</li>
+    <li>안나</li>
+    <li>올라프</li>
+</ul>
+<hr>
+<th:block th:if="${today == '금요일'}">
+    <h2>즐거운 금요일</h2>
+    <h3>행복한 금요일</h3>
+</th:block></body>
+</html>

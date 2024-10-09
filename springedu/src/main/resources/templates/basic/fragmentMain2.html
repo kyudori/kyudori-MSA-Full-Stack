@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>부분 포함 테스트</h1>
+<hr>
+<h2>부분 포함 insert</h2>
+<div th:insert="~{basic/fragment/footer :: unico}" style="color:red"></div>
+
+<h2>부분 포함 replace</h2>
+<div th:replace="~{basic/fragment/footer :: unico}" style="color:blue"></div>
+
+<h2>부분 포함 단순 표현식</h2>
+<div th:insert="basic/fragment/footer :: unico" style="color:magenta"></div>
+
+<h1>파라미터 사용</h1>
+<div th:replace="~{basic/fragment/footer :: unicoParam ('데이터1', '데이터2')}" style="color:green"></div>
+<div th:replace="basic/fragment/footer :: unicoParam ('데이터1', '데이터2')" style="color:green"></div>
+</body>
+</html>

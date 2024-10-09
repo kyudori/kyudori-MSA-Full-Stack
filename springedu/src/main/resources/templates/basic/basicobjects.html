@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>표현식 기본 객체 (Expression Basic Objects)</h1>
+<ul>
+    <li>locale = <span th:text="${#locale}"></span></li>
+</ul>
+<h1>편의 객체</h1>
+<ul>
+    <li>Request Parameter = <span th:text="${param.paramData}"></span></li>
+    <li>spring bean = <span th:text="${@my.getHello('Spring Boot!')}"></span></li>
+</ul>
+<hr>
+[[${startTime}]]<br>
+[[${#temporals.format(startTime,'yyyy-MM-dd HH:mm:ss')}]]<br>
+[[${#temporals.format(startTime,'yyyy년 MM월 dd일 HH시 mm분')}]]<br>
+<hr>
+<h1>startTime - Utils</h1>
+[[${#temporals}]]
+<ul>
+    <li>${#temporals.day(startTime)} = <span
+            th:text="${#temporals.day(startTime)}"></span></li>
+    <li>${#temporals.month(startTime)} = <span
+            th:text="${#temporals.month(startTime)}"></span></li>
+    <li>${#temporals.monthName(startTime)} = <span
+            th:text="${#temporals.monthName(startTime)}"></span></li>
+    <li>${#temporals.monthNameShort(startTime)} = <span
+            th:text="${#temporals.monthNameShort(startTime)}"></span></li>
+    <li>${#temporals.year(startTime)} = <span
+            th:text="${#temporals.year(startTime)}"></span></li>
+    <li>${#temporals.dayOfWeek(startTime)} = <span
+            th:text="${#temporals.dayOfWeek(startTime)}"></span></li>
+    <li>${#temporals.dayOfWeekName(startTime)} = <span
+            th:text="${#temporals.dayOfWeekName(startTime)}"></span></li>
+    <li>${#temporals.dayOfWeekNameShort(startTime)} = <span
+            th:text="${#temporals.dayOfWeekNameShort(startTime)}"></span></li>
+    <li>${#temporals.hour(startTime)} = <span
+            th:text="${#temporals.hour(startTime)}"></span></li>
+    <li>${#temporals.minute(startTime)} = <span
+            th:text="${#temporals.minute(startTime)}"></span></li>
+    <li>${#temporals.second(startTime)} = <span
+            th:text="${#temporals.second(startTime)}"></span></li>
+</ul>
+<hr>
+[[${#dates}]]<br>
+[[${#dates.createNow()}]]<br>
+[[${#dates.createToday()}]]<br>
+[[${#dates.format(#dates.createNow(), 'YYYY/MM/dd HH:mm')}]]<br>
+[[${#dates.format(#dates.createNow(), 'yyyy년 MMM d일')}]]<br>
+[[${#dates.format(#dates.createNow(), 'hh:mm:ss')}]]<br>
+[[${#dates.format(#dates.createNow(), 'ddd dd d')}]]<br>
+[[${#calendars.dayOfWeekName(#dates.createNow())}]]<br>
+<hr>
+[[${#strings}]]<br>
+[[${#strings.isEmpty(param.name)}]]<br>
+[[${#strings.isEmpty(startTime)}]]<br>
+[[${#strings.isEmpty(tech)}]]<br>
+[[${#strings.length(tech)}]]<br>
+'[[${#strings.toLowerCase(tech)}]]'<br>
+'[[${tech}]]'<br>
+'[[${#strings.trim(tech)}]]'<br>
+<hr>
+<ul>
+    <li>${num} = <span th:text="${num}"></span></li>
+    <li>${#numbers.formatInteger(num, 3, 'COMMA')} = <span th:text="${#numbers.formatInteger(num, 3, 'COMMA')}"></span></li>
+    <li>${#numbers.formatCurrency(num)} = <span th:text="${#numbers.formatCurrency(num)}"></span></li>
+    <li>${#numbers.formatDecimal(num, 3, 'COMMA', 2, 'POINT')} = <span th:text="${#numbers.formatDecimal(num, 3, 'COMMA', 2, 'POINT')}"></span></li>
+</ul>
+<hr>
+[[${param}]]<br>
+[[${param.foo} ]]<br>
+[[${param.size()}]]<br>
+[[${param.isEmpty()}]]<br>
+[[${param.containsKey('foo')}]]<br>
+<hr>
+[[${session.getClass().getName()} ]]<br>
+[[${session.sessionData} ]]<br>
+[[${session.size()}]]<br>
+[[${session.isEmpty()}]]<br>
+[[${session.containsKey('aaa')}]]<br> <!--/*  이상함!! 바보 */-->
+[[${session.keySet()} ]]<br>
+<h3>[[${session.count[0]}]]</h3>
+<hr>
+</body>
+</html>

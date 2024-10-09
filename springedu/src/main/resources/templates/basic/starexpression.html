@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<style>
+	div:nth-of-type(1) {
+		color : blue;
+	}
+	div:nth-of-type(2) {
+		color : orange;
+	}
+</style>
+</head>
+<body>
+	<div th:object="${user}">
+		<p>이름 : <span th:text="*{userName}">둘리</span></p>
+		<p>나이 : <span th:text="*{age}">100</span></p>
+	</div>
+	<hr>
+	<div>
+		<p>이름 : <span th:text="${user.userName}">둘리</span></p>
+		<p>나이 : <span th:text="${user.age}">100</span></p>
+	</div>
+</body>
+</html>
