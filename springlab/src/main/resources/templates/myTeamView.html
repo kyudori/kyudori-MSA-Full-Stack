@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>우리팀 소개</title>
+</head>
+<body>
+<h1>우리팀 소개</h1>
+<hr>
+<form action="/myTeam1" method="get">
+    <button type="submit" name="action" value="teamName">우리 팀명</button>
+    <button type="submit" name="action" value="teamMembers">우리 팀원</button>
+</form>
+
+<div th:if="${action == 'teamName'}">
+    <h2><span th:text="'우리 팀의 이름은 ' + ${myteam.teamName} + '입니다.'"></span></h2>
+</div>
+
+<div th:if="${action == 'teamMembers'}">
+    <h2><span th:text="${myteam.teamName} + '팀의 팀원들을 소개합니다.'"></span></h2>
+    <ul>
+        <li th:each="member : ${myteam.teamMember}">
+            <span th:text="${member.name} + ' : 별명은 ' + ${member.nickName} +'이고 좋아한 음식은 '+ ${member.food} +'입니다.'"></span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
