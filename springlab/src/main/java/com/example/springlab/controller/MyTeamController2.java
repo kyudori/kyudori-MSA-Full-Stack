@@ -16,7 +16,7 @@ public class MyTeamController2 {
 
     @RequestMapping(value = "/myTeam2/{action}", produces = "application/json; charset=utf-8")  // text/json
     @ResponseBody
-    public TeamDTO myTeam(String action) {
+    public TeamDTO myTeam() {
         TeamDTO myteam = new TeamDTO();
         myteam.setTeamName("먹코살코");
 

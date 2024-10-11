@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Emp 테이블에서 읽어오기</h1>
+<hr>
+<th:block th:if="${num}">
+	<h2>데이터는 총 [[${ num }]]개가 있어요.....</h2>
+</th:block>
+<th:block th:if="${list}">
+	<ul>
+	<th:block th:each="emp : ${list}">
+		<li>[[${emp}]]</li>
+	</th:block>
+	</ul>
+</th:block>
+<th:block th:if="${msg}">
+	<h2>[[${ msg }]]</h2>
+</th:block>
+<th:block th:if="${emp}">
+	<h2>[[${ emp }]]</h2>
+</th:block>
+</body>
+</html>

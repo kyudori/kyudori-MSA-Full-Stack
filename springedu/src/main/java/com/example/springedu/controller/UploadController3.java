@@ -1,6 +1,7 @@
 package com.example.springedu.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class UploadController3 {
 	public void formFile() {
 	}
 
+	/*@Value("${file.upload.path}")
+	private String filepath;*/
+
 	@RequestMapping("/upload3")
 	public ModelAndView saveFile(MultipartRequest mreq) {
 		ModelAndView mav = new ModelAndView();
@@ -36,14 +40,21 @@ public class UploadController3 {
 		for (MultipartFile mfile : list) {
 			String fileName = mfile.getOriginalFilename();
 			try {
+				/* CASE 1 */
 				File f = new File("c:/uploadtest/multi/" + fileName);
-				//String fileInfo = context.getRealPath("/") + "images/"+fileName;
-				//System.out.println(fileInfo);
-				//File f = new File(fileInfo);
+				/* CASE 2
+				String fileInfo = "src/main/resources/static/images/"+fileName;
+				File f = new File(fileInfo);
+				*/
 				if (f.exists()) {
 					resultStr += fileName + " : 파일이 이미 존재해요!!<br>";
 				} else {
-					mfile.transferTo(f);
+					/* CASE 1 */
+					//mfile.transferTo(f);
+					/* CASE 2 */
+					FileOutputStream fos = new FileOutputStream(f);
+					fos.write(mfile.getBytes());
+					fos.close();
 					resultStr += fileName + " : 파일이 저장되었어요!!<br>";
 				}
 			} catch (IOException e) {
