@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset='utf-8'>
+    <title>우리팀 소개</title>
+    <style>
+        button { margin-right: 10px; padding: 10px 20px; }
+        #result { margin-top: 20px; }
+        h2 { color: #333; }
+        ul { list-style-type: disc; margin-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>우리팀 소개</h1>
+<hr>
+<button onclick="postTeam()">우리 팀명</button>
+<button onclick="postMember()">우리 팀원</button>
+
+<div id="result"></div>
+
+<script>
+    function postTeam() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/myTeam2/teamName', true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                const result = document.getElementById("result");
+                result.innerHTML = "";
+                const teamNameHeader = document.createElement("h2");
+                teamNameHeader.textContent = `우리 팀의 이름은 ${data.teamName}입니다.`;
+                result.appendChild(teamNameHeader);
+                }
+        };
+
+        xhr.send();
+    }
+
+    function postMember() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/myTeam2/teamMember', true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                const result = document.getElementById("result");
+                result.innerHTML = "";
+
+                const teamHeader = document.createElement("h2");
+                teamHeader.textContent = `${data.teamName} 팀의 팀원들을 소개합니다.`;
+                result.appendChild(teamHeader);
+
+                const ul = document.createElement("ul");
+                data.teamMember.forEach(member => {
+                    const li = document.createElement("li");
+                    li.textContent = `${member.name} : 별명은 ${member.nickName}이고 좋아한 음식은 ${member.food}입니다.`;
+                    ul.appendChild(li);
+                });
+                result.appendChild(ul);
+            }
+        };
+
+        xhr.send();
+    }
+</script>
+</body>
+</html>

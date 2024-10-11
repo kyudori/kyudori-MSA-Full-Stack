@@ -6,7 +6,7 @@ import org.springframework.web.servlet.view.InternalResourceView;
 @Controller
 public class StaticController {	
 	public StaticController() {
-		System.out.println("HelloController Create object");
+		System.out.println("StaticController Create object");
 	}
 	@RequestMapping("/static")
 	public ModelAndView xxx(){
