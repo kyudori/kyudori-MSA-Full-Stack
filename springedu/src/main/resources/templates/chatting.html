@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='/css/chatt.css'>
+</head>
+<body>
+	<div id='chatt'>
+		<h1>웹 소켓 채팅</h1>
+		<input type='text' id='mid' value='게스트'>
+		<input type='button' value='채팅참여' id='btnJoin'>
+		<br/>
+		<div id='talk'></div>
+		<div id='sendZone'>
+			<textarea id='msg' >안녕...</textarea>
+			<input type='button' value='전송' id='btnSend'>
+		</div>
+	</div>
+	<script>
+
+	function getId(id){
+		return document.getElementById(id);
+	}
+	let data = {};//전송 데이터(JSON)
+
+	let ws ;
+	let mid = getId('mid');
+	let btnJoin = getId('btnJoin');
+	let btnSend = getId('btnSend');
+	let talk = getId('talk');
+	let msg = getId('msg');
+	let myclose = false;
+
+	btnJoin.onclick = function(){
+	   if (btnJoin.value == '채팅참여') {
+			ws = new WebSocket("ws://" + location.host + "/chatt");
+		
+			ws.onmessage = function(msg){
+				let data = JSON.parse(msg.data);
+				let css;
+			
+				if(data.mid == mid.value){
+					css = 'class=me';
+				}else{
+					css = 'class=other';
+				}
+				let item = `<div ${css}>
+			               <span><b>${data.mid}</b></span> [ ${data.date} ]<br/>
+	                       <span>${data.msg}</span>
+						   </div>`;
+		    	console.log("R:"+item);
+				talk.innerHTML += item;
+				talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+			}
+			ws.onclose = function() {
+				btnJoin.style.color = 'black';
+				btnJoin.value = '채팅참여';
+				if (myclose) {
+					alert("서버와의 채팅을 끝냅니다.");
+					myclose = false;
+				}else
+					alert("일정 시간 동안 통신을 하지 않아 자동으로 클로즈 됩니다.");
+			}
+			btnJoin.style.color = 'blue';
+			btnJoin.value = '채팅참여중';
+	  } else {
+	  		btnJoin.style.color = 'black';
+			btnJoin.value = '채팅참여';
+			myclose = true;
+	  		ws.close();
+	  }
+	}
+
+	msg.onkeyup = function(ev){
+		if(ev.keyCode == 13){
+			send();
+		}
+	}
+
+	btnSend.onclick = function(){
+		send();
+	}
+
+	function send(){
+		if(msg.value.trim() != '' && ws && ws.readyState == ws.OPEN){
+			data.mid = getId('mid').value;
+			data.msg = msg.value;
+			data.date = new Date().toLocaleString();
+			let temp = JSON.stringify(data);
+			console.log("S:"+temp);
+
+			ws.send(temp);
+		}
+		msg.value ='';		
+	}
+	window.onunload = function() {
+		console.log("종료");
+		ws.close();
+	}
+	</script>
+</body>
+</html>

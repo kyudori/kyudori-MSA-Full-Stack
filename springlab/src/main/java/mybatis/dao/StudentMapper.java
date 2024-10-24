@@ -29,8 +29,9 @@ public interface StudentMapper {
     public int getScoreAvg();
 
     @Insert("insert into student (name, score) values (#{name}, #{score})")
-    public boolean insertBook(StudentDTO dto);
+    public boolean insert(StudentDTO dto);
 
     @Delete("delete from student where name = #{name}")
     public boolean delete(String name);
+
 }

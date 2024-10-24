@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication//(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = {"com.example.springedu","thymeleaf.exam"})
+@ComponentScan(basePackages = {"com.example.springedu","thymeleaf.exam","springws.exam"})
 @MapperScan(value={"mybatis.dao"})
 public class SpringeduApplication {
 

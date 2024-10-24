@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+			 version="3.0">
+	<persistence-unit name="entitytest">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>jpaexam1.entity.EntityTest1</class>
+		<class>jpaexam1.entity.EntityTest2</class>
+		<class>jpaexam1.entity.EntityTest3</class>
+		<class>jpaexam1.entity.EntityTest4</class>
+		<class>jpaexam1.entity.EntityTest5</class>
+		<class>jpaexam2.model.entity.Emp</class>
+		<class>jpaexam2.model.entity.Dept</class>
+		<class>jpaexam2.model.entity.Locations</class>
+		<class>jpaexam1.entity.Member</class>
+		<class>jpaexam1.entity.Team</class>
+		<class>jpaexam1.entity.Locker</class>
+		<class>jpaexam1.entity.MyMyTest</class>
+		<class>jpalab.entity.Book</class>
+		<properties>
+			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="jakarta.persistence.jdbc.user" value="jdbctest" />
+			<property name="jakarta.persistence.jdbc.password" value="jdbctest" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/edudb?characterEncoding=UTF-8&amp;serverTimezone=UTC" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- <property name="hibernate.physical_naming_strategy" value="util.CustomPhysicalNamingStrategy"/> -->
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="emptest">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>jpaexam2.model.entity.Emp</class>
+		<class>jpaexam2.model.dto.EmpFreqDTO</class>
+		<class>jpaexam2.model.entity.Visitor</class>
+		<class>jpaexam2.model.entity.Meeting</class>
+ 	    <class>jpaexam2.model.entity.Reply</class>
+		<class>jpaexam2.model.entity.Dept</class>
+		<class>jpaexam2.model.entity.Locations</class>
+		<properties>
+			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="jakarta.persistence.jdbc.user" value="jdbctest" />
+			<property name="jakarta.persistence.jdbc.password" value="jdbctest" />
+			<property name="jakarta.persistence.jdbc.url" value=" jdbc:mysql://localhost:3306/edudb?characterEncoding=UTF-8&amp;serverTimezone=UTC" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<property name="hibernate.hbm22ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+</persistence>
