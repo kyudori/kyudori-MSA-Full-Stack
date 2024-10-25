@@ -25,18 +25,22 @@ public class StudentApp {
             if (choice == 6) break;
 
             switch (choice) {
-                case 1 -> sc.printAll();
+                case 1 -> {
+                    sc.printAll();
+                    sc.close();}
                 case 2 -> {
                     System.out.print("이름: ");
                     String name = scanner.nextLine();
                     System.out.print("점수: ");
                     int score = scanner.nextInt();
                     sc.insert(name, score);
+                    sc.close();
                 }
                 case 3 -> {
                     System.out.print("삭제할 학생 이름: ");
                     String name = scanner.nextLine();
                     sc.delete(name);
+                    sc.close();
                 }
                 case 4 -> {
                     System.out.print("수정할 학생 이름: ");
@@ -44,13 +48,18 @@ public class StudentApp {
                     System.out.print("새 점수: ");
                     int score = scanner.nextInt();
                     sc.update(name, score);
+                    sc.close();
                 }
                 case 5 -> {
                     System.out.print("조회할 학생 이름: ");
                     String name = scanner.nextLine();
                     sc.printScore(name);
+                    sc.close();
                 }
-                default -> System.out.println("잘못된 입력입니다.");
+                default -> {
+                    System.out.println("잘못된 입력입니다.");
+                    sc.close();
+                }
             }
         }
         scanner.close();

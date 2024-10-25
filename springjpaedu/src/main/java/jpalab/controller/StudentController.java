@@ -48,4 +48,7 @@ public class StudentController {
             System.out.println(name + " 학생은 존재하지 않습니다.");
         }
     }
+    public void close() {
+        dao.close();
+    }
 }

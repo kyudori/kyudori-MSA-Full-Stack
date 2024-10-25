@@ -5,11 +5,14 @@ import jakarta.persistence.*;
 import java.util.List;
 
 public class StudentDAO {
-
-    private EntityManagerFactory factory = Persistence.createEntityManagerFactory("emptest");
-    private EntityManager em = factory.createEntityManager();
+    private EntityManagerFactory factory;
+    public StudentDAO() {
+        super();
+        factory = Persistence.createEntityManagerFactory("emptest");
+    }
 
     public boolean insertStudent(StudentEntity student) {
+        EntityManager em = factory.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(student);
@@ -23,6 +26,7 @@ public class StudentDAO {
     }
 
     public List<StudentEntity> getAllStudent() {
+        EntityManager em = factory.createEntityManager();
         //return em.createQuery("SELECT s FROM StudentEntity s", StudentEntity.class).getResultList();
         List<StudentEntity> list = em.createQuery("SELECT s FROM StudentEntity s", StudentEntity.class).getResultList();
         em.close();
@@ -30,10 +34,12 @@ public class StudentDAO {
     }
 
     public StudentEntity getScore(String studentName) {
+        EntityManager em = factory.createEntityManager();
         return em.find(StudentEntity.class, studentName);
     }
 
     public boolean updateStudent(StudentEntity student) {
+        EntityManager em = factory.createEntityManager();
         try {
             em.getTransaction().begin();
             //em.merge(student);
@@ -50,6 +56,7 @@ public class StudentDAO {
     }
 
     public boolean deleteStudent(String studentName) {
+        EntityManager em = factory.createEntityManager();
         try {
             StudentEntity student = em.find(StudentEntity.class, studentName);
             if (student != null) {
@@ -66,5 +73,8 @@ public class StudentDAO {
             return false;
         }
     }
+    public void close() {
+        if (factory != null)
+            factory.close();
+    }
 }
-
