@@ -30,7 +30,7 @@ public class VisitorApp {
 				System.out.print("작성자 명 : ");
 				String name = scan.nextLine();
 				System.out.print("방명록 글 : ");
-				String memo = scan.nextLine();				
+				String memo = scan.nextLine();
 				vc.insertVisitor(name, memo);
 			} else if (num == 4) {
 				System.out.print("수정하려는 글의 번호를 입력하세요 : ");

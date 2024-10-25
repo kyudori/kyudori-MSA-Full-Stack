@@ -41,6 +41,7 @@
  	    <class>jpaexam2.model.entity.Reply</class>
 		<class>jpaexam2.model.entity.Dept</class>
 		<class>jpaexam2.model.entity.Locations</class>
+		<class>jpalab.entity.StudentEntity</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 			<property name="jakarta.persistence.jdbc.user" value="jdbctest" />

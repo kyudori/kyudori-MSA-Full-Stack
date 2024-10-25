@@ -11,7 +11,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity()
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

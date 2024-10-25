@@ -14,8 +14,8 @@ public class JPASelectBook {
 
     switch (choice) {
         case 1:
-            em.createQuery("SELECT b FROM Book b", Book.class).getResultList()
-                    .forEach(System.out::println);
+            em.createQuery("SELECT b FROM Book b", Book.class)
+                    .getResultList().forEach(System.out::println);
             break;
         case 2:
             em.createQuery("SELECT b FROM Book b ORDER BY b.price DESC", Book.class)
