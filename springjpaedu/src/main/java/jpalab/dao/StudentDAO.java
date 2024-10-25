@@ -14,15 +14,19 @@ public class StudentDAO {
             em.getTransaction().begin();
             em.persist(student);
             em.getTransaction().commit();
+            em.close();
             return true;
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            em.close();
             return false;
         }
     }
 
     public List<StudentEntity> getAllStudent() {
-        return em.createQuery("SELECT s FROM StudentEntity s", StudentEntity.class).getResultList();
+        //return em.createQuery("SELECT s FROM StudentEntity s", StudentEntity.class).getResultList();
+        List<StudentEntity> list = em.createQuery("SELECT s FROM StudentEntity s", StudentEntity.class).getResultList();
+        em.close();
+        return list;
     }
 
     public StudentEntity getScore(String studentName) {
@@ -33,12 +37,14 @@ public class StudentDAO {
         try {
             em.getTransaction().begin();
             //em.merge(student);
-            student.setName(student.getName());
-            student.setScore(student.getScore());
+            StudentEntity oldStudent = em.find(StudentEntity.class, student.getName());
+            oldStudent.setName(student.getName());
+            oldStudent.setScore(student.getScore());
             em.getTransaction().commit();
+            em.close();
             return true;
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            em.close();
             return false;
         }
     }
@@ -50,11 +56,13 @@ public class StudentDAO {
                 em.getTransaction().begin();
                 em.remove(student);
                 em.getTransaction().commit();
+                em.close();
                 return true;
             }
+            em.close();
             return false;
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            em.close();
             return false;
         }
     }

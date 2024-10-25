@@ -11,12 +11,12 @@ public class StudentController {
         dao.getAllStudent().forEach(System.out::println);
     }
 
-    public void printScore(String name) {
-        StudentEntity student = dao.getScore(name);
+    public void printScore(String studentName) {
+        StudentEntity student = dao.getScore(studentName);
         if (student == null) {
-            System.out.println(name + " 학생은 존재하지 않습니다.");
+            System.out.println(studentName + " 학생은 존재하지 않습니다.");
         } else {
-            System.out.println(name + " 학생의 점수는 " + student.getScore() + "입니다.");
+            System.out.println(studentName + " 학생의 점수는 " + student.getScore() + "입니다.");
         }
     }
 
