@@ -14,21 +14,21 @@ public class NewsController {
     @Autowired
     NewsRepository newsRepository;
 
-    // 뉴스 메인 페이지 로딩 (AJAX로 데이터 로드)
+    // 뉴스 메인 페이지 로딩
     @GetMapping("/newsmain")
     public String newsmain() {
         return "newsmain";
     }
 
-    // 모든 뉴스 가져오기 (페이징 지원)
-    @GetMapping("/news")
+    // 모든 뉴스 가져오기
+    @GetMapping("/news/all")
     @ResponseBody
     public Page<News> getAllNewsAjax(Pageable pageable) {
         return newsRepository.findAll(pageable);
     }
 
     // 특정 뉴스 가져오기 및 조회수 증가
-    @GetMapping("/news/{id}")
+    @GetMapping("/one/{id}")
     @ResponseBody
     public ResponseEntity<News> getNewsByIdAjax(@PathVariable("id") int id) {
         return newsRepository.findById(id)
@@ -41,7 +41,7 @@ public class NewsController {
     }
 
     // 뉴스 생성
-    @PostMapping("/news")
+    @PostMapping("/insert")
     @ResponseBody
     public ResponseEntity<News> createNewsAjax(@RequestBody News news) {
         news.setCnt(0); // 조회수 초기화
@@ -50,7 +50,7 @@ public class NewsController {
     }
 
     // 뉴스 수정
-    @PutMapping("/news/{id}")
+    @PostMapping("/update/{id}")
     @ResponseBody
     public ResponseEntity<News> updateNewsAjax(@PathVariable("id") int id, @RequestBody News newsDetails) {
         return newsRepository.findById(id)
@@ -65,7 +65,7 @@ public class NewsController {
     }
 
     // 뉴스 삭제
-    @DeleteMapping("/news/{id}")
+    @GetMapping("/delete/{id}")
     @ResponseBody
     public ResponseEntity<Void> deleteNewsAjax(@PathVariable("id") int id) {
         return newsRepository.findById(id)
@@ -76,8 +76,8 @@ public class NewsController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // 뉴스 검색 (type과 term을 기반으로 검색, 페이징 지원)
-    @GetMapping("/news/search")
+    // 뉴스 검색
+    @GetMapping("/search")
     @ResponseBody
     public Page<News> searchNewsAjax(@RequestParam(required = false) String type,
                                      @RequestParam(required = false) String term,
