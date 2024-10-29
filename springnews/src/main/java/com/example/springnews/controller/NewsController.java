@@ -4,91 +4,112 @@ import com.example.springnews.model.News;
 import com.example.springnews.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class NewsController {
     @Autowired
-    NewsRepository newsRepository;
+    private NewsRepository newsRepository;
 
-    // 뉴스 메인 페이지 로딩
+    // 뉴스 메인 페이지 로딩 (Thymeleaf 렌더링)
     @GetMapping("/newsmain")
-    public String newsmain() {
+    public String newsmain(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "term", required = false) String term,
+            @RequestParam(value = "id", required = false) Integer id,
+            @RequestParam(value = "editId", required = false) Integer editId,
+            @RequestParam(value = "new", required = false) Boolean isNew,
+            Model model) {
+
+        PageRequest pageable = PageRequest.of(page, 5);
+        Page<News> newsPage;
+
+        if (type != null && term != null && !term.isEmpty()) {
+            if ("keyword".equals(type)) {
+                newsPage = newsRepository.findByContentContaining(term, pageable);
+            } else if ("writer".equals(type)) {
+                newsPage = newsRepository.findByWriter(term, pageable);
+            } else {
+                newsPage = newsRepository.findAll(pageable);
+            }
+        } else {
+            newsPage = newsRepository.findAll(pageable);
+        }
+
+        model.addAttribute("newsPage", newsPage);
+        model.addAttribute("type", type);
+        model.addAttribute("term", term);
+
+        // 상세 보기
+        if (id != null) {
+            News selectedNews = newsRepository.findById(id).orElse(null);
+            selectedNews.setCnt(selectedNews.getCnt() + 1);
+            newsRepository.save(selectedNews);
+            model.addAttribute("selectedNews", selectedNews);
+        }
+
+        // 수정 폼
+        if (editId != null) {
+            News editNews = newsRepository.findById(editId).orElse(null);
+            model.addAttribute("formVisible", true);
+            model.addAttribute("isEdit", true);
+            model.addAttribute("formNews", editNews);
+        }
+
+        // 신규 작성 폼
+        if (isNew != null && isNew) {
+            model.addAttribute("formVisible", true);
+            model.addAttribute("isEdit", false);
+            model.addAttribute("formNews", new News());
+        }
+
         return "newsmain";
     }
 
-    // 모든 뉴스 가져오기
-    @GetMapping("/news/all")
-    @ResponseBody
-    public Page<News> getAllNewsAjax(Pageable pageable) {
-        return newsRepository.findAll(pageable);
-    }
-
-    // 특정 뉴스 가져오기 및 조회수 증가
-    @GetMapping("/one/{id}")
-    @ResponseBody
-    public ResponseEntity<News> getNewsByIdAjax(@PathVariable("id") int id) {
-        return newsRepository.findById(id)
-                .map(news -> {
-                    news.setCnt(news.getCnt() + 1);
-                    newsRepository.save(news);
-                    return ResponseEntity.ok(news);
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
     // 뉴스 생성
-    @PostMapping("/insert")
-    @ResponseBody
-    public ResponseEntity<News> createNewsAjax(@RequestBody News news) {
+    @PostMapping("/news/create")
+    public String createNews(@ModelAttribute News news, Model model) {
         news.setCnt(0); // 조회수 초기화
-        News savedNews = newsRepository.save(news);
-        return ResponseEntity.ok(savedNews);
+        newsRepository.save(news);
+        model.addAttribute("message", "뉴스가 성공적으로 등록되었습니다.");
+        model.addAttribute("messageType", "success");
+        return "redirect:/newsmain";
     }
 
     // 뉴스 수정
-    @PostMapping("/update/{id}")
-    @ResponseBody
-    public ResponseEntity<News> updateNewsAjax(@PathVariable("id") int id, @RequestBody News newsDetails) {
-        return newsRepository.findById(id)
-                .map(news -> {
-                    news.setTitle(newsDetails.getTitle());
-                    news.setWriter(newsDetails.getWriter());
-                    news.setContent(newsDetails.getContent());
-                    newsRepository.save(news);
-                    return ResponseEntity.ok(news);
-                })
-                .orElse(ResponseEntity.notFound().build());
+    @PostMapping("/news/edit")
+    public String editNews(@ModelAttribute News news, Model model) {
+        News existingNews = newsRepository.findById(news.getId()).orElse(null);
+        if (existingNews != null) {
+            existingNews.setTitle(news.getTitle());
+            existingNews.setWriter(news.getWriter());
+            existingNews.setContent(news.getContent());
+            newsRepository.save(existingNews);
+            model.addAttribute("message", "뉴스가 성공적으로 수정되었습니다.");
+            model.addAttribute("messageType", "success");
+        } else {
+            model.addAttribute("message", "수정할 뉴스를 찾을 수 없습니다.");
+            model.addAttribute("messageType", "danger");
+        }
+        return "redirect:/newsmain";
     }
 
     // 뉴스 삭제
-    @GetMapping("/delete/{id}")
-    @ResponseBody
-    public ResponseEntity<Void> deleteNewsAjax(@PathVariable("id") int id) {
-        return newsRepository.findById(id)
-                .map(news -> {
-                    newsRepository.delete(news);
-                    return ResponseEntity.ok().<Void>build();
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    // 뉴스 검색
-    @GetMapping("/search")
-    @ResponseBody
-    public Page<News> searchNewsAjax(@RequestParam(required = false) String type,
-                                     @RequestParam(required = false) String term,
-                                     Pageable pageable) {
-        if ((type != null && !type.isEmpty()) && (term != null && !term.isEmpty())) {
-            if (type.equals("keyword")) {
-                return newsRepository.findByContentContaining(term, pageable);
-            } else if (type.equals("writer")) {
-                return newsRepository.findByWriter(term, pageable);
-            }
+    @PostMapping("/news/delete")
+    public String deleteNews(@RequestParam("id") int id, Model model) {
+        News existingNews = newsRepository.findById(id).orElse(null);
+        if (existingNews != null) {
+            newsRepository.delete(existingNews);
+            model.addAttribute("message", "뉴스가 성공적으로 삭제되었습니다.");
+            model.addAttribute("messageType", "success");
+        } else {
+            model.addAttribute("message", "삭제할 뉴스를 찾을 수 없습니다.");
+            model.addAttribute("messageType", "danger");
         }
-        return newsRepository.findAll(pageable);
+        return "redirect:/newsmain";
     }
 }

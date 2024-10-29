@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>뉴스 게시판</title>
-    <!-- Bootstrap CSS 추가 -->
+    <!-- Bootstrap CSS 포함 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .hidden {
             display: none;
         }
-
         .pointer {
             cursor: pointer;
         }
-
         .mt-20 {
             margin-top: 20px;
         }
@@ -24,27 +22,27 @@
     <h1 class="mb-4">뉴스 게시판</h1>
 
     <!-- 검색 폼 (드롭다운 기반, 기본값 '키워드') -->
-    <form id="searchForm" class="row g-3 mb-4">
+    <form th:action="@{/newsmain}" method="get" class="row g-3 mb-4">
         <div class="col-md-3">
-            <select class="form-select" id="searchType" required>
-                <option value="keyword" selected>키워드</option>
-                <option value="writer">작성자</option>
+            <select class="form-select" name="type" required>
+                <option value="keyword" th:selected="${type == 'keyword'}">키워드</option>
+                <option value="writer" th:selected="${type == 'writer'}">작성자</option>
             </select>
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="searchTerm" placeholder="검색어를 입력하세요" required>
+            <input type="text" class="form-control" name="term" placeholder="검색어를 입력하세요" th:value="${term}" required>
         </div>
         <div class="col-md-3">
             <button type="submit" class="btn btn-primary me-2">검색</button>
-            <button type="button" class="btn btn-secondary" id="resetButton">초기화</button>
+            <a th:href="@{/newsmain}" class="btn btn-secondary">초기화</a>
         </div>
     </form>
 
     <!-- 메시지 표시 -->
-    <div id="message" class="alert alert-info hidden"></div>
+    <div th:if="${message}" th:class="'alert alert-' + ${messageType}" th:text="${message}"></div>
 
     <!-- 뉴스 목록 테이블 -->
-    <table class="table table-hover" id="newsTable">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>번호</th>
@@ -55,440 +53,83 @@
         </tr>
         </thead>
         <tbody>
-        <!-- 뉴스 데이터 -->
+        <tr th:each="news : ${newsPage.content}">
+            <td th:text="${news.id}"></td>
+            <td>
+                <a th:href="@{/newsmain(id=${news.id}, page=${newsPage.number}, type=${type}, term=${term})}"
+                   th:text="${news.title}" class="news-title pointer"></a>
+            </td>
+            <td th:text="${news.writer}"></td>
+            <td th:text="${#dates.format(news.writeDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${news.cnt}"></td>
+        </tr>
+        <tr th:if="${newsPage.content.empty}">
+            <td colspan="5" class="text-center">검색 결과가 없습니다.</td>
+        </tr>
         </tbody>
     </table>
 
-    <!-- 페이지 네이션 -->
-    <nav>
-        <ul class="pagination" id="pagination">
-            <!-- 페이지 네이션 적용된 내용 이곳에 반영 -->
+    <!-- Pagination controls -->
+    <nav th:if="${newsPage.totalPages > 1}">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${newsPage.first} ? 'disabled'">
+                <a class="page-link" th:href="@{/newsmain(page=${newsPage.number - 1}, type=${type}, term=${term})}">이전</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, newsPage.totalPages -1)}"
+                th:classappend="${i} == ${newsPage.number} ? 'active'">
+                <a class="page-link" th:href="@{/newsmain(page=${i}, type=${type}, term=${term})}"
+                   th:text="${i + 1}">1</a>
+            </li>
+            <li class="page-item" th:classappend="${newsPage.last} ? 'disabled'">
+                <a class="page-link" th:href="@{/newsmain(page=${newsPage.number + 1}, type=${type}, term=${term})}">다음</a>
+            </li>
         </ul>
     </nav>
 
-    <!-- 뉴스 내용 표시 -->
-    <div id="newsContent" class="mt-4 hidden">
-        <h3 id="contentTitle"></h3>
-        <p><strong>작성자:</strong> <span id="contentWriter"></span></p>
-        <p><strong>날짜:</strong> <span id="contentDate"></span></p>
-        <p><strong>조회수:</strong> <span id="contentCnt"></span></p>
-        <p id="contentText"></p>
-        <button class="btn btn-secondary" id="cancelButton">확인</button>
-        <button class="btn btn-primary me-2" id="editButton">수정</button>
-        <button class="btn btn-danger me-2" id="deleteButton">삭제</button>
+    <!-- 뉴스 상세 내용 표시 -->
+    <div th:if="${selectedNews}" class="mt-4">
+        <h3 th:text="${selectedNews.title}"></h3>
+        <p><strong>작성자:</strong> <span th:text="${selectedNews.writer}"></span></p>
+        <p><strong>날짜:</strong> <span th:text="${#dates.format(selectedNews.writeDate, 'yyyy-MM-dd')}"></span></p>
+        <p><strong>조회수:</strong> <span th:text="${selectedNews.cnt}"></span></p>
+        <p th:text="${selectedNews.content}"></p>
+        <a th:href="@{/newsmain(editId=${selectedNews.id}, page=${newsPage.number}, type=${type}, term=${term})}" class="btn btn-primary me-2">수정</a>
+        <form th:action="@{/news/delete}" method="post" style="display:inline;">
+            <input type="hidden" name="id" th:value="${selectedNews.id}">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('정말로 이 뉴스를 삭제하시겠습니까?');">삭제</button>
+        </form>
+        <a th:href="@{/newsmain(page=${newsPage.number}, type=${type}, term=${term})}" class="btn btn-secondary">확인</a>
     </div>
 
     <!-- 뉴스 작성/수정 폼 -->
-    <div id="newsForm" class="mt-4 hidden">
-        <h3 id="formTitle">뉴스 기사 작성</h3>
-        <form id="form">
-            <input type="hidden" name="id" id="newsId">
+    <div th:if="${formVisible}" class="mt-4">
+        <h3 th:text="${isEdit} ? '뉴스 기사 수정' : '뉴스 기사 작성'"></h3>
+        <form th:action="${isEdit} ? @{/news/edit} : @{/news/create}" method="post">
+            <input type="hidden" name="id" th:value="${formNews.id}">
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" class="form-control" id="title" name="title" th:value="${formNews.title}" required>
             </div>
             <div class="mb-3">
                 <label for="writer" class="form-label">작성자</label>
-                <input type="text" class="form-control" id="writer" name="writer" required>
+                <input type="text" class="form-control" id="writer" name="writer" th:value="${formNews.writer}" required>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">내용</label>
-                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                <textarea class="form-control" id="content" name="content" rows="5" required
+                          th:text="${formNews.content}"></textarea>
             </div>
-            <button type="submit" class="btn btn-success me-2" id="submitButton">확인</button>
-            <button type="button" class="btn btn-secondary" id="cancelFormButton">취소</button>
+            <button type="submit" class="btn btn-success me-2" th:text="${isEdit} ? '수정' : '확인'"></button>
+            <a th:href="@{/newsmain(page=${newsPage.number}, type=${type}, term=${term})}" class="btn btn-secondary">취소</a>
         </form>
     </div>
 
     <!-- 뉴스 작성 버튼 -->
-    <button class="btn btn-primary mt-4" id="newNewsButton">뉴스 작성</button>
+    <a th:href="@{/newsmain(new=true, page=${newsPage.number}, type=${type}, term=${term})}" class="btn btn-primary mt-4">뉴스 작성</a>
 </div>
 
-<!-- JavaScript -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const newsTableBody = document.querySelector('#newsTable tbody');
-        const messageDiv = document.getElementById('message');
-        const paginationUl = document.getElementById('pagination');
+<!-- JavaScript 코드 포함 (필요 최소한으로 유지) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        const searchForm = document.getElementById('searchForm');
-        const searchType = document.getElementById('searchType');
-        const searchTerm = document.getElementById('searchTerm');
-        const resetButton = document.getElementById('resetButton');
-
-        const newNewsButton = document.getElementById('newNewsButton');
-        const newsForm = document.getElementById('newsForm');
-        const formTitle = document.getElementById('formTitle');
-        const submitButton = document.getElementById('submitButton');
-        const cancelFormButton = document.getElementById('cancelFormButton');
-        const form = document.getElementById('form');
-
-        const newsContent = document.getElementById('newsContent');
-        const contentTitle = document.getElementById('contentTitle');
-        const contentWriterSpan = document.getElementById('contentWriter');
-        const contentDate = document.getElementById('contentDate');
-        const contentCnt = document.getElementById('contentCnt');
-        const contentText = document.getElementById('contentText');
-        const editButton = document.getElementById('editButton');
-        const deleteButton = document.getElementById('deleteButton');
-        const cancelButton = document.getElementById('cancelButton');
-
-        let currentNewsId = null;
-        let currentPage = 0;
-        const pageSize = 5;
-        let currentFilters = {};
-
-        // 뉴스 목록 로드
-        function loadNews(filters = {}, page = 0) {
-            currentFilters = filters;
-            currentPage = page;
-            let url = '/news/all';
-
-            const params = new URLSearchParams();
-            params.append('page', page);
-            params.append('size', pageSize);
-            if (filters.type && filters.term) {
-                url = '/search';
-                params.append('type', filters.type);
-                params.append('term', filters.term);
-            }
-
-            fetch(`${url}?${params.toString()}`)
-                .then(response => response.json())
-                .then(data => {
-                    newsTableBody.innerHTML = '';
-                    if (data.content.length === 0) {
-                        const row = document.createElement('tr');
-                        const cell = document.createElement('td');
-                        cell.colSpan = 5;
-                        cell.classList.add('text-center');
-                        cell.textContent = '검색 결과가 없습니다.';
-                        row.appendChild(cell);
-                        newsTableBody.appendChild(row);
-                        paginationUl.innerHTML = '';
-                        return;
-                    }
-
-                    data.content.forEach(news => {
-                        const row = document.createElement('tr');
-                        row.setAttribute('data-id', news.id);
-
-                        // 번호
-                        const idCell = document.createElement('td');
-                        idCell.textContent = news.id;
-                        row.appendChild(idCell);
-
-                        // 제목
-                        const titleCell = document.createElement('td');
-                        const titleLink = document.createElement('a');
-                        titleLink.href = '#';
-                        titleLink.textContent = news.title;
-                        titleLink.classList.add('news-title', 'pointer');
-                        titleLink.dataset.id = news.id;
-                        titleCell.appendChild(titleLink);
-                        row.appendChild(titleCell);
-
-                        // 작성자
-                        const writerCell = document.createElement('td');
-                        writerCell.textContent = news.writer;
-                        row.appendChild(writerCell);
-
-                        // 날짜
-                        const dateCell = document.createElement('td');
-                        const writeDate = new Date(news.writeDate);
-                        const formattedDate = writeDate.toLocaleDateString('ko-KR');
-                        dateCell.textContent = formattedDate;
-                        row.appendChild(dateCell);
-
-                        // 조회수
-                        const cntCell = document.createElement('td');
-                        cntCell.textContent = news.cnt;
-                        row.appendChild(cntCell);
-
-                        newsTableBody.appendChild(row);
-                    });
-
-                    renderPagination(data);
-                })
-                .catch(error => {
-                    showMessage('뉴스 목록을 불러오는 데 실패했습니다.', 'danger');
-                    console.error('Error fetching news:', error);
-                });
-        }
-
-        // 메시지 표시
-        function showMessage(message, type = 'info') {
-            messageDiv.textContent = message;
-            messageDiv.className = `alert alert-${type}`;
-            messageDiv.classList.remove('hidden');
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-            }, 3000);
-        }
-
-        // 페이징 렌더링
-        function renderPagination(data) {
-            paginationUl.innerHTML = '';
-
-            const totalPages = data.totalPages;
-            const currentPage = data.number;
-
-            // Previous button
-            const prevLi = document.createElement('li');
-            prevLi.classList.add('page-item');
-            if (currentPage === 0) {
-                prevLi.classList.add('disabled');
-            }
-            const prevLink = document.createElement('a');
-            prevLink.classList.add('page-link');
-            prevLink.href = '#';
-            prevLink.textContent = '<';
-            prevLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (currentPage > 0) {
-                    loadNews(currentFilters, currentPage - 1);
-                }
-            });
-            prevLi.appendChild(prevLink);
-            paginationUl.appendChild(prevLi);
-
-            // 페이지 번호
-            for (let i = 0; i < totalPages; i++) {
-                const pageLi = document.createElement('li');
-                pageLi.classList.add('page-item');
-                if (i === currentPage) {
-                    pageLi.classList.add('active');
-                }
-                const pageLink = document.createElement('a');
-                pageLink.classList.add('page-link');
-                pageLink.href = '#';
-                pageLink.textContent = (i + 1).toString();
-                pageLink.dataset.page = i;
-                pageLink.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const selectedPage = parseInt(this.dataset.page);
-                    loadNews(currentFilters, selectedPage);
-                });
-                pageLi.appendChild(pageLink);
-                paginationUl.appendChild(pageLi);
-            }
-
-            // 다음 버튼
-            const nextLi = document.createElement('li');
-            nextLi.classList.add('page-item');
-            if (currentPage >= totalPages - 1) {
-                nextLi.classList.add('disabled');
-            }
-            const nextLink = document.createElement('a');
-            nextLink.classList.add('page-link');
-            nextLink.href = '#';
-            nextLink.textContent = '>';
-            nextLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (currentPage < totalPages - 1) {
-                    loadNews(currentFilters, currentPage + 1);
-                }
-            });
-            nextLi.appendChild(nextLink);
-            paginationUl.appendChild(nextLi);
-        }
-
-        // 초기 뉴스 목록 로드
-        loadNews();
-
-        // 새 뉴스 작성 버튼 클릭 시 폼 표시
-        newNewsButton.addEventListener('click', function () {
-            formTitle.textContent = '뉴스 기사 작성';
-            submitButton.textContent = '확인';
-            form.reset();
-            document.getElementById('newsId').value = '';
-            newsForm.classList.remove('hidden');
-            newsContent.classList.add('hidden');
-        });
-
-        // 폼 취소 버튼 클릭 시 폼 숨기기
-        cancelFormButton.addEventListener('click', function () {
-            newsForm.classList.add('hidden');
-        });
-
-        // 뉴스 작성/수정 폼 제출 처리
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const id = document.getElementById('newsId').value;
-            const title = document.getElementById('title').value;
-            const writer = document.getElementById('writer').value;
-            const content = document.getElementById('content').value;
-
-            const newsData = {title, writer, content};
-
-            if (id) {
-                // 수정
-                fetch(`/update/${id}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(newsData)
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            showMessage('뉴스가 성공적으로 수정되었습니다.', 'success');
-                            newsForm.classList.add('hidden');
-                            loadNews(currentFilters, currentPage);
-                            newsContent.classList.add('hidden');
-                        } else {
-                            showMessage('뉴스 수정에 실패했습니다.', 'danger');
-                        }
-                    })
-                    .catch(error => {
-                        showMessage('뉴스 수정 중 오류가 발생했습니다.', 'danger');
-                        console.error('Error updating news:', error);
-                    });
-            } else {
-                // 생성
-                fetch('/insert', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(newsData)
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        showMessage('뉴스가 성공적으로 등록되었습니다.', 'success');
-                        newsForm.classList.add('hidden');
-                        loadNews(currentFilters, currentPage);
-                    })
-                    .catch(error => {
-                        showMessage('뉴스 등록 중 오류가 발생했습니다.', 'danger');
-                        console.error('Error creating news:', error);
-                    });
-            }
-        });
-
-        // 뉴스 제목 클릭 시 상세 내용 표시 및 조회수 업데이트
-        newsTableBody.addEventListener('click', function (e) {
-            if (e.target && e.target.classList.contains('news-title')) {
-                e.preventDefault();
-                const newsId = e.target.dataset.id;
-                fetch(`/one/${newsId}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('뉴스를 불러올 수 없습니다.');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        // 상세 내용 업데이트
-                        contentTitle.textContent = data.title;
-                        contentWriterSpan.textContent = data.writer;
-                        const writeDate = new Date(data.writeDate);
-                        const formattedDate = writeDate.toLocaleDateString('ko-KR');
-                        contentDate.textContent = formattedDate;
-                        contentCnt.textContent = data.cnt;
-                        contentText.textContent = data.content;
-                        currentNewsId = data.id;
-                        newsContent.classList.remove('hidden');
-                        newsForm.classList.add('hidden');
-
-                        // 테이블의 조회수 업데이트
-                        const tr = newsTableBody.querySelector(`tr[data-id="${data.id}"]`);
-                        if (tr) {
-                            const cntCell = tr.children[4]; // 조회수는 5번째 셀 (인덱스 4)
-                            cntCell.textContent = data.cnt;
-                        }
-                    })
-                    .catch(error => {
-                        showMessage('뉴스를 불러오는 데 실패했습니다.', 'danger');
-                        console.error('Error fetching news:', error);
-                    });
-            }
-        });
-
-        // 상세 내용의 수정 버튼 클릭 시 폼 표시 및 데이터 로드
-        editButton.addEventListener('click', function () {
-            if (!currentNewsId) {
-                showMessage('수정할 뉴스를 선택하세요.', 'warning');
-                return;
-            }
-            fetch(`/one/${currentNewsId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('뉴스를 불러올 수 없습니다.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    formTitle.textContent = '뉴스 기사 수정';
-                    submitButton.textContent = '수정';
-                    document.getElementById('newsId').value = data.id;
-                    document.getElementById('title').value = data.title;
-                    document.getElementById('writer').value = data.writer;
-                    document.getElementById('content').value = data.content;
-                    newsForm.classList.remove('hidden');
-                    newsContent.classList.add('hidden');
-                })
-                .catch(error => {
-                    showMessage('뉴스를 불러오는 데 실패했습니다.', 'danger');
-                    console.error('Error fetching news for edit:', error);
-                });
-        });
-
-        // 상세 내용의 삭제 버튼 클릭 시 삭제 처리
-        deleteButton.addEventListener('click', function () {
-            if (!currentNewsId) {
-                showMessage('삭제할 뉴스를 선택하세요.', 'warning');
-                return;
-            }
-            if (confirm('정말로 이 뉴스를 삭제하시겠습니까?')) {
-                fetch(`/delete/${currentNewsId}`, {
-                    method: 'GET'
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            showMessage('뉴스가 삭제되었습니다.', 'success');
-                            newsContent.classList.add('hidden');
-                            loadNews(currentFilters, currentPage);
-                        } else {
-                            showMessage('뉴스 삭제에 실패했습니다.', 'danger');
-                        }
-                    })
-                    .catch(error => {
-                        showMessage('뉴스 삭제 중 오류가 발생했습니다.', 'danger');
-                        console.error('Error deleting news:', error);
-                    });
-            }
-        });
-
-        // 검색 폼 제출 처리 (드롭다운 기반)
-        searchForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const type = searchType.value;
-            const term = searchTerm.value.trim();
-
-            if (!type || !term) {
-                showMessage('검색 유형과 검색어를 모두 입력하세요.', 'warning');
-                return;
-            }
-
-            loadNews({type, term}, 0); // 첫 페이지부터 로드
-            newsContent.classList.add('hidden');
-        });
-
-        // 검색 초기화 버튼 클릭 처리
-        resetButton.addEventListener('click', function () {
-            searchType.value = 'keyword'; // 기본값을 '키워드'로 설정
-            searchTerm.value = '';
-            loadNews({}, 0);
-            newsContent.classList.add('hidden');
-        });
-
-        // 상세 내용의 취소 버튼 클릭 시 상세 내용 숨기기
-        cancelButton.addEventListener('click', function () {
-            newsContent.classList.add('hidden');
-            currentNewsId = null;
-        });
-    });
-</script>
 </body>
 </html>
