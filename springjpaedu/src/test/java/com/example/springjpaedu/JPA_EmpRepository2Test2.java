@@ -76,6 +76,7 @@ public class JPA_EmpRepository2Test2 {
     	List<Emp> list = empR.findByEnameStartsWith("M");
     	list.stream().forEach(System.out::println);
     }
+
     @Test
     @Order(9)
     void byEnameContains() {

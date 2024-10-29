@@ -42,9 +42,10 @@ public class JPA_BookRepositoryTest {
         List<Book> list = bookR.findByPriceGreaterThanEqual(20000);
         list.stream().forEach(System.out::println);
     }
+
     @Test
     @Order(4)
-    void byId() {
+    void findById() {
         Optional<Book> list = bookR.findById(10);
         if(list.isPresent()){
             list.stream().forEach(System.out::println);
