@@ -1,6 +1,8 @@
 package com.example.springnews.controller;
 
+import com.example.springnews.model.Comment;
 import com.example.springnews.model.News;
+import com.example.springnews.repository.CommentRepository;
 import com.example.springnews.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     // 뉴스 메인 페이지
     @GetMapping("/newsmain")
@@ -112,5 +116,23 @@ public class NewsController {
             redirectAttributes.addFlashAttribute("messageType", "danger");
         }
         return "redirect:/newsmain";
+    }
+
+    // 댓글 생성
+    @PostMapping("/comment/insert")
+    public String createComment(@RequestParam("newsId") int newsId,
+                                @ModelAttribute Comment comment,
+                                RedirectAttributes redirectAttributes) {
+        News selectedNews = newsRepository.findById(newsId).orElse(null);
+        if (selectedNews != null) {
+            comment.setNews(selectedNews);
+            commentRepository.save(comment);
+            redirectAttributes.addFlashAttribute("message", "댓글이 성공적으로 등록되었습니다.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "댓글을 작성할 뉴스를 찾을 수 없습니다.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
+        }
+        return "redirect:/newsmain?id=" + newsId;
     }
 }
