@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>뉴스 게시판</title>
-    <!-- Bootstrap CSS 포함 -->
+    <!-- 부트스트랩 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .hidden {
@@ -21,7 +21,7 @@
 <div class="container mt-5">
     <h1 class="mb-4">뉴스 게시판</h1>
 
-    <!-- 검색 폼 (드롭다운 기반, 기본값 '키워드') -->
+    <!-- 검색 폼 (기본값 '키워드') -->
     <form th:action="@{/newsmain}" method="get" class="row g-3 mb-4">
         <div class="col-md-3">
             <select class="form-select" name="type" required>
@@ -39,7 +39,7 @@
     </form>
 
     <!-- 메시지 표시 -->
-    <div th:if="${message}" th:class="'alert alert-' + ${messageType}" th:text="${message}"></div>
+    <div th:if="${message}" th:class="'alert alert-' + ${messageType}" th:text="${message}" role="alert"></div>
 
     <!-- 뉴스 목록 테이블 -->
     <table class="table table-hover">
@@ -69,7 +69,7 @@
         </tbody>
     </table>
 
-    <!-- Pagination controls -->
+    <!-- 페이지 네이션 -->
     <nav th:if="${newsPage.totalPages > 1}">
         <ul class="pagination">
             <li class="page-item" th:classappend="${newsPage.first} ? 'disabled'">
@@ -94,7 +94,7 @@
         <p><strong>조회수:</strong> <span th:text="${selectedNews.cnt}"></span></p>
         <p th:text="${selectedNews.content}"></p>
         <a th:href="@{/newsmain(editId=${selectedNews.id}, page=${newsPage.number}, type=${type}, term=${term})}" class="btn btn-primary me-2">수정</a>
-        <form th:action="@{/news/delete}" method="post" style="display:inline;">
+        <form th:action="@{/delete}" method="post" style="display:inline;">
             <input type="hidden" name="id" th:value="${selectedNews.id}">
             <button type="submit" class="btn btn-danger" onclick="return confirm('정말로 이 뉴스를 삭제하시겠습니까?');">삭제</button>
         </form>
@@ -104,7 +104,7 @@
     <!-- 뉴스 작성/수정 폼 -->
     <div th:if="${formVisible}" class="mt-4">
         <h3 th:text="${isEdit} ? '뉴스 기사 수정' : '뉴스 기사 작성'"></h3>
-        <form th:action="${isEdit} ? @{/news/edit} : @{/news/create}" method="post">
+        <form th:action="${isEdit} ? @{/update} : @{/insert}" method="post">
             <input type="hidden" name="id" th:value="${formNews.id}">
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>

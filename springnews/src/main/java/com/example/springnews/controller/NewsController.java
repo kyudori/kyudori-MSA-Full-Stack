@@ -8,13 +8,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
 
-    // 뉴스 메인 페이지 로딩 (Thymeleaf 렌더링)
+    // 뉴스 메인 페이지
     @GetMapping("/newsmain")
     public String newsmain(
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -71,44 +72,44 @@ public class NewsController {
     }
 
     // 뉴스 생성
-    @PostMapping("/news/create")
-    public String createNews(@ModelAttribute News news, Model model) {
+    @PostMapping("/insert")
+    public String createNews(@ModelAttribute News news, Model model, RedirectAttributes redirectAttributes) {
         news.setCnt(0); // 조회수 초기화
         newsRepository.save(news);
-        model.addAttribute("message", "뉴스가 성공적으로 등록되었습니다.");
-        model.addAttribute("messageType", "success");
+        redirectAttributes.addFlashAttribute("message", "뉴스가 성공적으로 등록되었습니다.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/newsmain";
     }
 
     // 뉴스 수정
-    @PostMapping("/news/edit")
-    public String editNews(@ModelAttribute News news, Model model) {
+    @PostMapping("/update")
+    public String editNews(@ModelAttribute News news, Model model, RedirectAttributes redirectAttributes) {
         News existingNews = newsRepository.findById(news.getId()).orElse(null);
         if (existingNews != null) {
             existingNews.setTitle(news.getTitle());
             existingNews.setWriter(news.getWriter());
             existingNews.setContent(news.getContent());
             newsRepository.save(existingNews);
-            model.addAttribute("message", "뉴스가 성공적으로 수정되었습니다.");
-            model.addAttribute("messageType", "success");
+            redirectAttributes.addFlashAttribute("message", "뉴스가 성공적으로 수정되었습니다.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
         } else {
-            model.addAttribute("message", "수정할 뉴스를 찾을 수 없습니다.");
-            model.addAttribute("messageType", "danger");
+            redirectAttributes.addFlashAttribute("message", "수정할 뉴스를 찾을 수 없습니다.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
         }
         return "redirect:/newsmain";
     }
 
     // 뉴스 삭제
-    @PostMapping("/news/delete")
-    public String deleteNews(@RequestParam("id") int id, Model model) {
+    @PostMapping("/delete")
+    public String deleteNews(@RequestParam("id") int id, Model model, RedirectAttributes redirectAttributes) {
         News existingNews = newsRepository.findById(id).orElse(null);
         if (existingNews != null) {
             newsRepository.delete(existingNews);
-            model.addAttribute("message", "뉴스가 성공적으로 삭제되었습니다.");
-            model.addAttribute("messageType", "success");
+            redirectAttributes.addFlashAttribute("message", "뉴스가 성공적으로 삭제되었습니다.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
         } else {
-            model.addAttribute("message", "삭제할 뉴스를 찾을 수 없습니다.");
-            model.addAttribute("messageType", "danger");
+            redirectAttributes.addFlashAttribute("message", "삭제할 뉴스를 찾을 수 없습니다.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
         }
         return "redirect:/newsmain";
     }
