@@ -23,7 +23,3 @@ public class LogTestController1 {
 		return mav;
 	}
 }
-
-
-
-

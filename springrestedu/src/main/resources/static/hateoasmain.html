@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hateoas REST API 실습</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+</head>
+<style>
+    body{
+        text-align: center;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    hr{
+        width: 80%;
+    }
+    img{
+        width: 20%;
+    }
+</style>
+<body class="bg-violet-50">
+<p class="font-sans text-3xl font-extrabold antialiased m-5 text-violet-950">Hateoas REST API 실습</p>
+<hr class="mx-auto">
+<button class="rounded-2xl text-lg bg-violet-600 text-white p-4 m-4 shadow-md shadow-slate-400 hover:bg-slate-200 hover:bg-violet-300" onclick="getAll()">둘리와 친구들 보기</button>
+<div id="button-area"></div>
+<div id="actor-area"></div>
+<script>
+	const xhr = new XMLHttpRequest();
+	const target = document.getElementById('button-area');
+    const actor = document.getElementById('actor-area');
+
+    function getAll(){
+        xhr.onload = function(event) {
+            target.innerHTML = null;
+            actor.innerHTML = null;
+            if (xhr.status == 200) {
+                let comicActorModelList = JSON.parse(xhr.responseText)._embedded.comicActorModelList;
+                target.innerHTML += "<hr class='mx-auto'>";
+                for(let i = 0; i < comicActorModelList.length; i++){
+                      target.innerHTML += "<button class='rounded-2xl bg-violet-400 text-white hover:bg-slate-200 p-2 m-4' "
+                                        + " onclick=getActor('" +  comicActorModelList[i]._links.self.href.split('/')[3] +  "')>"
+                                        + comicActorModelList[i].name + "</button>";
+                }
+            }
+        };
+        xhr.open('GET', '/all');
+        xhr.send();
+	}
+
+	function getActor(url) {
+	    target.innerHTML = null;
+	    actor.innerHTML = null;
+        xhr.onload = function(event) {
+            if (xhr.status == 200) {
+                let data = JSON.parse(xhr.responseText);
+                target.innerHTML += "<hr class='mx-auto'>";
+                actor.innerHTML += "<p class='font-bold text-2xl m-4 pt-5'>" + data.name + "</p>";
+                actor.innerHTML += "<p class='text-lg m-2'>" + data.addr + "</p>";
+                actor.innerHTML += "<img class='mx-auto m-5' src=" + data.image + "'/images'></img>";
+            }
+        };
+        xhr.open('GET', "/" + url);
+        xhr.send();
+	}
+</script>
+</body>
+</html>
