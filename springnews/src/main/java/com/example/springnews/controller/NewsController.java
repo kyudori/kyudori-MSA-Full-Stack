@@ -30,9 +30,10 @@ public class NewsController {
             @RequestParam(value = "new", required = false) Boolean isNew,
             Model model) {
 
-        PageRequest pageable = PageRequest.of(page, 5);
+        PageRequest pageable = PageRequest.of(page, 5); // 한 페이지당 5개 뉴스
         Page<News> newsPage;
 
+        // 검색 로직
         if (type != null && term != null && !term.isEmpty()) {
             if ("keyword".equals(type)) {
                 newsPage = newsRepository.findByContentContaining(term, pageable);
@@ -52,17 +53,21 @@ public class NewsController {
         // 상세 보기
         if (id != null) {
             News selectedNews = newsRepository.findById(id).orElse(null);
-            selectedNews.setCnt(selectedNews.getCnt() + 1);
-            newsRepository.save(selectedNews);
-            model.addAttribute("selectedNews", selectedNews);
+            if (selectedNews != null) {
+                selectedNews.setCnt(selectedNews.getCnt() + 1);
+                newsRepository.save(selectedNews);
+                model.addAttribute("selectedNews", selectedNews);
+            }
         }
 
         // 수정 폼
         if (editId != null) {
             News editNews = newsRepository.findById(editId).orElse(null);
-            model.addAttribute("formVisible", true);
-            model.addAttribute("isEdit", true);
-            model.addAttribute("formNews", editNews);
+            if (editNews != null) {
+                model.addAttribute("formVisible", true);
+                model.addAttribute("isEdit", true);
+                model.addAttribute("formNews", editNews);
+            }
         }
 
         // 신규 작성 폼
@@ -72,12 +77,25 @@ public class NewsController {
             model.addAttribute("formNews", new News());
         }
 
+        // 페이지네이션 창 로직
+        int windowSize = 5; // 한 번에 표시할 페이지 수
+        int totalPages = newsPage.getTotalPages();
+        int windowNumber = page / windowSize; // 현재 창 번호 (0부터 시작)
+        int windowStart = windowNumber * windowSize + 1; // 현재 창의 시작 페이지 번호 (1부터)
+        int windowEnd = Math.min(windowStart + windowSize - 1, totalPages); // 현재 창의 끝 페이지 번호
+
+        model.addAttribute("windowStart", windowStart);
+        model.addAttribute("windowEnd", windowEnd);
+        model.addAttribute("windowNumber", windowNumber);
+        model.addAttribute("windowSize", windowSize);
+        model.addAttribute("totalPages", totalPages);
+
         return "newsmain";
     }
 
     // 뉴스 생성
     @PostMapping("/insert")
-    public String createNews(@ModelAttribute News news, Model model, RedirectAttributes redirectAttributes) {
+    public String createNews(@ModelAttribute News news, RedirectAttributes redirectAttributes) {
         news.setCnt(0); // 조회수 초기화
         newsRepository.save(news);
         redirectAttributes.addFlashAttribute("message", "뉴스가 성공적으로 등록되었습니다.");
@@ -87,7 +105,7 @@ public class NewsController {
 
     // 뉴스 수정
     @PostMapping("/update")
-    public String editNews(@ModelAttribute News news, Model model, RedirectAttributes redirectAttributes) {
+    public String editNews(@ModelAttribute News news, RedirectAttributes redirectAttributes) {
         News existingNews = newsRepository.findById(news.getId()).orElse(null);
         if (existingNews != null) {
             existingNews.setTitle(news.getTitle());
@@ -105,7 +123,7 @@ public class NewsController {
 
     // 뉴스 삭제
     @PostMapping("/delete")
-    public String deleteNews(@RequestParam("id") int id, Model model, RedirectAttributes redirectAttributes) {
+    public String deleteNews(@RequestParam("id") int id, RedirectAttributes redirectAttributes) {
         News existingNews = newsRepository.findById(id).orElse(null);
         if (existingNews != null) {
             newsRepository.delete(existingNews);

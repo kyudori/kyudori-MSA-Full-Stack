@@ -69,19 +69,28 @@
         </tbody>
     </table>
 
-    <!-- 페이지 네이션 -->
-    <nav th:if="${newsPage.totalPages > 1}">
+    <!-- 페이지 네이션 (창 기반) -->
+    <nav th:if="${totalPages > 1}">
         <ul class="pagination">
-            <li class="page-item" th:classappend="${newsPage.first} ? 'disabled'">
-                <a class="page-link" th:href="@{/newsmain(page=${newsPage.number - 1}, type=${type}, term=${term})}">이전</a>
+            <!-- 이전 창 버튼 -->
+            <li class="page-item" th:classappend="${windowNumber == 0} ? 'disabled'">
+                <a class="page-link" th:href="@{/newsmain(page=${(windowNumber -1) * windowSize}, type=${type}, term=${term})}" aria-label="Previous Window">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
             </li>
-            <li class="page-item" th:each="i : ${#numbers.sequence(0, newsPage.totalPages -1)}"
-                th:classappend="${i} == ${newsPage.number} ? 'active'">
-                <a class="page-link" th:href="@{/newsmain(page=${i}, type=${type}, term=${term})}"
-                   th:text="${i + 1}">1</a>
+
+            <!-- 페이지 번호 버튼 -->
+            <li class="page-item" th:each="i : ${#numbers.sequence(windowStart, windowEnd)}"
+                th:classappend="${i -1} == ${newsPage.number} ? 'active'">
+                <a class="page-link" th:href="@{/newsmain(page=${i -1}, type=${type}, term=${term})}"
+                   th:text="${i}">1</a>
             </li>
-            <li class="page-item" th:classappend="${newsPage.last} ? 'disabled'">
-                <a class="page-link" th:href="@{/newsmain(page=${newsPage.number + 1}, type=${type}, term=${term})}">다음</a>
+
+            <!-- 다음 창 버튼 -->
+            <li class="page-item" th:classappend="${windowEnd >= totalPages} ? 'disabled'">
+                <a class="page-link" th:href="@{/newsmain(page=${windowNumber * windowSize + windowSize}, type=${type}, term=${term})}" aria-label="Next Window">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
             </li>
         </ul>
     </nav>
