@@ -3,7 +3,6 @@ package com.example.springrestedu.controller;
 import com.example.springrestedu.entity.Friend;
 import com.example.springrestedu.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +16,17 @@ public class FriendController {
     @Autowired
     private FriendRepository friendRepository;
 
+//        DB 넣는 코드
+//		Friend friend1 = new Friend("둘리", 25);
+//		Friend friend2 = new Friend("또치", 26);
+//		Friend friend3 = new Friend("도우너", 27);
+//		Friend friend4 = new Friend("마이콜", 28);
+//
+//		friendRepository.save(friend1);
+//		friendRepository.save(friend2);
+//		friendRepository.save(friend3);
+//		friendRepository.save(friend4);
+
     @GetMapping
     public ResponseEntity<List<Friend>> getAllFriends() {
         List<Friend> friends = friendRepository.findAll();
@@ -24,20 +34,13 @@ public class FriendController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Friend> getFriendById(@PathVariable int id) {
+    public ResponseEntity<Optional<Friend>> getFriendById(@PathVariable int id) {
         Optional<Friend> friend = friendRepository.findById(id);
-        return friend.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> {
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("BAD_ID", String.valueOf(id));
-                    return new ResponseEntity<>(null, headers, HttpStatus.NOT_FOUND);
-                });
-    }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Friend>> getFriendByName(@RequestParam String fname) {
-        List<Friend> friends = friendRepository.findByFname(fname);
-        return new ResponseEntity<>(friends, HttpStatus.OK);
+        if (friend.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(friend, HttpStatus.OK);
     }
 
     @PostMapping
@@ -51,7 +54,7 @@ public class FriendController {
         if (friendRepository.existsById(id)) {
             friend.setId(id);
             friendRepository.save(friend);
-            return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -60,7 +63,7 @@ public class FriendController {
     public ResponseEntity<Void> deleteFriend(@PathVariable int id) {
         if (friendRepository.existsById(id)) {
             friendRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
