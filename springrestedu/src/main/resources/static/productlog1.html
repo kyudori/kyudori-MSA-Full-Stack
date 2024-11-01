@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>productlog1</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            margin: auto;
+            width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .box img {
+            width: 150px;
+            height: 150px;
+            border: 3px solid black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .box img:hover {
+            transform: scale(1.1);
+        }
+
+        .response {
+            text-align: center;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>원하는 상품을 클릭하세요~~</h1>
+<hr>
+<figure>
+    <div class="box">
+            <img src="../images/1.jpg" alt="상품 1" data-pid="p001">
+            <img src="../images/2.jpg" alt="상품 2" data-pid="p002">
+            <img src="../images/3.jpg" alt="상품 3" data-pid="p003">
+            <img src="../images/4.jpg" alt="상품 4" data-pid="p004">
+            <img src="../images/5.jpg" alt="상품 5" data-pid="p005">
+            <img src="../images/6.jpg" alt="상품 6" data-pid="p006">
+            <img src="../images/7.jpg" alt="상품 7" data-pid="p007">
+            <img src="../images/8.jpg" alt="상품 8" data-pid="p008">
+            <img src="../images/9.jpg" alt="상품 9" data-pid="p009">
+            <img src="../images/10.jpg" alt="상품 10" data-pid="p010">
+    </div>
+    <div class="response" id="p001"></div>
+    <div class="response" id="p002"></div>
+    <div class="response" id="p003"></div>
+    <div class="response" id="p004"></div>
+    <div class="response" id="p005"></div>
+    <div class="response" id="p006"></div>
+    <div class="response" id="p007"></div>
+    <div class="response" id="p008"></div>
+    <div class="response" id="p009"></div>
+    <div class="response" id="p010"></div>
+</figure>
+
+<script>
+    document.querySelectorAll(".box img").forEach(img => {
+        img.addEventListener("click", function () {
+            const productId = this.dataset.pid;
+            //XMLHttpRequest 객체 생성
+            const xhr = new XMLHttpRequest();
+            //응답이 로드되었을 때에 대한 기능 구현: XMLHttpRequest 객체.onload = 함수
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const responseElement = document.getElementById(productId);
+                    responseElement.innerText = xhr.responseText; // 응답 내용을 표시
+                    responseElement.style.display = "block"; // 응답 표시
+                    // 3초 후 응답 메시지 숨기기
+                    setTimeout(() => {
+                        responseElement.style.display = "none";
+                    }, 3000);
+                }
+            };
+            //XMLHttpRequest 객체를 통해서 AJAX 요청
+            //XMLHttpRequest 객체.open()
+            //XMLHttpRequest 객체.send()
+            xhr.open("GET", `/cart1?pid=${productId}`, true);
+            xhr.send();
+        });
+    });
+</script>
+
+</body>
+</html>

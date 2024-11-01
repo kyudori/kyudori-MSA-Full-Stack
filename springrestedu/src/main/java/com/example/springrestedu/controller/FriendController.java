@@ -3,6 +3,7 @@ package com.example.springrestedu.controller;
 import com.example.springrestedu.entity.Friend;
 import com.example.springrestedu.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +35,14 @@ public class FriendController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Friend>> getFriendById(@PathVariable int id) {
+    public ResponseEntity<Friend> getFriendById(@PathVariable int id) {
         Optional<Friend> friend = friendRepository.findById(id);
-
-        if (friend.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(friend, HttpStatus.OK);
+        return friend.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> {
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("BAD_ID", String.valueOf(id));
+                    return new ResponseEntity<>(null, headers, HttpStatus.NOT_FOUND);
+                });
     }
 
     @PostMapping
@@ -54,7 +56,7 @@ public class FriendController {
         if (friendRepository.existsById(id)) {
             friend.setId(id);
             friendRepository.save(friend);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -63,7 +65,7 @@ public class FriendController {
     public ResponseEntity<Void> deleteFriend(@PathVariable int id) {
         if (friendRepository.existsById(id)) {
             friendRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
