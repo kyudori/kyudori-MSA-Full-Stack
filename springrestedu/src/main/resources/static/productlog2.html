@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>productlog2</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            margin: auto;
+            width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .box img {
+            width: 150px;
+            height: 150px;
+            border: 3px solid black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .box img:hover {
+            transform: scale(1.1);
+        }
+
+        .response {
+            text-align: center;
+            font-weight: bold;
+            color: blue;
+            margin-top: 10px;
+        }
+
+        .response img {
+            width: 200px;
+            height: 200px;
+            border: none;
+            box-shadow: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>원하는 상품을 클릭하세요~~</h1>
+<hr>
+<figure>
+    <div class="box">
+        <img src="../images/1.jpg" alt="상품 1" data-pid="1">
+        <img src="../images/2.jpg" alt="상품 2" data-pid="2">
+        <img src="../images/3.jpg" alt="상품 3" data-pid="3">
+        <img src="../images/4.jpg" alt="상품 4" data-pid="4">
+        <img src="../images/5.jpg" alt="상품 5" data-pid="5">
+        <img src="../images/6.jpg" alt="상품 6" data-pid="6">
+        <img src="../images/7.jpg" alt="상품 7" data-pid="7">
+        <img src="../images/8.jpg" alt="상품 8" data-pid="8">
+        <img src="../images/9.jpg" alt="상품 9" data-pid="9">
+        <img src="../images/10.jpg" alt="상품 10" data-pid="10">
+    </div>
+    <div class="response" id="1"></div>
+    <div class="response" id="2"></div>
+    <div class="response" id="3"></div>
+    <div class="response" id="4"></div>
+    <div class="response" id="5"></div>
+    <div class="response" id="6"></div>
+    <div class="response" id="7"></div>
+    <div class="response" id="8"></div>
+    <div class="response" id="9"></div>
+    <div class="response" id="10"></div>
+</figure>
+
+<script>
+    document.querySelectorAll(".box img").forEach(img => {
+        img.addEventListener("click", function () {
+            const productId = this.dataset.pid;
+            const xhr = new XMLHttpRequest();
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    const responseElement = document.getElementById(productId);
+
+                    responseElement.innerHTML =
+                        `
+                        <p>선택된 상품 ${response.pid}</p>
+                        <img src="../images/${response.imgName}" alt="${response.imgName}">
+                        `;
+                    responseElement.style.display = "block"; // 응답 표시
+
+                    // 3초 후 응답 메시지 숨기기
+                    setTimeout(() => {
+                        responseElement.style.display = "none";
+                    }, 1500);
+                }
+            };
+
+            xhr.open("GET", `/cart2?pid=${productId}`, true);
+            xhr.send();
+        });
+    });
+</script>
+
+</body>
+</html>
