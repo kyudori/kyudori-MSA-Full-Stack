@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel='icon' href='data:,'>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        form {
+            display: inline-block;
+            text-align: left;
+            border: 1px solid black;
+            padding: 20px;
+        }
+        label, input {
+            display: block;
+            margin: 5px 0;
+        }
+        input[type="submit"] {
+            margin: 10px 0 0 0;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>로그인</h1>
+<form method="POST" th:action="@{/mylogin}">
+    <label for="username">계정:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">암호:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="로그인">
+</form>
+</body>
+</html>

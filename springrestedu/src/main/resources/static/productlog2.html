@@ -89,9 +89,8 @@
                         <p>선택된 상품 ${response.pid}</p>
                         <img src="../images/${response.imgName}" alt="${response.imgName}">
                         `;
-                    responseElement.style.display = "block"; // 응답 표시
+                    responseElement.style.display = "block";
 
-                    // 3초 후 응답 메시지 숨기기
                     setTimeout(() => {
                         responseElement.style.display = "none";
                     }, 1500);
