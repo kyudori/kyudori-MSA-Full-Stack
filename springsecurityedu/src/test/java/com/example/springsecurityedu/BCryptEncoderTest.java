@@ -11,6 +11,7 @@ public class BCryptEncoderTest {
     private PasswordEncoder encoder;
     @Test
     void test() {
+        System.out.println("생성되는 패스워드 인코딩 객체: " + encoder.getClass().getName());
         String pass1 = encoder.encode("1234");
         String pass2 = encoder.encode("1234");
         System.out.println("pass1 = " + pass1);
