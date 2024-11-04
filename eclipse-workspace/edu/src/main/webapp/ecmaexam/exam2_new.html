@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+	<style>
+		.result-container {
+			border: 2px dashed pink;
+			border-radius: 50%;
+			padding: 20px;
+			margin-top: 10px;
+			width: 300px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>this?</h1>
+	<hr>
+	<div></div>
+	<script src="util.js"></script>
+	<script>
+		
+		function customWrite(content, tag) {
+			getDOM("div").innerHTML += `<${tag}>${content}</${tag}>`;
+		}
+
+		function customWriteColor(content, tag, color) {
+			getDOM("div").innerHTML += "<"+tag+" style='color:"+color+"'>"+ content+"</"+tag+">";
+		}
+
+		customWriteColor("전역 코드 영역에서의 this", "h2", "red");
+		customWrite(this, "h3");
+
+		customWriteColor("지역 코드 영역에서의 this", "h2", "red");
+
+		function f1() {
+			customWrite(this, "h3");
+		}
+		f1();
+
+		customWriteColor("객체 영역에서의 this", "h2", "red");
+		const obj = {
+			name: '유니코',
+			m: function() {
+				customWrite(this, "h3");
+				customWrite(this.name, "p");
+			}
+		}
+		obj.m();
+
+		getDOM("h1").addEventListener("click", f2);
+		
+		function f2() {
+			customWriteColor("이벤트 핸들러에서의 this", "h2", "red");
+			const resultContainer = document.createElement("div");
+			resultContainer.className = "result-container";
+			resultContainer.innerHTML = this;
+			document.body.appendChild(resultContainer);
+		}
+
+	</script>	
+</body>
+</html>

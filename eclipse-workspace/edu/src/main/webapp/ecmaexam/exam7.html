@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+  	<h1>객체 리터럴에서의 전개구문</h1>
+	<script>
+		let obj1 = { foo: "bar", x: 42 };
+		let obj2 = { foo: "baz", y: 13 };
+	
+		let clonedObj = { ...obj1 };
+		console.log(clonedObj);
+	
+		let mergedObj = { ...obj1, ...obj2 };
+		console.log(mergedObj);
+	</script>
+</body>
+</html>

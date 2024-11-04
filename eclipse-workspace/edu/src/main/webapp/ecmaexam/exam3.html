@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>내장 메서드에서의 this 는 window 객체를 참조</h1>
+	<hr>
+	<script>
+		const calc1= {
+			firstNumber: 100,
+			secondNumber:20,
+			print: function() {
+						console.log(this);
+				
+						function add() {
+							console.log(this);
+							console.log(this.firstNumber);
+							console.log(this.secondNumber);
+			
+							return this.firstNumber + this.secondNumber;
+						}
+				
+					console.log(this.firstNumber + "+" + this.secondNumber + "=" + add());
+			}
+		}		
+		calc1.print();
+		console.log("*******************************");
+		const calc2 = {
+			firstNumber: 100,
+			secondNumber:20,
+			print: function() {
+						let outerObj = this;
+						function add() {
+							console.log(outerObj);
+							
+							return outerObj.firstNumber + outerObj.secondNumber;
+						}
+						
+					console.log(this.firstNumber + "+" + this.secondNumber + "=" + add());
+			}
+		}		
+		calc2.print();
+	</script>
+</body>
+</html>

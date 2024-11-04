@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>전개 구문(Spread 연산자)</h1>
+	<script>
+		let str = "가나다라마";
+		
+		for(let ch of str) {
+			console.log(ch);
+		}
+		let ary = [...str, '바'];
+		console.log(ary);
+		const [c1, c2] = str;		
+		console.log(c1);
+		console.log(c2);
+		console.log("=".repeat(50));
+		let arr1 = [0, 1, 2];
+		let arr2 = [3, 4, 5];
+		let arr3 = [...arr1, ...arr2];
+		console.log(arr1);
+		console.log(arr2);
+		console.log(arr3);
+		
+		function sum(x, y, z) {
+			  return x + y + z;
+		}
+		const numbers = [1, 2, 3];
+		console.log(sum(...numbers));
+	</script>
+</body>
+</html>

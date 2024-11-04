@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>나머지 매개변수(Rest 연산자)</h1>
+	<script>
+		function add1(a, b, ... args) {
+			console.log(a, b, args);			
+			let sum = a + b;			
+			for(let i = 0; i < args.length; i++) {
+				sum += args[i];
+			}			
+			return sum;
+		}		
+		let sum = add1(1, 2, 3, 4, 5);			
+		console.log(sum);
+		console.log("=".repeat(30));
+		
+		function add2(...args) {
+			console.log(args);			
+			let sum = 0;			
+			for(let i = 0; i < args.length; i++) {
+				sum += args[i];
+			}			
+			return sum;
+		}		
+		sum = add2(1, 2, 3, 4, 5);		
+		console.log(sum);
+		console.log("=".repeat(30));
+		
+		function add3(a, b = 10) {
+			console.log("a = " + a);			
+			console.log("b = " + b);			
+			return a + b;
+		}		
+		sum = add3(1);		
+		console.log(sum);
+	</script>
+</body>
+</html>

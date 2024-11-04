@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>this?</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>		
+		writeColor("전역 코드 영역에서의 this",  "h2", "red");
+		write(this, "h3");
+		
+		writeColor("지역 코드 영역에서의 this",  "h2", "red");
+		
+		function f1() {
+			write(this, "h3");
+		}
+		f1();
+		
+		writeColor("객체 영역에서의 this",  "h2", "red");
+		const obj = {
+			name : '유니코',
+			m : function() {
+				write(this, "h3");
+				write(this.name);				
+			}
+		}
+		obj.m();
+				
+		getDOM("h1").addEventListener("click", f2);
+	
+		function f2() {
+			writeColor("이벤트 핸들러에서의 this",  "h2", "red");	
+			write(this);
+		}		
+		
+	</script>	
+</body>
+</html>

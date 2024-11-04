@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>간편 객체 리터럴(2)</h1>
+	<script src="util.js"></script>
+	<script>		
+		const obj1 = {
+				name : "듀크",
+				eat : function(food){
+							writeColor(`${this.name}가 ${food}를 먹어요~~`, "h3", "blue");
+						}
+		}
+		
+		const obj2 = {
+				name : "둘리",
+				eat (food){
+							writeColor(`${this.name}가 ${food}를 먹어요~~`, "h3", "blue");
+				}
+		}
+		
+		obj1.eat("사과");
+		obj2.eat("망고");
+	</script>
+</body>
+</html>

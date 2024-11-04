@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>전개구문과 템플릿 리터럴</h1>
+	<script>
+		const colorArray = ["red", "green", "blue"];
+		const newColorArray = [...colorArray, "orange"];
+		
+		console.log(colorArray);		
+		console.log(newColorArray);
+		console.log("=".repeat(30));
+
+		const numArray = [2, 3, 4];
+		const newNumArray = [1, ... numArray, 5];
+		
+		console.log(numArray);		
+		console.log(newNumArray);
+		console.log("=".repeat(30));
+
+		function myPrint(a, b, c) {
+			console.log(`a=${a}`);
+			console.log(`b=${b}`);
+			console.log(`c=${c}`);
+		}
+		const array = [1, 2, 3];		
+		console.log(array);
+		myPrint( ... array);
+		
+		const stringArray = [ ... "xyz"];		
+		console.log(stringArray);		
+		myPrint( ... stringArray);
+	</script>
+</body>
+</html>

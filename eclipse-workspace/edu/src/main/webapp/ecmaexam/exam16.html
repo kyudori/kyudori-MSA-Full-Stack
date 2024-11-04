@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		img {
+			opacity: 0.3;
+			transition: opacity 1s;
+		}
+	</style>
+</head>
+<body>
+	<h2>다양한 함수 정의 방법과 응용</h2>
+	<hr>
+	<button onClick="f1(10, 20);">선언적 함수 호출</button>
+	<button onCLICK="f2(100, 200);">함수표현식 함수 호출</button>
+	<button onclick="f3(1000, 2000);">화살표 함수 호출</button>
+	<script src="util.js"></script>
+	<script>
+		function f1(p1, p2) {
+			alert(p1 + p2);
+		}
+		let f2 = function (p1, p2) {
+			alert(p1 + p2);
+		}
+		let f3 = (p1, p2) => alert(p1 + p2);
+	</script>
+	<hr>
+	<img src="https://i.namu.wiki/i/HehKgZCWtYmx88aflvkUl29biDUxoTVPPpWOBaakkKZEjvGP6T5vGZAYOUip8UhwX9Wi-hDo-O4i1wBc9VNtIQ.webp">
+	<script>
+		const domObj = document.querySelector('img');
+		domObj.addEventListener("mouseover", e => e.target.style.opacity=1.0);
+		domObj.addEventListener("mouseout", e => e.target.style.opacity=0.3);
+	</script>
+</body>
+</html>

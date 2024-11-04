@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>내장 화살표 메서드에서의 this 는 자신 객체를 참조</h1>
+	<script>
+		const calc = {
+			firstNumber: 100,
+			secondNumber:20,
+			print: function() {
+						console.log(this);
+						const add = () => {
+							console.log(this);
+							return this.firstNumber + this.secondNumber;
+						}
+						
+						console.log(this.firstNumber + "+" + this.secondNumber + "=" + add());
+			}
+		}
+		
+		calc.print();
+	</script>
+</body>
+</html>

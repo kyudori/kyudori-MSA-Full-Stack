@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>배열</h1>
+	<script>
+		const array1 = ["a", "b", "c"];
+		console.log(array1);
+		array1.push("d");
+		console.log(array1);
+		array1.push("e", "f");
+		console.log(array1);
+		array1.push( ... ["g", "h", "i"]);		
+		console.log(array1);
+		array1.push(["j", "k"]);		
+		console.log(array1);
+
+		const array2 = [10, 20, 60, 50, 30];
+		console.log(Math.max( ... array2));
+		console.log(Math.max(array2));
+	</script>
+</body>
+</html>

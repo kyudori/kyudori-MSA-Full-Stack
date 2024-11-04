@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>객체 리터럴</h1>
+	<script>
+		const obj = {
+	    	x : 10, y : 20,
+	    	test1 : function() {
+	        	return this.x * this.y;
+	      	},     
+	      	test2() {
+	        	return this.x + this.y;
+	      	},
+	      	test3(p=5) {
+	        	return p+p; 
+	      	},
+	      	test4(p) {
+	        	p ??= 3; // p가 null 이거나 undefined  이면 3을 할당
+	        	return p+p; 
+      	}
+    }
+    console.log(obj.x);
+    console.log(obj.y);
+    console.log(obj.test1());
+    console.log(obj.test2());   
+    console.log(obj.test3(10));     
+    console.log(obj.test3());  
+    console.log(obj.test4(7));     
+    console.log(obj.test4());    
+	</script>
+</body>
+</html>

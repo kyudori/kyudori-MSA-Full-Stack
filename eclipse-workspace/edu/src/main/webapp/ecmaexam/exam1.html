@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>익명 함수와 화살표 함수</h1>
+	<hr>
+	
+	<h3>() => expression</h3>
+	
+	<h3>param => expression</h3>
+	
+	<h3>(param) => expression</h3>
+	
+	<h3>(param1, paramN) => expression</h3>
+
+	<h3>() => {<br>
+ 			&nbsp;&nbsp;&nbsp;&nbsp;statements<br>
+	}</h3>
+	<h3>param => {<br>
+ 			&nbsp;&nbsp;&nbsp;&nbsp;statements<br>
+	}</h3>
+	<h3>(param1, paramN) => {<br>
+ 			&nbsp;&nbsp;&nbsp;&nbsp;statements<br>
+	}</h3>     
+    
+	<script>
+		const f = function(a, b) { return a + b};
+		
+		console.log(f(100, 5));
+		
+		const af = (a, b) => { return a + b};
+		
+		console.log(af(100, 5));
+	</script>
+</body>
+</html>

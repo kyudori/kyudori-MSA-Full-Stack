@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>맵 객체</h1>
+	<script>
+		let map = new Map([["Apple", "red"], ["Melon", "green"]]);
+		console.log(map.size);
+		console.log(map);
+		console.log("=".repeat(50));		
+		console.log(map.has("Apple"));		
+		var keyIter = map.keys();		
+		for(var key of keyIter) {
+			console.log(key);
+		}
+		console.log("=".repeat(30));
+		var valueIter = map.values();
+		for(var value of valueIter) {
+			console.log(value);
+		}
+		console.log("=".repeat(30));
+		var entriyIter = map.entries();
+		for(var entry of entriyIter) {
+			console.log(entry);
+		}
+		console.log("=".repeat(30));
+		map.forEach(function(value, key, map) {
+			console.log(key + " : " + value, map);
+		});
+		map = new Map();
+		map.set("Apple", "red");
+		map.set("Melon", "green");
+		console.log(map.get("Apple"));		
+		console.log(map.get("Melon"));
+		console.log(map.has("Apple"));		
+		console.log(map.has("Melon"));
+		map.delete("Apple")		
+		
+	</script>
+</body>
+</html>

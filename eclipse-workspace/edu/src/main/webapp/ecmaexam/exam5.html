@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>for ~ of 구문</h1>
+	<script>
+		let coffeeNames = ["Americano", "Cappuccino", "Espresso"];
+		
+		for(let name of coffeeNames) {
+			console.log(name);
+		}
+		console.log("=".repeat(30));
+		
+		for(let i in coffeeNames) {
+			console.log(coffeeNames[i]);
+		}
+	</script>
+</body>
+</html>

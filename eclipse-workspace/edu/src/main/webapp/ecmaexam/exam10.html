@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>세트 객체</h1>
+	<script>
+		let fruitSet = new Set();		
+		console.log(fruitSet);
+		fruitSet = new Set(["Apple", "Melon"]);
+		console.log(fruitSet);
+
+		fruitSet = new Set();	
+		console.log(fruitSet);
+		fruitSet.add("Apple");
+		fruitSet.add("Melon");		
+		console.log(fruitSet);
+		console.log(fruitSet.has("Apple"));		
+		console.log(fruitSet.has("Melon"));
+		fruitSet.delete("Apple")		
+		console.log(fruitSet.has("Apple"));
+		console.log(fruitSet);
+		console.log("=".repeat(30));
+
+		fruitSet = new Set(["Apple", "Melon", "Apple"]);		
+		var keyIter = fruitSet.keys();
+		
+		for(var key of keyIter) {
+			console.log(key);
+		}		
+		var entriyIter = fruitSet.entries();
+		for(var entry of entriyIter) {
+			console.log(entry);
+		}
+		for(var fruit of fruitSet) {
+			console.log(fruit);
+		}
+
+		fruitSet.forEach(function(value1, value2, set) {
+			console.log(value1 + " : " + value2, set);
+		});
+	</script>
+</body>
+</html>
