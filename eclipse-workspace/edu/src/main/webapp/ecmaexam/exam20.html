@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(클래스)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		class User {
+			constructor(firstName, lastName, age) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+				this.age = age;
+			}
+
+			get age() {
+				write('getter 호출', 'h4');
+				return this._age;
+			}
+
+			set age(value) {
+				write('setter 호출 : ' + value, 'h4');
+				this._age = value < 0 ? 0 : value; 
+			}
+
+			toString() {
+				return `${this.lastName} ${this.firstName} : ${this.age}세`;
+			}
+		}
+
+		let obj = new User('길동', '고', 20);
+
+		writeColor(obj, 'h2', 'red');
+		hr();
+		obj.age = 40;
+		writeColor(obj.age, 'h2', 'blue');
+	</script>
+</body>
+</html>
+
+
+
+
+

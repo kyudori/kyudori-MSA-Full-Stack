@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(클래스)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		class Shape {
+			constructor(width, height, color) {
+				this.width = width;
+				this.height = height;
+				this.color = color;
+			}
+
+			draw() {
+				write(`${this.color} 색상으로 도형을 그린다`, 'h3');
+			}
+
+			getArea() {
+    		return this.width * this.height;
+			}
+		}
+
+		class Rectangle extends Shape {} 
+		class Triangle extends Shape {
+			getArea() {
+				return (this.width * this.height) / 2;
+			}
+
+			draw() {
+				super.draw(); // super는 부모클래스, 즉 Shape클래스를 지칭한다.
+				console.log(`🔺`);
+  			}
+		}
+
+		const rectangle = new Rectangle(20, 20, '파랑');
+		rectangle.draw();
+		writeColor(rectangle.getArea(), 'h2', 'blue');
+
+		const triangle = new Triangle(20, 20, '빨강');
+		triangle.draw();
+		writeColor(triangle.getArea(),'h2', 'red');
+	</script>
+</body>
+</html>
+
+
+
+
+

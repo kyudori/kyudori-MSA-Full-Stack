@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(클래스)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		class Student {
+			constructor(name, korean, math, english, science) {
+				this.이름 = name;
+				this.국어 = korean;
+				this.수학 = math;
+				this.영어 = english;
+				this.과학 = science;
+			} 
+				
+			toString() {
+				return this.이름 + " :  " +
+					this.국어 + ", " +
+					this.수학 + ", " +
+					this.영어 + ", " +
+					this.과학
+			}
+		}	
+		var st1 = new Student('둘리', 96, 98, 92, 98);
+		var st2 = new Student('또치', 92, 98, 96, 98);
+		var st3 = new Student('도우너', 76, 96, 94, 90);
+
+		write(st1, "h2");
+		write(st2, "h2");
+		write(st3, "h2");
+	</script>
+</body>
+</html>
+
+
+
+
+
