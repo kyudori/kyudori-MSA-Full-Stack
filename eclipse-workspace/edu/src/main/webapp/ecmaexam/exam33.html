@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>비동기 처리</h1>
+	<hr>
+	<h2>자바스크립트 콘솔창을 보세요</h2>
+	<script>
+		function a() {
+		  console.log('a() 함수 호출됨!');
+		  return new Promise((resolve, reject) => {
+		    setTimeout(() => {
+		      console.log('aa');
+		      resolve(); // a 함수가 정상적으로 끝났음을 알림
+		    }, 3000);
+		  });
+		}
+		function b() {
+		  console.log('b() 함수 호출됨!');
+		  return new Promise((resolve, reject) => {
+		    setTimeout(() => {
+		      console.log('bb');
+		      resolve(); // b 함수가 정상적으로 끝났음을 알림
+		    }, 2000);
+		  });
+		}
+		function c() {
+		  console.log('c() 함수 호출됨!');
+		  return new Promise((resolve, reject) => {
+		    setTimeout(() => {
+		      console.log('cc');
+		      resolve(); // c 함수가 정상적으로 끝났음을 알림
+		    }, 1000);
+		  });
+		}
+		// 순차적으로 호출
+		a()
+		  .then(() => b())
+		  .then(() => c());
+		 /* .catch((error) => {
+		    console.error('Error:', error);
+		  });*/
+
+	</script>
+</body>
+</html>

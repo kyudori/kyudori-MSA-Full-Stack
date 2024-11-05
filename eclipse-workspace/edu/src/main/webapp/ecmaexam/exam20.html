@@ -10,10 +10,11 @@
 	<script src="util.js"></script>
 	<script>
 		class User {
+			_age
 			constructor(firstName, lastName, age) {
 				this.firstName = firstName;
 				this.lastName = lastName;
-				this.age = age;
+				this._age = age;
 			}
 
 			get age() {
@@ -27,7 +28,7 @@
 			}
 
 			toString() {
-				return `${this.lastName} ${this.firstName} : ${this.age}세`;
+				return `${this.lastName} ${this.firstName} : ${this._age}세`;
 			}
 		}
 
@@ -35,13 +36,10 @@
 
 		writeColor(obj, 'h2', 'red');
 		hr();
+		console.log(obj.age);
+		//console.log(obj._age);
 		obj.age = 40;
 		writeColor(obj.age, 'h2', 'blue');
 	</script>
 </body>
 </html>
-
-
-
-
-

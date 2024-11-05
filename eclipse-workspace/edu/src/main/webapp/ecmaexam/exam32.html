@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>비동기 처리</h1>
+	<hr>
+	<h2>자바스크립트 콘솔창을 보세요</h2>
+	<script>
+		function a(callback) {
+		  console.log('a() 호출됨!');
+		  setTimeout(() => {
+		    console.log('aa');
+		    callback();
+		  }, 3000);
+		}
+		function b(callback) {
+		  console.log('b() 호출됨!');
+		  setTimeout(() => {
+		    console.log('bb');
+		    callback();
+		  }, 2000);
+		}
+		function c() {
+		  console.log('c() 호출됨!');
+		  setTimeout(() => {
+		    console.log('cc');
+		  }, 1000);
+		}
+		// 콜백 함수가 콜백 함수를 호출하는 콜백 지옥(Callback hell) 패턴
+		a(() => {
+		  b(() => {
+		    c();
+		  });
+		});
+
+	</script>
+</body>
+</html>

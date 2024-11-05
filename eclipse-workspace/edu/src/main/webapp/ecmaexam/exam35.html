@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Ajax테스트</title>       
+  </head>
+  <body>
+    <h2>fetch() 함수 사용 - JSON응답</h2>
+    <hr>
+    <script>		 
+      function jsonToStr(obj) {
+        for(var i in obj)                   
+          document.body.innerHTML += `<h3>${obj[i]}</h3>`; 
+      }                    
+      fetch('/edu/ajaxexam/content/sample.json')
+      .then(response => {    
+    	console.log(response);
+        return response.json();
+      })
+      .then(obj => {
+    	  console.log(obj);
+    	  jsonToStr(obj)
+      });
+    </script>
+  </body>
+</html>
+
+
+

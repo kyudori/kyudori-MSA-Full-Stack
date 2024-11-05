@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>객체 생성과 관련해서 추가된 구문</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		const name = "유니코";
+		const food = "떡볶이";
+
+		const my1 = {name : name, food : food};
+		writeNewLine(my1.name);
+		writeNewLine(my1.food);
+		hr();
+		let my2 = {name, food};
+		writeNewLine(my2.name);
+		writeNewLine(my2.food);
+		hr();
+		write(Object.getOwnPropertyNames(my2), 'h3');
+		write(Object.values(my2), 'h3');
+		write(Object.keys(my2), 'h3');
+		write(Object.entries(my2), 'h3');
+		console.log(Object.getOwnPropertyNames(my2));
+		console.log(Object.values(my2));
+		console.log(Object.keys(my2));
+		console.log(Object.entries(my2));		
+	</script>
+</body>
+</html>
+
+
+
+
+

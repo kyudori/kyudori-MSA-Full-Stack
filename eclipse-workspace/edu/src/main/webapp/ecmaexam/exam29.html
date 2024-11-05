@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECMAScript6</title>
+</head>
+<body>
+  <h1> AJAX 기술로 REST API  요청(XMLHttpRequest)</h1>
+  <hr>
+  <button onclick="getAll()">GET(ALL)</button>
+  <button onclick="getOne()">GET(One)</button>
+  <button onclick="postData()">POST</button>
+  <button onclick="deleteData()">DELETE</button>
+  <script>
+    const ajaxrequest = {     
+      get(url, f) {
+    	const xhr = new XMLHttpRequest();
+    	xhr.onload = f;
+    	xhr.open("GET", url, true);
+        xhr.send();
+      },
+      post(url, payload, f) {
+    	const xhr = new XMLHttpRequest();
+    	xhr.onload = f;
+      	xhr.open("POST", url, true);
+    	xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(payload));       
+      },
+      delete(url, f) {
+    	const xhr = new XMLHttpRequest();
+      	xhr.onload = f;
+      	xhr.open("DELETE", url, true);
+        xhr.send();
+      }
+    }
+
+    function getAll() {      
+      function f(e) {
+    	  if (e.target.status == 200) {
+    		  const boards = JSON.parse(e.target.responseText);
+    		  console.log(boards);
+    	  } else {
+    		  console.error(e.target.statusText);
+    	  }    	  
+      }
+      ajaxrequest.get('http://localhost:8089/bookboards', f);    
+    }
+
+   function getOne() {
+	  function f(e) {
+    	  if (e.target.status == 200) {
+    		  const boards = JSON.parse(e.target.responseText);
+    		  console.log(boards);
+    	  } else {
+    		  console.error(e.target.statusText);
+    	  }
+    	  
+      }
+      ajaxrequest.get('http://localhost:8089/bookboards/1', f);    
+   }
+
+   function postData() {
+	  const num = prompt("삽입하려는 글의 번호를 입력하세요.");
+	  function f(e) {
+    	  if (e.target.status == 201) {
+    		  const msg = e.target.responseText;
+    		  console.log(msg);
+    	  } else {
+    		  console.error(e.target.statusText);
+    	  }
+    	  
+      }
+	  const payload = {
+		        boardNo: `${num}`,
+		        title: '꽃잎 한 장처럼',
+		        content: '수도생활 50년, 좋은 삶과 관계를 위한 통찰',
+		        writer: '이해인',
+		        regDate: '2020-05-25T09:00'
+		      };
+      ajaxrequest.post('http://localhost:8089/bookboards', payload, f);    
+    }
+
+    function deleteData() {
+    	const num = prompt("삭제하려는 글의 번호를 입력하세요.");
+    	function f(e) {
+      	  if (e.target.status == 200) {
+      		  const msg = e.target.responseText;
+      		  console.log(msg);
+      	  } else {
+      		  console.error(e.target.statusText);
+      	  }      	  
+        }
+        ajaxrequest.delete(`http://localhost:8089/bookboards/${num}`, f)       
+    }
+  </script>
+</body>
+
+</html>

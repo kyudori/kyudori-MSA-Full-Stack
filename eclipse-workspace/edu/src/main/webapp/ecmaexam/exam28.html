@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>디스트럭쳐링(destructuring)-객체</h1>
+<hr>
+<script>
+	let friend = {
+			  name : "둘리",
+			  addr : "쌍문동",
+			  age : 10,
+			  job : "청소",
+			  kind : "공룡"
+		};
+
+	let {age, addr, ...all } = friend;
+	
+	console.log(age);
+	console.log(addr);
+	console.log(all);
+	
+	console.log("*".repeat(30))
+	
+	const { a: aa = 10, b: bb = 5 } = { a: 3 };
+
+	console.log(aa); 
+	console.log(bb); 	
+	
+	console.log("*".repeat(30))
+	
+	const user = {
+			  id: 42,
+			  displayName: "jdoe",
+			  fullName: {
+			    firstName: "Jane",
+			    lastName: "Doe",
+			  },
+			};
+	
+	function userId({ id }) {
+		  return id;
+	}
+
+	console.log(userId(user));
+	
+	console.log("*".repeat(30));
+	
+	function userDisplayName({ displayName: dname }) {
+  		return dname;
+	}
+
+	console.log(userDisplayName(user)); 
+	
+	console.log("*".repeat(30));
+	
+	function whois({ displayName, fullName: { firstName: name } }) {
+		  return `${displayName} is ${name}`;
+	}
+
+	console.log(whois(user));
+	
+	console.log("*".repeat(30));
+	
+	const props = [
+		  { id: 1, name: "둘리" },
+		  { id: 2, name: "또치" },
+		  { id: 3, name: "도우너" },
+	];
+
+	const [, , { name }] = props;
+	console.log(name);
+	
+	// 두 번째 엘리먼트의 id 값만 꺼내서 콘솔창에 출력
+	console.log("값 추출: " + props[1].id);
+	const [, {id},] = props;
+	console.log("값 추출: " + id);
+	
+	console.log("*".repeat(30));
+	
+	const foo = { "sale-all": true };
+	console.log(foo.sale-all);
+	console.log(foo.sale);
+	console.log(foo["sale-all"]);
+	
+	const { "sale-all": saleAll } = foo;
+	console.log(saleAll);
+</script>
+</body>
+</html>

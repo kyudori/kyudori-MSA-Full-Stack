@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+	<h1>비동기 처리</h1>
+	<hr>
+	<h2>자바스크립트 콘솔창을 보세요</h2>
+	<script>
+		function a() {
+		  console.log('a() 호출됨!');
+		  setTimeout(() => {
+		    console.log('aa');
+		  }, 3000);
+		}
+		function b() {
+		  console.log('b() 호출됨!');
+		  setTimeout(() => {
+		    console.log('bb');
+		  }, 2000);
+		}
+		function c() {
+		  console.log('c() 호출됨!');
+		  setTimeout(() => {
+		    console.log('cc');
+		  }, 1000);
+		}
+		// 함수 호출은 a() → b() → c() 순으로 했지만, 
+		// 결과는 c → b → a 순으로 출력
+		a();
+		b();
+		c();
+	</script>
+</body>
+</html>

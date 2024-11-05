@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>디스트럭쳐링(destructuring)-배열</h1>
+<hr>
+<script>
+const arr = [1, 2, 3];
+
+let x = arr[0];
+let y = arr[1];
+let z = arr[2];
+
+console.log(x, y, z);
+
+
+[x, y, z] = arr;
+
+console.log(x, y, z);
+
+[x, y] = arr;
+
+console.log(x, y);
+
+const [a, b, c, d = 4, e = 5] = arr;
+console.log(a, b, c, d, e);
+
+const arr1 = [1, 2, 3, 4, 5];
+const [x1, ...y1] = arr1;
+
+console.log(x1, y1);
+
+
+let v1 = 1;
+let v2 = 2;
+
+// 서로 값을 바꾸기
+[v1, v2] = [v2, v1];
+
+console.log(v1, v2);
+
+</script>
+</body>
+</html>

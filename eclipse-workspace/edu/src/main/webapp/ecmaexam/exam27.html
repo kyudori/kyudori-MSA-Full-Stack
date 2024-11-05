@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>디스트럭쳐링(destructuring)-객체</h1>
+<hr>
+<script>
+	let obj = {
+		  a: 10,
+		  b: 20,
+		  c: 30
+	};
+	
+	let { a, b, c } = obj;
+	
+	console.log(a); 
+	console.log(b);
+	console.log(c);
+	
+	console.log("*".repeat(30))
+	
+	let friend = {
+			  name : "둘리",
+			  addr : "쌍문동",
+			  age : 10,
+			  job : "청소",
+			  kind : "공룡"
+		};
+
+	let {name, addr, age, job, kind } = friend;
+	
+	console.log(name);
+	console.log(addr);
+	console.log(age);
+	console.log(job);
+	console.log(kind);
+	
+	console.log("*".repeat(30))
+	
+	let {name1, age1} = friend;
+	console.log(name1, age1);
+	
+	console.log("*".repeat(30))
+	
+	let {name2=name, age2=age} = friend;
+	console.log(name2, age2);	
+	
+	let {name:name3, age:age3} = friend;
+	console.log(name3, age3);	
+</script>
+</body>
+</html>

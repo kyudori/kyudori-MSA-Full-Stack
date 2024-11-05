@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECMAScript6</title>
+</head>
+<body>
+  <h1> AJAX 기술로 REST API  요청(fetch)</h1>
+  <hr>
+  <button onclick="getAll()">GET(ALL)</button>
+  <button onclick="getOne()">GET(One)</button>
+  <button onclick="postData()">POST</button>
+  <button onclick="deleteData()">DELETE</button>
+  <script>
+    const ajaxrequest = {
+      get(url) {
+        return fetch(url);
+      },
+      post(url, payload) {
+        return fetch(url, {
+          method: 'POST',
+          headers: { 'content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      },
+      delete(url) {
+        return fetch(url, { method: 'DELETE' });
+      }
+    }
+
+    function getAll() {
+      ajaxrequest.get('http://localhost:8089/bookboards')
+      .then(response => {
+        if (!response.ok) throw new Error(response.statusText);
+        return response.json();
+      })
+      .then(boards => console.log(boards))
+      .catch(err => console.error(err));
+    }
+
+    function getOne() {
+      ajaxrequest.get('http://localhost:8089/bookboards/1')
+      .then(response => {
+        if (!response.ok) throw new Error(response.statusText);
+        return response.json();
+      })
+      .then(board => console.log(board))
+      .catch(err => console.error(err));
+    }
+
+    function postData() {
+      const num = prompt("삽입하려는 글의 번호를 입력하세요.");
+      ajaxrequest.post('http://localhost:8089/bookboards', {
+        boardNo: `${num}`,
+        title: '아침 산책',
+        content: '우리 시대의 서정시인 김용택의 신작 산문',
+        writer: '김용택',
+        regDate: '2024-05-25T10:00'
+      }).then(response => {
+        if (!response.ok) throw new Error(response.statusText);
+          return response.text();
+      })
+      .then(msg => console.log(msg))
+      .catch(err => console.error(err));
+    }
+
+    function deleteData() {
+    	const num = prompt("삭제하려는 글의 번호를 입력하세요.");
+        ajaxrequest.delete(`http://localhost:8089/bookboards/${num}`)
+        .then(response => {
+        if (!response.ok) throw new Error(response.statusText);
+          return response.text();
+      })
+      .then(msg => console.log(msg))
+      .catch(err => console.error(err));
+    }
+  </script>
+</body>
+
+</html>

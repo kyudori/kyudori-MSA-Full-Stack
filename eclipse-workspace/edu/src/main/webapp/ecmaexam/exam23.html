@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(클래스)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		class Shape {
+			constructor(color) {
+				this.color = color;
+			}
+
+			toString = () => "우리는 모두 도형";		
+
+			draw() {
+				write(`${this.color} 색상으로 도형을 그린다.`, 'h3');
+			}			
+		}
+
+		class Rectangle extends Shape {
+			constructor(width, height, color) {
+				super(color);
+				this.width = width;
+				this.height = height;				
+			}
+			getArea() {
+    			return this.width * this.height;
+			}
+			draw() {
+				super.draw(); 
+				write(`사각형을 그린다.`, 'h3');
+			}
+		} 
+
+		class Triangle extends Shape {
+			constructor(width, height, color) {
+				super(color);
+				this.width = width;
+				this.height = height;				
+			}
+			getArea() {
+				return (this.width * this.height) / 2;
+			}
+			draw() {
+				super.draw(); 
+				write(`삼각형을 그린다.`, 'h3');
+			}
+		}
+
+		class Circle extends Shape {
+			constructor(radius, color) {			
+				super(color);
+				this.radius = radius;				
+			}
+			getArea() {
+				return this.radius * this.radius * Math.PI;
+			}
+			draw() {
+				super.draw(); 
+				write(`원을 그린다.`, 'h3');
+			}
+		}
+
+		const rectangle = new Rectangle(20, 20, '파랑');
+		rectangle.draw();
+		writeColor(rectangle.getArea(), 'h2', 'blue');
+
+		hr();
+		const triangle = new Triangle(20, 20, '빨강');
+		triangle.draw();
+		writeColor(triangle.getArea(),'h2', 'red');
+
+		hr();
+		const circle = new Circle(20, '초록');
+		circle.draw();
+		writeColor(circle.getArea(),'h2', 'green');
+
+		hr();
+		write(rectangle, 'h3');
+		write(triangle, 'h3');
+		write(circle, 'h3');
+
+		hr();
+		write(rectangle instanceof Rectangle, 'h3');
+		write(rectangle instanceof Shape, 'h3');
+		write(rectangle instanceof Object, 'h3');
+		write(rectangle instanceof Circle, 'h3');
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

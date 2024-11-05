@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트의 객체 생성과 사용(클래스)</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		class Person {
+			#age
+			constructor(name, age) { 
+				this.name = name; 
+				this.#age = age;
+			}
+			hello(color) {
+				writeColor(`${this.name} 안녕! 내 나이는 ${this.#age}세야~~~`, 'h3', color);
+			}
+		}
+
+		let p1 = new Person('둘리', 10);
+		let p2 = new Person('또치', 12);
+		let p3 = new Person('도우너', 11);
+
+		p1.hello('green');
+		p2.hello('orange');
+		p3.hello('red');
+		hr();
+		writeNewLine(p1.name);
+		writeNewLine(p1.age);
+		writeNewLine(p2.name);
+		writeNewLine(p2.age);
+		writeNewLine(p3.name);
+		writeNewLine(p3.age);
+		//writeNewLine(p1.#age);
+	</script>
+</body>
+</html>
+
+
+
+
+

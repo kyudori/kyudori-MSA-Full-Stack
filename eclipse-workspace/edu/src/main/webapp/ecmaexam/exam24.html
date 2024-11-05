@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>Spread 연산자</h1>
+	<hr>
+	<script src="util.js"></script>
+	<script>
+		class ClassWithSTaticMethod {
+			static staticP = '정적데이터';
+			static num = 1;
+			static staticM = () =>{
+				const d = new Date();
+				return d.toDateString();
+			}
+			static {
+				console.log("스태틱 블럭 수행 : " + ClassWithSTaticMethod.num++);
+				console.log(Math.random());
+			}
+			constructor() {
+				console.log("생성자 수행 : " + ClassWithSTaticMethod.num++);
+			}
+		}
+
+		write(ClassWithSTaticMethod.staticP, 'h3');
+		write(ClassWithSTaticMethod.staticM(), 'h3');
+		write(new ClassWithSTaticMethod(), 'h3');
+		write(new ClassWithSTaticMethod(), 'h3');
+		write(ClassWithSTaticMethod.num, 'h3');
+	</script>
+</body>
+</html>
+
+
+
+

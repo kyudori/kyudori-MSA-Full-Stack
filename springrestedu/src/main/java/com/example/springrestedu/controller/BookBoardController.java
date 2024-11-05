@@ -20,7 +20,7 @@ import com.example.springrestedu.dto.BookBoard;
 @Slf4j
 @RestController
 @RequestMapping("/bookboards")
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 public class BookBoardController {
 	List<BookBoard> boardList = new ArrayList<>();
 	public BookBoardController() {

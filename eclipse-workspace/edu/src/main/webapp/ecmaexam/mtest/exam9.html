@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ECMAScript6</title>
+</head>
+<body>
+  <script>
+  	//"use strict";
+    console.log(this); // window
+    v1 = "유니코";
+    console.log(v1);
+  </script>
+  
+  <!-- use strict 자동 적용 -->
+  <script type="module"> 
+    console.log(this); // undefined
+    //v2 = "듀크";
+    var v2 = "듀크";
+	console.log(v2);
+  </script>
+</body>
+</html>
