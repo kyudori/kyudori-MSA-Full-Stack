@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js sample</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<h2>입력한 문장과 문자수를 표시하는 예제</h2>
+		<textarea v-model="myText"></textarea>
+		<p>문장은,「{{ myText }}」</p>
+		<p>문자수는 {{ myText.length }} 자입니다.</p>
+		<hr>
+		<h2>체크박스의 ON/OFF 확인</h2>
+		<label><input type="checkbox" v-model="myCheck">
+			체크박스의 상태는 {{ myCheck }}</label>
+		<hr>
+		<h2>복수 체크박스의 ON을 배열로 만드는 예제</h2>
+		<label><input type="checkbox" value="red" v-model="myChecks">
+			적</label><br>
+		<label><input type="checkbox" value="green" v-model="myChecks">
+			녹</label><br>
+		<label><input type="checkbox" value="blue" v-model="myChecks">
+			청</label><br>
+		선택한 색은 {{ myChecks }}
+		<hr>
+		<h2>동의에 체크하면 송신 버튼 활성화</h2>
+		<label><input type="checkbox" v-model="myAgree">
+			동의합니다.</label>
+		<button v-bind:disabled="myAgree==false">송신</button>
+		<hr>
+		<h2>선택한 라디오 버튼을 표시하는 예제</h2>
+		<label><input type="radio" value="red" v-model="picked">
+			적</label><br>
+		<label><input type="radio" value="green" v-model="picked">
+			녹</label><br>
+		<label><input type="radio" value="blue" v-model="picked">
+			청</label>
+		<p>
+			{{ picked }} 선택!!
+	</div>
+	<script>
+		const { createApp } = Vue;
+		createApp({
+			data() {
+				return {
+					myText: '오늘 날씨 좋습니다.',
+					myCheck: false,
+					myChecks: [],
+					myAgree: false,
+					picked: 'red'
+				}
+			}
+		}).mount('#app');
+	</script>
+</body>
+
+</html>

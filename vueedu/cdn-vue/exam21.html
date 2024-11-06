@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	</head>
+	<body>
+		<h1>Google Charts의 원그래프에 버튼으로 투표</h1>
+		<h2>선호하는 점심 식당 투표</h2>
+		<div id="chart_div" style="height: 400px;"></div>
+		<div id="app">
+			<span v-for="(item, c) in dataArray">{{item[0]}} : {{item[1]}}
+				<button v-on:click="addOne(c)">한표</button>
+			</span>
+		</div>
+		<script>
+			// 그래프에 사용할 데이터
+			var orgdata = [
+				['엄마손집밥', 5], ['K밥상', 4], ['명화당', 2],
+				['더뭉티기', 1], ['토담', 3], ['시골마당', 1]
+			];
+
+			google.charts.load('current', { packages: ['corechart'] });
+			google.charts.setOnLoadCallback(drawBasic);
+
+			// 그래프를 그릴 함수
+			function drawBasic() {
+				let data = new google.visualization.DataTable();
+				data.addColumn('string', '종류');
+				data.addColumn('number', '갯수');
+				data.addRows(orgdata);
+				var options = { title: '선호하는 점심 식당', "is3D": true };
+				var chart = new google.visualization.PieChart(
+					document.getElementById('chart_div'));
+				chart.draw(data, options);
+			}
+		</script>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script>
+			const { createApp } = Vue;
+			createApp({
+			data() {
+				return {
+					dataArray: orgdata
+				}
+			},
+			methods: {
+				addOne: function (val) {
+					var obj = this.dataArray[val];
+					obj[1]++;
+					this.dataArray.splice(val, 1, obj);
+					drawBasic();
+				}
+			}
+		}).mount('#app');			
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+		<h2>금액을 입력하면 소비세가 포함된 금액 계산</h2>
+		<input v-model.number="price1" type="number">원
+		<p>소비세 포함 금액 {{ taxIncluded1 }} 원</p>
+		<hr>
+		<h2>단가와 개수를 입력하면 세금포함 금액 계산</h2>
+		<input v-model.number="price2" type="number">원 x
+		<input v-model.number="count" type="number">개
+		<p>합계 {{ sum }} 원</p>
+		<p>세금포함 {{ taxIncluded2 }} 원</p>
+		<hr>
+		<h2>문장을 입력하면 남은 글자수 표시</h2>
+		<p>감상은 140자 이내로 입력해 주세요.</p>
+		<textarea v-model="myText"></textarea>
+		<p v-bind:style="{color: computedColor}">남은 글자는 {{ remaining }} 입니다.</p>
+		<hr>
+		<h2>문자를 입력하면 그 문자를 표함한 항목만 표시</h2>
+		<input v-model="findWord">
+		<ul>
+			<li v-for="item in findItems">{{item}}</li>
+		</ul>
+		<hr>
+		<h2>적색, 녹색, 청색 의 슬라이더를 움직이면 완성된 색 표시</h2>
+		<p v-bind:style="{backgroundColor: mixColor}" />{{ mixColor }}</p>
+		<input type="range" v-model="R" min="0" max="255" /><br>
+		<input type="range" v-model="G" min="0" max="255" /><br>
+		<input type="range" v-model="B" min="0" max="255" /><br>
+		</div>
+		<script>
+			const { createApp } = Vue;
+			let now = new Date();
+			createApp({
+				data() {
+					return {
+						price1: 100,
+						price2: 1000,
+						count: 1,
+						myText: '오늘은 날씨가 좋습니다.',
+						findWord: '',
+						items: ['둘리', '또치', '도우너', '희동이', '마이콜'],
+						R: 255,
+						G: 150,
+						B: 100
+					}
+				},
+				computed: {
+					taxIncluded1: function () {
+						return this.price1 * 1.08;
+					},
+					sum: function () {
+						return this.price2 * this.count;
+					},
+					taxIncluded2: function () {
+						return this.sum * 1.08;
+					},
+					remaining: function () {
+						return 140 - this.myText.length;
+					},
+					computedColor: function () {
+						col = "green";
+						if (this.remaining < 20) {
+							col = "orange";
+						}
+						if (this.remaining < 1) {
+							col = "red";
+						}
+						return col;
+					},
+					findItems: function () {
+						if (this.findWord) {
+							return this.items.filter(function (value) {
+								return (value.indexOf(this.findWord) > -1);
+							}, this);
+						} else {
+							return this.items;
+						}
+					},
+					mixColor: function () {
+						var ans = "RGB(" + this.R + "," + this.G + "," + this.B + ")";
+						console.log(ans);
+						return ans;
+					}
+				}
+			}).mount('#app');
+		</script>
+	</body>
+
+</html>

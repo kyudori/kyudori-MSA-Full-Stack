@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<style>
+			.atype {
+				border: 1px solid red;
+			}
+			.btype {
+				color: blue;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>HTML 태그의 속성에 Vue 객체의 데이터 바인딩</h2>
+		<hr>
+		<div id="app">
+			<img v-bind:src="fileName">
+			<hr>
+			<a v-bind:href="myURL">링크를 v-bind로 지정</a>
+			<hr>
+			<p v-bind:style="{textAlign:myAlign}">우측정렬을 v-bind 로 지정</p>
+			<hr>
+			<p v-bind:style="{ color: myColor }">문자색을 v-bind로 지정</p>
+			<p v-bind:style="{ fontSize: mySize }">글자크기를 v-bind로 지정</p>
+			<p v-bind:style="{ backgroundColor: myBackColor }">배경색을 v-bind로 지정</p>
+			<hr>
+			<p v-bind:class="myClass">v-bind로 클래스 지정</p>
+			<p v-bind:class="[myClass, darkClass]">v-bind로 복수의 클래스 지정</p>
+			<p v-bind:class="{'atype': isON}">데이터로 클래스 ON/OFF</p>
+		</div>
+		<script>
+			const { createApp } = Vue;
+			createApp({
+				data() {
+					return {
+						fileName: 'images/duke.png',
+						myURL: 'https://v3-docs.vuejs-korea.org/',
+						myAlign: 'right',
+						myColor: '#E08000',
+						mySize: '2em',
+						myBackColor: 'aqua',
+						myClass: 'atype',
+						darkClass: 'btype',
+						isON: true
+					}
+				}
+			}).mount('#app');
+		</script>
+	</body>
+</html>

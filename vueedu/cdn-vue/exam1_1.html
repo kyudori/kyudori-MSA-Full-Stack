@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+
+	<body>
+		<h1>맛 보기 뷰 예제(1) - Options</h1>
+		<hr />
+		<div id="app">{{ message }}</div>
+
+		<script>
+		const { createApp } = Vue; // Vue 객체가 가지고 있는 멤버중에서 createApp 만 구조분해 할당
+		const app = createApp({
+			data() {
+				return {
+					message: "글로벌 빌드(1) : Hello Vue!",
+				};
+			}
+		});
+		app.mount("#app");
+	</script>
+	</body>
+</html>

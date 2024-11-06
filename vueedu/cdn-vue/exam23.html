@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <h1>watch 뽀개기</h1>
+    <div id="app">
+        <button @click="updateStr">문자열 변경</button>
+        {{someStr}}
+        <hr>
+        <button @click="updateNum">숫자 변경</button>
+        {{someNum}}
+        <hr>
+        <button @click="updateObj1">객체 변경</button>
+        {{someObj}}
+        <hr>
+        <button @click="updateObj2">객체 내용 변경</button>
+        {{someObj}}
+        <hr>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            someStr : "가나다",
+            someNum : 100,
+            someObj: {
+              a: 'obj-a',
+              b: 'obj-b',
+              c: 'obj-c'
+            }
+          }
+        },
+        watch: {
+          someStr: {
+            handler: function (val, oldVal) {
+              console.log(`[someStr] ${val}-${oldVal}`)
+            }
+          }, 
+          someNum: {
+            handler: function (val, oldVal) {
+              console.log(`[someNum] ${val}-${oldVal}`)
+            }
+          }, 
+          someObj: {
+            handler: function (val, oldVal) {
+              console.log(`[someObj] ${val}-${oldVal}`)
+            },              
+          },    
+          'someObj.a' : {
+            hadler: function (val, oldVal) {
+                console.log(`[someObj.a] ${val}-${oldVal}`)
+            },              
+          },        
+        },
+        methods: {
+          updateStr : function() {
+            this.someStr += "ㅋ";
+          },
+          updateNum : function() {
+            this.someNum++;
+          },
+          updateObj1 : function() {
+            this.someObj = { };
+          },
+          updateObj2 : function() {
+            this.someObj.a += 'ㅋ';
+          },
+        }
+      }).mount('#app')
+    </script>
+  </body>
+</html>

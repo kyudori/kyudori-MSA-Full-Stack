@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width", initial-scale="1.0">
+  <title>Document</title>
+</head>
+<body>
+    <script src="http://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">{{ message }}</div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            message: "Hello Vue.js!",
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

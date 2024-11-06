@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>        
+		<div id="app">
+			<h2>이미지 출력을 라디오버튼으로 변경</h2>
+			<label><input type="radio" value="images/docker.png" v-model="fileName">
+				기술1</label><br>
+			<label><input type="radio" value="images/kubernetes.png" v-model="fileName">
+				기술2</label><br>
+			<p>{{ fileName }} 선택<p>
+			<img v-bind:src="fileName" width="100">
+			<hr>
+			<h2>문자열이 선택한 색으로 변경</h2>
+			<select v-model="myColor1">
+				<option disabled value="">색을 선택해 주세요</option>
+				<option>red</option>
+				<option>green</option>
+				<option>blue</option>
+				<option>orange</option>
+				<option>brown</option>
+			</select>
+			<p v-bind:style="{color: myColor1}">선택한 색상은 {{ myColor1 }} 입니다. </p>
+			<hr>
+			<h2>복수의 선택을 배열로 처리</h2>
+			<select v-model="myColor2" multiple style="width:150px">
+				<option>red</option>
+				<option>green</option>
+				<option>blue</option>
+				<option>orange</option>
+				<option>brown</option>
+			</select>
+			<p>선택한 색은 {{ myColor2 }} 입니다.</p>
+			<hr>
+			<h2>모두 입력 후 표시</h2>
+			<input v-model.lazy="myText" size="50">
+			<p>입력후 표시「{{ myText }}」</p>
+		</div>
+		<script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return  {
+						fileName:'',
+						myColor1: '',
+						myColor2: '',
+						myText:'',
+					}
+        }
+      }).mount('#app');
+      </script>
+    </body>
+</html>

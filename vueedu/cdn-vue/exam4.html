@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+
+	<body>
+        <h2>v-text 와 v-html 속성</h2>
+		<hr>
+			<div id="app">
+				<p>{{ myText }}</p>
+				<p v-text="myText"></p>
+				<p v-html="myText"></p>
+			</div>
+      <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return  {
+						myText:'<h1>안녕? Vue!!!</h1>'
+					}
+        }
+      }).mount('#app');
+      </script>
+    </body>
+</html>

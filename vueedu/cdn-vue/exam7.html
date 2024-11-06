@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>입력한 문자열 표시</h2>
+		<div id="app">
+			<input v-model="myName" placeholder="이름">
+			<p>나는 {{ myName }}입니다.</p>
+		</div>
+		<script>
+        const { createApp } = Vue;
+        createApp({
+          data() {
+            return  {
+							myName:''
+						}
+          }
+        }).mount('#app');
+        </script>
+    </body>
+</html>

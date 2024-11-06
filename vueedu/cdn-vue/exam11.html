@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<h2>클릭하면 카운터가 올라갑니다.</h2>
+		<div id="app">
+			<p> {{count}}회</p>
+			<button v-on:click="count++">카운터1</button>
+			<button @click="countUp">카운터2</button>
+		</div>
+		<script>
+			const { createApp } = Vue;
+			createApp({
+				data() {
+					return {
+						count: 0
+					}
+				},
+				methods: {
+					countUp: function () {
+						this.count++;
+					}
+				}
+			}).mount('#app');
+		</script>
+	</body>
+</html>

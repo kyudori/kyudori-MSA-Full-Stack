@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>클릭하면 경고창을 출력하고 버튼이 비활성화 됨</h2>
+			<button value="good" v-bind:disabled="isClick" @click="helloClick">좋아~</button>
+			<hr>
+			<h2>[Enter] 키를 누르면 경고창 출력</h2>
+			<input v-on:keyup.enter="showAlert1" v-model="myText1">
+			<p>{{ myText1 }}</p>
+			<hr>
+			<h2>[Shift] + [Enter] 키를 누르면 경고창 출력</h2>
+			<input @keyup.enter.shift="showAlert2" v-model="myText2">
+			<p>{{ myText2 }}</p>
+		</div>
+		<script>
+			const { createApp } = Vue;
+			function good() {
+				alert("좋아~~~");
+			}
+			createApp({
+				data() {
+					return {
+						isClick: false,
+						myText1: 'Vue 안녕?',
+						myText2: 'Evan You 안녕?'
+					}
+				},
+				methods: {
+					helloClick: function () {
+						this.isClick = true;
+						good();
+					},
+					showAlert1: function () {
+						alert("Enter키를 눌렀습니다.");
+						this.myText1 = '';
+					},
+					showAlert2: function () {
+						alert("Shift + Enter 를 눌렀습니다.");
+					}
+				}
+			}).mount('#app');
+		</script>
+	</body>
+</html>

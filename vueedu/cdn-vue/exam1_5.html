@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js sample</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+  <h1>맛 보기 뷰 예제(5) - Options</h1>
+  <hr>
+  <div id="app">{{ message }}</div>
+
+  <script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+      data() {
+        return {
+          message: '임포트 맵 : Hello Vue!'
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+
+</html>

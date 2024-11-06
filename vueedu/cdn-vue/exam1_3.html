@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+
+	<body>
+		<h1>맛 보기 뷰 예제(3) - Composition</h1>
+		<hr>
+		<div id="app">{{ message }}</div>
+
+		<script>
+		const { createApp, ref } = Vue;
+		const app = createApp({
+			setup() {
+				const message = ref('글로벌 빌드(3) : Hello Vue!');
+				return {
+					message
+				};
+			}
+		});
+		app.mount('#app');
+		</script>
+	</body>
+
+</html>
+
+
+

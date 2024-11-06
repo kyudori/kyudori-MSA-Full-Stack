@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        [v-cloak]::before {
+            content: '로딩중...'
+        }
+
+        [v-cloak]>* {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>v-cloak 디렉티브</h2>
+    <hr>
+    <div id="app">
+        <h1>v-cloak 을 사용하지 않은 태그 - {{msg}}</h1>
+        <div v-cloak>
+            <h1>v-cloak 을 사용한 태그 - {{msg}}</h1>
+        </div>
+    </div>
+    <script>
+        setTimeout(function () {
+            Vue.createApp({
+                data() {
+                    return {
+                        msg: "hello"
+                    }
+                }
+            }).mount("#app")
+        }, 3000);
+    </script>
+</body>
+
+</html>

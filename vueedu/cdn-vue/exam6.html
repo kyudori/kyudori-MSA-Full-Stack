@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <h1>Date 객체 출력</h1>
+    <hr>
+    <div id="app">
+      <h3>{{data1}}</h3>
+      <h3>{{data2}}</h3>
+      <h3>{{data3}}</h3>
+      <h3>{{data4}}</h3>
+    </div>
+    <script>
+      const { createApp } = Vue;
+      let now = new Date();
+      createApp({
+        data() {
+          return {
+            data1: "둘리"
+          }
+        },
+        computed: {
+          data2() {
+            return this.data1 + " 입니다!"
+          },
+          data3() {
+            let randNum = Math.floor((Math.random() * 2 + 1));
+            if (randNum % 2)
+              return "홀수";
+            else
+              return "짝수";
+          },
+          data4() {
+            let now = new Date();
+            if (now.getHours < 12)
+              return "오전";
+            else
+              return "오후";
+          }
+        }
+      }).mount('#app');
+    </script>
+</body>
+
+</html>

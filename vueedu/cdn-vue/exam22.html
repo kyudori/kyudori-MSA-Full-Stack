@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js sample</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-if="isDisplay">v-if : 개발자 도구에서 엘리먼트 정보 확인</p>
+		<p v-show="isDisplay">v-show : 개발자 도구에서 엘리먼트 정보 확인</p>
+		<hr>
+		<button @click="isDisplay =  !isDisplay">클릭</button>
+		<hr>
+		<input type="text" v-model="friendName" />
+		<h3 v-if="friendName === '둘리'">고길동</h3>
+		<h3 v-else-if="friendName === '올라프'">안나</h3>
+		<h3 v-else-if="friendName === '짱구'">흰둥이</h3>
+		<h3 v-else>앤</h3>
+	</div>
+	<script>
+		Vue.createApp({
+			data() {
+				return {
+					isDisplay: true,
+					friendName: '둘리'
+				}
+			}
+		}).mount('#app')
+	</script>
+</body>
+</html>

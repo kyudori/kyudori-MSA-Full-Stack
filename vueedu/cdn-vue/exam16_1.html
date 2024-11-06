@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>버튼으로 리스트에 추가/삭제</h2>
+			<ul>
+				<li v-for="item in myArray1"> {{ item }}</li>
+			</ul>
+			<hr>
+			<button v-on:click="addLast">맨 뒤에 추가</button>
+			<button v-on:click="addObj(3)">네번째에 추가</button>
+			<button v-on:click="changeObj(0)">첫번째를 변경</button>
+			<button v-on:click="deleteObj(1)">두번째를 삭제</button>
+			<hr>
+			<h2>버튼을 클릭하면 소트</h2>
+			<ul>
+				<li v-for="item in myArray2"> {{ item }}</li>
+			</ul>
+			<button v-on:click="sortData(myArray2)">소트</button><br>
+			<hr>
+			<h2>짝수만 표시</h2>
+			<ul>
+				<div v-for="item in myArray3">
+					<li v-if="item % 2 == 0"> {{ item }}</li>
+				</div>
+			</ul>
+			<ul>
+				<li v-for="item in evenArray"> {{ item }}</li>
+			</ul>
+			<ul>
+				<li v-for="item in evenArray"> {{ item }}</li>
+			</ul>
+			<ul>
+				<li v-for="item in evenArray"> {{ item }}</li>
+			</ul>
+			<hr>
+			<h2>버튼을 클릭하면 짝수만 표시</h2>
+			<ul>
+				<li v-for="item in myArray4">{{ item }}</li>
+			</ul>
+			<button v-on:click="evenData()">짝수만 표시</button>
+			<button v-on:click="updateData()">데이터 수정</button>
+		</div>
+		<script>
+			const { createApp } = Vue
+			createApp({
+				data() {
+					return {
+						myArray1: ['첫번째', '두번째', '세번째', '네번째', '다섯번째'],
+						myArray2: ['one', 'two', 'three', 'four', 'five'],
+						myArray3: [1, 2, 3, 4, 5, 6, 7, 8],
+						myArray4: [1, 2, 3, 4, 5, 6]
+					}
+				},
+				computed: {
+					evenArray() {
+						let evenA = [];
+						this.myArray3.forEach(elem => {
+							if (elem % 2 == 0)
+								evenA.push(elem);
+						});
+						console.log("COMPUTED 호출");
+						return evenA;
+					}
+				},
+				methods: {
+					addLast: function () {
+						this.myArray1.push("［맨 뒤에 추가］");
+					},
+					addObj: function (index) {
+						this.myArray1.splice(index, 0, '［추가］')
+					},
+					changeObj: function (index) {
+						this.myArray1.splice(index, 1, '［변경］')
+					},
+					deleteObj: function (index) {
+						this.myArray1.splice(index, 1);
+					},
+					sortData: function (listdata) {
+						listdata.sort();
+					},
+					evenData: function () {
+						this.myArray4 = this.myArray4.filter(
+							function (value) { return value % 2 == 0; }
+						);
+					},
+					updateData: function (listdata) {
+						let lastNum = this.myArray3.length;
+						this.myArray3.push(++lastNum);
+						this.myArray3.push(++lastNum);
+						this.myArray3.push(++lastNum);
+					},
+				}
+			}).mount('#app')
+		</script>
+	</body>
+</html>

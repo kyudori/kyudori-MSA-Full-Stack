@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js sample</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h2>true 일때만 표시</h2>
+		<label><input type="checkbox" v-model="myVisible1">표시</label>
+		<p v-if="myVisible1">체크박스가 ON</p>
+		<hr>
+		<h2>true 와 false 를 ON/OFF 로 표시</h2>
+		<label><input type="checkbox" v-model="myVisible2">표시</label>
+		<p v-if="myVisible2">체크박스 ON</p>
+		<p v-else>체크박스 OFF</p>
+		<hr>
+		<h2>클릭하면 “좋아~” 버튼을 삭제</h2>
+		<button v-if="isShow" v-on:click="good">좋아~</button>
+	</div>
+	<script>
+		const { createApp } = Vue;
+		createApp({
+			data() {
+				return {
+					myVisible1: true,
+					myVisible2: false,
+					isShow: true
+				}
+			},
+			methods: {
+				good: function () {
+					this.isShow = false
+				}
+			}
+		}).mount('#app');
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>배열 데이터를 리스트로 표시</h2>
+			<ul>
+				<li v-for="item in myArray">{{ item }}</li>
+			</ul>
+			<hr>
+			<h2>오브젝트 배열 데이터를 리스트로 표시</h2>
+			<ul>
+				<li v-for="item in objArray">{{ item.name }} - {{ item.price }}원</li>
+			</ul>
+			<hr>
+			<h2>1x5 ~ 9x5 를 반복 표시</h2>
+			<ul>
+				<li v-for="n in 9"> {{n}}x5={{n * 5}}</li>
+			</ul>
+			<hr>
+			<h2>배열 데이터를 번호가 붙어 있는 리스트로 표시</h2>
+			<ul>
+				<li v-for="(item, index) in myArray"> {{ index+1 }} : {{ item }}</li>
+			</ul>
+		</div>
+		<script>
+			const { createApp } = Vue;
+			createApp({
+				data() {
+					return {
+						myArray: ['둘리','또치','도우너'],
+						objArray: [
+							{name: '둘리', price: 1000},
+							{name: '또치', price: 1200},
+							{name: '도우너', price: 1500}
+						]
+					}
+				}
+			}).mount('#app');
+		</script>
+	</body>
+</html>

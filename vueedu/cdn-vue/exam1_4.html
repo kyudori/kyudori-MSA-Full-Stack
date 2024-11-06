@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js sample</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>맛 보기 뷰 예제(4) - Options</h1>
+  <hr>
+  <div id="app">{{ message }}</div>
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+    createApp({
+      data() {
+        return {
+          message: 'ES 모듈 빌드 : Hello Vue!'
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js sample</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+	<h2>여러가지 데이터형을 표시하는 예제</h2>
+	<div id="app">
+		<p>{{ myNumber }}</p>
+		<p>{{ myText }}</p>
+		<p>{{ myBool }}</p>
+		<p>{{ myPrice * 1.08 }}</p>
+		<p>{{ "안녕하세요~ "+ myName + "님" }}</p>
+		<p>{{ `즐겁게 Vue 를 학습해여요~ ${myName}님` }}</p>
+		<p>{{ myName.substr(0,1) }}</p>
+		<p>{{ myArray }}</p>
+		<p>{{ myArray[2] }}</p>
+		<p>{{ myTea }}</p>
+		<p>{{ myTea.name }} - {{ myTea.price }}원</p>
+		<p>{{ myCoffee }}</p>
+		<p>{{ myCoffee[1].name }} - {{ myCoffee[1].price }}원</p>
+	</div>
+	<script>
+		const { createApp } = Vue;
+		let coffeeList = [
+			{ name: '아메리카노', price: 3000 },
+			{ name: '라떼', price: 4000 },
+			{ name: '돌체라떼', price: 5000 }
+		];
+		createApp({
+			data() {
+				return {
+					myNumber: 12345,
+					myText: 'Hello!!!',
+					myBool: true,
+					myPrice: 500,
+					myName: '유니코',
+					myArray: ['둘리', '또치', '도우너'],
+					myTea: { name: '녹차', price: 3000 },
+					myCoffee: coffeeList
+				}
+			}
+		}).mount('#app');
+	</script>
+</body>
+
+</html>

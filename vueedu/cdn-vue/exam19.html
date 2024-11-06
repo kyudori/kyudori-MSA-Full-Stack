@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>ToDo리스트</h2>
+    <div id="app">
+      <div v-for="todo in todos">
+        <label>
+          <input type="checkbox" v-model="todo.done">
+          <span v-bind:class="{donestyle:todo.done}">{{todo.text}}</span>
+        </label>
+      </div>
+      <p>{{ remaining }} / {{ todos.length }}건 처리</p>
+    </div>
+    <script>
+      const { createApp } = Vue;
+      let now = new Date();
+      createApp({
+        data() {                
+          return {
+            todos: [
+              {done:false, text:'빵사기'},
+              {done:false, text:'커피사기'},
+              {done:false, text:'Vue 실습하기'},
+            ]
+          }
+        },
+        computed: {
+          remaining: function () {
+            return this.todos.filter(function (val) {
+              return val.done == true;
+            }).length;
+          }
+        }
+      }).mount('#app');
+    </script>
+  </body>
+</html>

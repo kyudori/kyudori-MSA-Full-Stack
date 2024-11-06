@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>클릭하면 카운터 증가, 감소</h2>
+			<p> {{count1}}회</p>
+			<button @click="countUp">카운터 업!</button>
+			<button @click="countDown">카운터 다운!</button>
+			<hr>
+			<h2>클릭하면 지정된 값만큼 증가</h2>
+			<p>{{ count2 }}</p>
+			<button @click="countUpWithValue(3)">3증가</button>
+			<button @click="countUpWithValue(10)">10증가</button>
+			<button @click="countUpWithValue(100)">100증가</button>
+		</div>
+		<script>
+			const { createApp } = Vue;
+			createApp({
+				data() {
+					return { count1: 0, count2: 0 }
+				},
+				methods: {
+					countUp: function () {
+						this.count1++;
+					},
+					countDown: function () {
+						this.count1--;
+					},
+					countUpWithValue: function (value) {
+						this.count2 += value;
+					}
+				}
+			}).mount('#app');
+		</script>
+</body>
+
+</html>
