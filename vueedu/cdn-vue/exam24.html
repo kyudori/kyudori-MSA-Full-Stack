@@ -1,44 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vue.js</title>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-</head>
-<body>
-  <div id="app">
-    <div>data : {{message}}</div>
-    <div>메서드 호출 : {{methodCall()}}</div>
-    <div>계산된 속성 : {{computedCall}}</div>
-    <hr>
-    <div>메서드 호출 : {{methodCall()}}</div>
-    <div>계산된 속성 : {{computedCall}}</div>
-    <hr>
-    <div>메서드 호출 : {{methodCall()}}</div>
-    <div>계산된 속성 : {{computedCall}}</div>
-  </div>
-  <script>
-    Vue.createApp({
-      data() {
-        return {
-          message: '안녕? KOSA~~~',
-          name: '둘리',
+  <head>
+    <meta charset="UTF-8">
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <h1>watch 뽀개기(^^)</h1>
+    <h3>watch 는 감시자 속성이라고도 함. 데이터의 변경을 감시함. 지정된 데이터의 값이 변경되면 수행되는 핸들러 함수</h3>    
+    <div id="app">
+        <button @click="updateStr">문자열 변경</button>
+        {{someStr}}
+        <hr>
+        <button @click="updateNum">숫자 변경</button>
+        {{someNum}}
+        <hr>
+        <button @click="updateObj1">객체 변경</button>
+        {{someObj}}
+        <hr>
+        <button @click="updateObj2">객체 내용 변경</button>
+        {{someObj}}
+        <hr>
+        <button @click="updateAry1">배열 변경</button>
+        {{someAry}}
+        <hr>
+        <button @click="updateAry2">배열 내용 변경</button>
+        {{someAry}}
+        <hr>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            someStr : "가나다",
+            someNum : 100,
+            someObj: {
+              a: 'obj-a',
+              b: 'obj-b',
+              c: 'obj-c'
+            },
+            someAry: [1,2,3],
+          }
+        },
+        watch: {
+          someStr: {
+            handler: function (val, oldVal) {
+              console.log(`[someStr] ${val}-${oldVal}`)
+            }
+          }, 
+          someNum: {
+            handler: function (val, oldVal) {
+              console.log(`[someNum] ${val}-${oldVal}`)
+            }
+          }, 
+          someObj: {
+            handler: function (val, oldVal) {
+              console.log(`[someObj] ${val}-${oldVal}`)
+            },                       
+          }, 
+          someAry: {
+            handler: function (val, oldVal) {
+              console.log(`[someAry] ${val}-${oldVal}`)
+            },                        
+          },              
+        },
+        methods: {
+          updateStr : function() {
+            this.someStr += "ㅋ";
+          },
+          updateNum : function() {
+            this.someNum++;
+          },
+          updateObj1 : function() {
+            this.someObj = { };
+          },
+          updateObj2 : function() {
+            this.someObj.a += 'ㅋ';
+          },
+          updateAry1 : function() {
+            this.someAry = [100, 200, 300, 400];
+          },
+          updateAry2 : function() {
+            this.someAry[1] += 10;
+          },
         }
-      },
-      methods: {
-        methodCall: function () {
-          console.log("메서드 호출");
-          return '반갑다~~ ' + this.name;
-        }
-      },
-      computed: {
-        computedCall() {
-          console.log("컴퓨티드 호출");
-          return '고맙다~~ ' + this.name;
-        }
-      },
-    }).mount("#app");
-  </script>
-</body>
+      }).mount('#app')
+    </script>
+  </body>
 </html>

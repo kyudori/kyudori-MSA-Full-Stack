@@ -1,78 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Vue.js sample</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  </head>
-
-  <body>
-    <h1>watch 뽀개기</h1>
-    <div id="app">
-        <button @click="updateStr">문자열 변경</button>
-        {{someStr}}
-        <hr>
-        <button @click="updateNum">숫자 변경</button>
-        {{someNum}}
-        <hr>
-        <button @click="updateObj1">객체 변경</button>
-        {{someObj}}
-        <hr>
-        <button @click="updateObj2">객체 내용 변경</button>
-        {{someObj}}
-        <hr>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue.js</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    div {
+      width : 200px;
+      border : 1px solid green;
+      margin : 5px;
+      text-align : center;
+    }
+    div:nth-of-type(1) {
+      background-color : pink;
+    }
+    div:nth-of-type(2) {
+      background-color : rgb(192, 227, 255);
+    }
+  </style>
+</head>
+<body>
+  <h1>계산된 속성을 사용하면 좋은점</h1>
+  <hr>
+  <main id="app">
+    <div>
+      <h3>{{ name + "-" + addr + "-" + age }}</h3>
+      <h3>{{ name + "-" + addr + "-" + age }}</h3>
+      <h3>{{ name + "-" + addr + "-" + age }}</h3>
     </div>
-    <script>
-      Vue.createApp({
-        data() {
-          return {
-            someStr : "가나다",
-            someNum : 100,
-            someObj: {
-              a: 'obj-a',
-              b: 'obj-b',
-              c: 'obj-c'
-            }
-          }
-        },
-        watch: {
-          someStr: {
-            handler: function (val, oldVal) {
-              console.log(`[someStr] ${val}-${oldVal}`)
-            }
-          }, 
-          someNum: {
-            handler: function (val, oldVal) {
-              console.log(`[someNum] ${val}-${oldVal}`)
-            }
-          }, 
-          someObj: {
-            handler: function (val, oldVal) {
-              console.log(`[someObj] ${val}-${oldVal}`)
-            },              
-          },    
-          'someObj.a' : {
-            hadler: function (val, oldVal) {
-                console.log(`[someObj.a] ${val}-${oldVal}`)
-            },              
-          },        
-        },
-        methods: {
-          updateStr : function() {
-            this.someStr += "ㅋ";
-          },
-          updateNum : function() {
-            this.someNum++;
-          },
-          updateObj1 : function() {
-            this.someObj = { };
-          },
-          updateObj2 : function() {
-            this.someObj.a += 'ㅋ';
-          },
+    <div>
+      <h3>{{ mydooly }}</h3>
+      <h3>{{ mydooly }}</h3>
+      <h3>{{ mydooly }}</h3>
+    </div>
+    
+  </main>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          name: '둘리',
+          addr: '쌍문동',
+          age: 10,
         }
-      }).mount('#app')
-    </script>
-  </body>
+      },      
+      computed: {
+        mydooly() {          
+          return this.name + "-" + this.addr + "-" + this.age;
+        }
+      },
+    }).mount("#app");
+  </script>
+</body>
 </html>

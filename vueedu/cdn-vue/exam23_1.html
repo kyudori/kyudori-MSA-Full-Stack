@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue.js</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <h1>계산된 속성과 메서드의 차이</h1>
+  <h3>계산된 속성을 캐시를 한다는.....ㅎ</h3>
+  <hr>
+  <div id="app">
+    <div>data : {{message}}</div>
+    <div>data : {{message}}</div>
+    <div>메서드 호출 : {{methodCall()}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+    <hr>
+    <div>메서드 호출 : {{methodCall()}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+    <hr>
+    <div>메서드 호출 : {{methodCall()}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+    <hr>
+    <div>메서드 호출 : {{methodCall()}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+    <hr>
+    <div>메서드 호출 : {{methodCall()}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+  </div>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          message: '안녕? KOSA~~~',
+          name: '둘리',
+        }
+      },
+      methods: {
+        methodCall: function () {
+          console.log("메서드 호출");
+          return `반갑다~~ ${this.name}`;
+        }
+      },
+      computed: {
+        computedCall() {
+          console.log("계산된 속성 사용");
+          return `고맙다~~ ${this.name}`;
+        },
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

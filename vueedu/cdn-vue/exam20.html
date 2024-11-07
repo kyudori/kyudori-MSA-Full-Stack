@@ -10,7 +10,7 @@
     <h2>ToDo리스트</h2>
 		<div id="app">
       <div v-for="todo in todos">
-			  <label>
+        <label>
           <input type="checkbox" v-model="todo.done">
           <span v-bind:class="{donestyle:todo.done}">{{todo.text}}</span>
         </label>

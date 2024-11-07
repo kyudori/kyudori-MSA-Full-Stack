@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue.js</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <h1>계산된 속성도 다시 수행될 때가 있어용~~</h1>
+  <h3>computed 는 계산된 속성이라고도 함. 최초 수행 결과가 캐시되지만.. 사용하는 데이터의 값이 변경되면 재수행됨</h3>
+  <hr>
+  <div id="app">
+    <div>data : {{message}}</div>
+    <div>data : {{message}}</div> 
+    <div>계산된 속성 : {{computedCall}}</div>    
+    <div>계산된 속성 : {{computedCall}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+    <div>계산된 속성 : {{computedCall}}</div>
+    <button @click="updateName">이름변경</button>
+  </div>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          message: '안녕? KOSA~~~',
+          name: '둘리',
+        }
+      },
+      methods: {
+        updateName: function () {
+          this.name = '또치';
+        }
+      },
+      computed: {
+        computedCall() {
+            return `내 이름은 ${this.name}`;
+        },
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

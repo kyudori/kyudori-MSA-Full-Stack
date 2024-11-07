@@ -11,15 +11,15 @@
 		<h2>선호하는 점심 식당 투표</h2>
 		<div id="chart_div" style="height: 400px;"></div>
 		<div id="app">
-			<span v-for="(item, c) in dataArray">{{item[0]}} : {{item[1]}}
-				<button v-on:click="addOne(c)">한표</button>
+			<span v-for="(item, c) in dataArray">
+				{{item[0]}} : {{item[1]}} <button v-on:click="addOne(c)">한표</button>&nbsp;
 			</span>
 		</div>
 		<script>
 			// 그래프에 사용할 데이터
 			var orgdata = [
-				['엄마손집밥', 5], ['K밥상', 4], ['명화당', 2],
-				['더뭉티기', 1], ['토담', 3], ['시골마당', 1]
+				['엄마손집밥', 3], ['K밥상', 4], ['명화당', 1],
+				['49도시락', 5], ['토담', 3], ['진국수', 2]
 			];
 
 			google.charts.load('current', { packages: ['corechart'] });

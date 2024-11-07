@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <title>Vue.js sample</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>   
   </head>
 
   <body>
@@ -19,13 +18,6 @@
         앞으로 {{ restSec }}초<br />
         <button v-on:click="startTimer">START</button>
       </p>
-
-      <hr />
-      <h2>
-        숫자가 빠르게 올라가는 애니메이션을 보여주며 값이 증가하는 input 태그
-      </h2>
-      <p>값은 {{ animeNumber }}입니다.</p>
-      <input v-model="myNumber" type="number" />
     </div>
     <script>
       const { createApp } = Vue;
@@ -36,9 +28,7 @@
             forbiddenText: "고길동",
             inputText: "오늘은 날씨가 좋습니다.",
             restSec: 5,
-            timerObj: null,
-            myNumber: 0,
-            tweenedNumber: 0,
+            timerObj: null,       
           };
         },
         methods: {
@@ -51,8 +41,7 @@
         },
         watch: {
           // inputText 감시
-          inputText: function () {
-            //console.log(this.forbiddenText);
+          inputText: function () {        
             var pos = this.inputText.indexOf(this.forbiddenText);
             if (pos >= 0) {
               alert(this.forbiddenText + "는 입력할 수 없습니다.");
@@ -67,21 +56,8 @@
               alert("제한시간 입니다.");
               clearInterval(this.timerObj);
             }
-          },
-          // myNumber 감시
-          myNumber: function () {
-            // data의 tweenedNumber 프로퍼티를 1초에 myNumber까지 증가시킨다.
-            console.log("W" + this.myNumber);
-            TweenMax.to(this.$data, 1, { tweenedNumber: this.myNumber });
-          },
-        },
-        computed: {
-          // tweenedNumber 값이 변경되는 변화중 애니메이션을 산출한다.
-          animeNumber: function () {
-            console.log("C" + this.tweenedNumber.toFixed(0));
-            return this.tweenedNumber.toFixed(0);
-          },
-        },
+          },          
+        },        
       }).mount("#app");
     </script>
   </body>
