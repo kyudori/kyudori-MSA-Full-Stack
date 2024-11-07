@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dog API</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <h1>AJAX 로 강아지 사진 URL 가져오기</h1>
+    <button id="btn1">가져오기(XMLHttpRequest)</button>
+    <button id="btn2">가져오기(Fetch)</button>
+    <button id="btn3">가져오기(Axios)</button>
+    <hr>
+    <img src="" alt="" id="dog-img" />
+    <script>
+      const URL = "https://dog.ceo/api/breeds/image/random";
+
+      function getDog1() {
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = () => {
+          if (xhr.status == 200) {
+            const imgSrc = JSON.parse(xhr.response).message;
+            const imgTag = document.querySelector("#dog-img");
+            imgTag.src = imgSrc;
+          }          
+        }
+        xhr.open("GET", URL);
+        xhr.send();
+      }
+
+      const btn1 = document.querySelector('#btn1');
+      btn1.addEventListener('click', getDog1);
+
+      function getDog2() {
+        fetch(URL)
+          .then((response) => {
+              return response.json()
+          })
+          .then((imgData) => {
+              const imgSrc = imgData.message;
+              document.querySelector("#dog-img").setAttribute("src", imgSrc);
+          })
+      }
+
+      const btn2 = document.querySelector('#btn2');
+      btn2.addEventListener('click', getDog2);
+
+      function getDog3() {
+        axios.get(URL)
+          .then((response) => {
+              const imgSrc = response.data.message;
+              document.querySelector("#dog-img").setAttribute("src", imgSrc);
+          })
+      }
+      const btn3 = document.querySelector('#btn3');
+      btn3.addEventListener('click', getDog3);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ECMAScript6</title>
+  <link rel="stylesheet" href="style.css" >
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1> AJAX 기술로 REST API 요청 - axios</h1>
+  <hr>
+  <div id="app">
+    <button @click="getAll">GET(ALL)</button>
+    <button @click="getOne()">GET(One)</button>
+    <button @click="postData()">POST</button>
+    <button @click="deleteData()">DELETE</button>
+    <hr>
+    <div v-html="result"></div>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+    createApp({
+      data() {
+        return {
+          result: ''
+        }
+      },
+      methods: {
+        getAll: function () {
+          axios.get("http://localhost:8088/bookboards") // Promise 객체가 리턴됨
+            .then(response => {
+              console.log(response);
+              return response.data;
+            }).
+            then(bookboards => {
+              console.log(bookboards);
+              let str = "";
+              for (let elem of bookboards) {
+                console.log(elem);
+                str += `<h3>${elem.boardNo}. ${elem.title}<h3><h4>${elem.content}</h4>`;
+              }
+              this.result = str;
+            })
+            .catch(err => console.error(err));
+        },
+        getOne: function () {
+          axios.get("http://localhost:8088/bookboards/1")
+            .then(response => {
+              console.log(response);
+              return response.data;
+            }).
+            then(board => {
+              console.log(board);
+              this.result = `<h3>${board.boardNo}. ${board.title}<h3><h4>${board.content}</h4>`;
+            })
+            .catch(err => console.error(err));
+        },
+        postData: function () {
+          const num = prompt("삽입하려는 글의 번호를 입력하세요.");
+          let payload = {
+            boardNo: num,
+            title: '지금 이대로 좋다',
+            content: '자유롭고 행복하고 싶은 이들에게 전하는 법륜스님의 희망편지',
+            writer: '법륜스님',
+            regDate: '2019-10-30T09:00'
+          };
+          axios.post("http://localhost:8088/bookboards", payload)
+            .then(response => {
+              console.log(response);
+              return response.data;
+            }).
+            then(msg => {
+              console.log(msg);
+              this.result = `<h3>${msg}</h3>`;
+            })
+            .catch(err => console.error(err));
+        },
+        deleteData: function () {
+          const num = prompt("삭제하려는 글의 번호를 입력하세요.");
+          axios.delete(`http://localhost:8088/bookboards/${num}`)
+            .then(response => {
+              console.log(response);
+              return response.data;
+            }).
+            then(msg => {
+              console.log(msg);
+              this.result = `<h3>${msg}</h3>`;
+            })
+            .catch(err => console.error(err));
+        }
+      }
+    }).mount('#app')    
+  </script>
+</body>
+</html>
