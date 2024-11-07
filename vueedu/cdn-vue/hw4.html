@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<style>
+			#app {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h2>숫자 버튼 만들기와 클릭 이벤트 처리</h2>
+			<div>
+				<button v-for="num in 10" :key="num" @click="showImage(num)">{{ num }}</button>
+			</div>
+			<hr>
+			<div v-if="selectedImg">
+				<img :src="`images/${selectedImg}.jpg`" :alt="`${selectedImg}`" width="200" height="200">
+			</div>
+		</div>
+		
+		<script>
+			const { createApp } = Vue;
+			createApp({
+				data() {
+					return {
+						selectedImg: null
+					};
+				},
+				methods: {
+					showImage(num) {
+						this.selectedImg = num;
+					}
+				}
+			}).mount('#app');
+		</script>
+	</body>
+</html>
