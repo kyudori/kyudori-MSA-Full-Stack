@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue.js</title>
+  <style>
+    .router-link-exact-active {
+      color: red;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+  <style>
+    body {text-align:center}
+    a { margin:10px; text-decoration:none}
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{abc}}</h1>
+    <p>
+      <router-link to="/one">라우터1</router-link>
+      <router-link to="/two">라우터2</router-link>
+      <router-link to="/three">라우터3</router-link>
+      <router-link to="/four">라우터4</router-link>
+    </p>
+    <!-- 현재 라우트에 맞는 컴포넌트가 렌더링 -->
+    <router-view></router-view>
+  </div>
+  <script>
+    const { createApp } = Vue;
+    const { createRouter, createWebHistory } = VueRouter;
+
+    // 라우트 컴포넌트
+    const Comp1 = {
+      template: "<section style='background-color:lime;height:200px'><h2>자바 게시판</h2></section>",
+    };
+    const Comp2 = {
+      template: "<section style='background-color:pink;height:200px'><h2>스프링 게시판</h2></section>",
+    };
+    const Comp3 = {
+      template: "<section style='background-color:yellow;height:200px'><h2>JPA 게시판</h2></section>",
+    };
+    const Comp4 = {
+      template: "<section style='background-color:skyblue;height:200px'><h2>VUE 게시판</h2></section>",
+    };
+
+    // 라우터 객체 생성
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        {
+          path: "/one",
+          component: Comp1,
+        },
+        {
+          path: "/two",
+          component: Comp2,
+        },
+        {
+          path: "/three",
+          component: Comp3,
+        },
+        {
+          path: "/four",
+          component: Comp4,
+        },
+      ],
+    });
+
+    createApp({
+      data() {
+        return {
+          abc: "라우트 학습-1"
+        }
+      }
+    }).use(router).mount('#app');
+
+  </script>
+</body>
+
+</html>

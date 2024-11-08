@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>각각 다른 카운팅을 하는 컴포넌트 예제</h2>
+		<div id="app">
+			<my-component></my-component>
+			<my-component></my-component>
+			<my-component></my-component>
+		</div>
+    <script>
+      const  {createApp}  = Vue;
+
+      const MyComponent = {
+				template: '<p class="my-comp">카운터  <button v-on:click="addOne">추가</button> 		{{ count }}</p>',
+				data: function () {
+					return {
+						count: 0
+					}
+				},
+				methods: {
+					addOne: function() {
+						this.count++;
+					}
+				}
+			}
+			createApp({
+				components: {
+					'my-component': MyComponent
+				}
+			}).mount('#app');
+    </script>
+		<style>
+			.my-comp {
+				width: 300px;
+				background-color: #ffffe0;
+				border: solid;
+				border-color: darkorange;
+				border-radius: 8px;
+				padding: 8px;
+			}
+		</style>        
+  </body>
+</html>

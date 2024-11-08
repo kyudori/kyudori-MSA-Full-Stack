@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>슬롯을 이용한 데이터 전달</h2>
+    <div id="app">
+			<myb v-if="myVisible">{{message}}</myb>
+      <hr>
+      <input type="checkbox" v-model="myVisible">버튼 ONOFF
+    </div>
+    <script>
+      const {createApp} = Vue;
+
+      const MyButton = {
+				template: '<button><slot></slot></button>',		
+        beforeCreate() {          
+          console.log('[MyButton] beforeCreate() 호출!')
+        },
+        created() {
+          console.log('[MyButton] created() 호출!')
+        },
+        beforeMount() {
+          console.log('[MyButton] beforeMount() 호출!')
+        },
+        mounted() {          
+          console.log('[MyButton] mounted() 호출!')
+        },
+        beforeUpdate() {          
+          console.log('[MyButton] beforeUpdate() 호출!')
+        },
+        updated() {
+          console.log('[MyButton] updated() 호출!')
+        },
+        beforeUnmount() {         
+          console.log('[MyButton] beforeUnmount() 호출!')
+        },
+        unmounted() {
+          console.log('[MyButton] unmounted() 호출!')
+        }       
+			}
+			createApp({
+				data() {
+					return { 
+						message : '둘리',myVisible: true
+					}
+				},
+				components: {
+					'myb': MyButton
+				},
+        beforeCreate() {
+          console.log('beforeCreate() 호출!', this.message)
+        },
+        created() {
+          console.log('created() 호출!', this.message)
+        },
+        beforeMount() {        
+          console.log('beforeMount() 호출!', this.$el) 
+          setTimeout(function () {
+            console.log("5초 지나감... Vue 데이터 변경~~~~~~~~");
+            this.message = "도우너";
+          }.bind(this), 5000);
+        },
+        mounted() {       
+          console.log('mounted() 호출!', this.$el)
+        },
+        beforeUpdate() {
+          console.log('beforeUpdate() 호출!')
+        },
+        updated() {
+          console.log('updated() 호출!')
+        },
+        beforeUnmount() {        
+          console.log('beforeUnmount() 호출!')
+        },
+        unmounted() {      
+          console.log('unmounted() 호출!')
+        }
+			}).mount('#app');
+    </script>
+    
+  </body>
+</html>

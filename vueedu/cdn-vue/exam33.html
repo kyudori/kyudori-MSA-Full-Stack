@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>슬롯을 이용한 데이터 전달</h2>
+    <h4>슬롯(slot): 부모 컴포넌트에서 자식 컴포넌트에게 템플릿을 전달하는 컨텐츠 배포 방법</h4>
+    <hr>
+		<div id="app">
+			<myb>전송</myb>
+      <hr>
+      <myb>가입</myb>
+      <hr>
+      <myb>등록</myb>
+      <hr>
+      <myb>취소</myb>
+      <hr>
+      <myb>아이콘 : <img src="images/trans_duke.png" width="60px"></myb>
+      <hr>
+      <myb><img src="images/duke.png" width="60px"></myb>
+      <hr>
+		</div>
+    <script>
+      const {createApp} = Vue;
+
+      const MyButton = {
+				template: '<button><slot></slot></button>',		
+        
+			}
+			createApp({
+				data() {
+					return { 
+						myArray : ['둘리', '또치', '도우너', '마이콜', '희동이']
+					}
+				},
+				components: {
+					'myb': MyButton
+				}
+			}).mount('#app');
+    </script>
+		<style>
+			.my-comp {
+				width: 300px;
+				background-color: #ffffe0;
+				border: solid;
+				border-color: darkorange;
+				border-radius: 8px;
+				padding: 8px;
+			}
+		</style>        
+  </body>
+</html>

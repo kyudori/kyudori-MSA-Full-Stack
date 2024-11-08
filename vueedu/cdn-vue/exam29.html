@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js sample</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+	<h2>컴포넌트를 만들어서 표시</h2>
+	<div id="app">
+		<my-comp-tag1></my-comp-tag1>
+		<my-comp-tag2></my-comp-tag2>
+		<my-comp-tag3></my-comp-tag3>
+		<hr>
+		<my-comp-tag1></my-comp-tag1>
+	</div>
+	<script>
+		const { createApp } = Vue;
+
+		const MyComponent1 = {
+			template: '<p class="my-comp">안녕? 둘리~~</p>'
+		}
+		const MyComponent2 = {
+			template: '<p class="my-comp">안녕? 도우너~~</p>'
+		}
+		const MyComponent3 = {
+			template: '<p class="my-comp">안녕? 또치~~</p>'
+		}
+		createApp({
+			components: {
+				'my-comp-tag1' : MyComponent1,
+				'my-comp-tag2': MyComponent2,
+				'my-comp-tag3': MyComponent3,
+			}
+		}).mount('#app');
+	</script>
+	<style>
+		.my-comp {
+			width: 300px;
+			background-color: #ffffe0;
+			border: solid;
+			border-color: darkorange;
+			border-radius: 8px;
+			padding: 8px;
+		}
+	</style>
+</body>
+</html>

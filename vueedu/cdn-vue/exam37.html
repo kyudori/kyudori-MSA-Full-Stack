@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js</title>
+    <style>
+      .router-link-exact-active {
+        color: red;
+      }
+    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>{{abc}}</h1>
+      <p>
+        <router-link to="/one">라우터1</router-link>
+        <hr>
+        <router-link to="/two">라우터2</router-link>
+        <hr>
+        <router-link to="/three">라우터3</router-link>
+        <hr>
+        <router-link to="/four">라우터4</router-link>
+        <hr>
+        <router-link to="/five">라우터5</router-link>
+        <hr>
+        <router-link to="/six">라우터6</router-link>
+      </p>
+      <!-- 현재 라우트에 맞는 컴포넌트가 렌더링 -->
+      <router-view></router-view>
+    </div>
+    <script type="module" src="app_router.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>배열에서 컴포넌트를 만들어 표시하기</h2>
+		<div id="app">
+			<my-component v-for="(item, index) in myArray" v-bind:my-name="item" ></my-component>
+		</div>
+    <script>
+      const {createApp} = Vue;
+
+      const MyComponent = {
+				template: '<p class="my-comp">나는 {{ myName }} 입니다.</p>',
+				props: {
+					myName: String
+				}
+			}
+			createApp({
+				data() {
+					return { 
+						myArray : ['둘리', '또치', '도우너', '마이콜', '희동이']
+					}
+				},
+				components: {
+					'my-component': MyComponent
+				}
+			}).mount('#app');
+    </script>
+		<style>
+			.my-comp {
+				width: 300px;
+				background-color: #ffffe0;
+				border: solid;
+				border-color: darkorange;
+				border-radius: 8px;
+				padding: 8px;
+			}
+		</style>        
+  </body>
+</html>

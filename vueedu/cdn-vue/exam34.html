@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!--  Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div id="app" class="cardarea">
+      <h1>{{cardMessage}}</h1>
+      <hr>
+      <base-card title="둘리 카드" src-url="images/dooly.jpg" content="귀여운 아기 공룡" ></base-card>
+      <base-card title="또치 카드" src-url="images/ddochi.jpg" content="예쁜 타조 공주" ></base-card>
+      <base-card title="도우너 카드" src-url="images/dauner.png" content="영리한 깐따삐아 별 왕자" ></base-card>
+    </div>
+
+    <script src="./components/baseCard.js"></script>
+
+    <script>
+      var app = Vue.createApp({
+        components: {
+          'base-card' : BaseCard,
+        },
+        data() {
+          return {
+            cardMessage: "카드 출력하는 컴포너트 사용"
+          }
+        },
+        methods: {
+          hello() {
+            alert('hi');
+          }
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>
