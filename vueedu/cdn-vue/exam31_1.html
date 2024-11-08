@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+    <h2>컴포넌트에 값을 전달하기</h2>
+		<div id="app">
+			<unico-kjh my="둘리"></unico-kjh>
+			<unico-kjh my="또치"></unico-kjh>
+			<unico-kjh></unico-kjh>
+		</div>
+    <script>
+      const  {createApp}  = Vue;
+      const MyComponent = {
+				template: '<p class="my-comp">나는 {{ my }} 입니다.</p>',
+				props: {
+					my: String
+				}
+			}
+			createApp({
+				components: {
+					'unico-kjh': MyComponent
+				}
+			}).mount('#app');
+    </script>
+		<style>
+			.my-comp {
+				width: 300px;
+				background-color: #ffffe0;
+				border: solid;
+				border-color: darkorange;
+				border-radius: 8px;
+				padding: 8px;
+			}
+		</style>        
+  </body>
+</html>

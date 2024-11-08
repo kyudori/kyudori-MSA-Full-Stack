@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue 팀 정보 컴포넌트 예제</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <h1>우리 팀의 정보를 출력하는 컴포넌트</h1>
+  <div id="app">
+    <hr>
+    <team-info color="blue">2조 - 먹코살코</team-info>
+    <team-info color="green">2조 - 먹코살코</team-info>
+    <team-info color="orange">2조 - 먹코살코</team-info>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    const MyComponent = {
+      props: {
+        color: String
+      },
+      template: `
+        <div class="team-info">
+          <h2 :style="{ color: color }">
+            <slot></slot>
+          </h2>
+          <ul>
+            <li>김슬기</li>
+            <li>장현수</li>
+            <li>정지용</li>
+            <li>한규현</li>
+          </ul>
+        </div>
+        <hr>
+      `
+    };
+
+    createApp({
+      components: {
+        'team-info': MyComponent
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

@@ -4,45 +4,39 @@
   <meta charset="UTF-8">
   <title>Vue 팀 정보 컴포넌트 예제</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <style>
-    .team-info {
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin: 10px;
-    }
-    h2 {
-      font-size: 1.5em;
-    }
-  </style>
 </head>
 <body>
   <h1>우리 팀의 정보를 출력하는 컴포넌트</h1>
   <div id="app">
-    <team-info :team-name="'2조 - 먹코살코'" :color="'blue'"></team-info>
+    <hr>
+    <team-info :team-name="'2조 - 먹코살코'" :color="'blue'" ></team-info>
     <team-info :team-name="'2조 - 먹코살코'" :color="'green'"></team-info>
-    <team-info :team-name="'2조 - 먹코살코'" :color="'red'"></team-info>
+    <team-info :team-name="'2조 - 먹코살코'" :color="'orange'"></team-info>
   </div>
 
   <script>
     const { createApp } = Vue;
 
-    // 팀 정보를 출력하는 컴포넌트 정의
+    const MyComponent = {
+      template: 
+      `
+          <div class="team-info">
+            <h2 :style="{ color: color }">{{ teamName }}</h2>
+            <ul>
+              <li>김슬기</li>
+              <li>장현수</li>
+              <li>정지용</li>
+              <li>한규현</li>
+            </ul>
+          </div>
+          <hr>
+        `,
+        props: ['teamName', 'color']
+    }
+    
     createApp({
       components: {
-        'team-info': {
-          props: ['teamName', 'color'],
-          template: `
-            <div class="team-info">
-              <h2 :style="{ color: color }">{{ teamName }}</h2>
-              <ul>
-                <li>김슬기</li>
-                <li>장현수</li>
-                <li>정지용</li>
-                <li>한규현</li>
-              </ul>
-            </div>
-          `
-        }
+        'team-info': MyComponent
       }
     }).mount('#app');
   </script>
