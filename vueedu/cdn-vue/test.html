@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue deep Watch Example</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Vue deep watch 예제</h2>
+    
+    <h3>객체 변경 감지 (deep: true)</h3>
+    <button @click="updateUserName">이름 변경</button>
+    <p>{{ user }}</p>
+
+    <h3>배열 변경 감지 (deep: false)</h3>
+    <button @click="updateScoresElement">점수 수정</button>
+    <button @click="updateScoresArray">배열 교체</button>
+    <p>{{ scores }}</p>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    
+    createApp({
+      data() {
+        return {
+          user: {
+            name: 'Alice',
+            age: 25
+          },
+          scores: [10, 20, 30]
+        }
+      },
+      watch: {
+        // 객체에 대해 deep: true 설정
+        user: {
+          handler(newVal, oldVal) {
+            console.log(`[user 감지됨] 이전 값: ${JSON.stringify(oldVal)}, 새로운 값: ${JSON.stringify(newVal)}`);
+          },
+          deep: true
+        },
+        // 배열에 대해 deep: false 설정
+        scores: {
+          handler(newVal, oldVal) {
+            console.log(`[scores 감지됨] 이전 값: ${oldVal}, 새로운 값: ${newVal}`);
+          },
+          deep: false // 기본값이므로 생략 가능
+        }
+      },
+      methods: {
+        updateUserName() {
+          // 객체 속성 변경
+          this.user.name = this.user.name === 'Alice' ? 'Bob' : 'Alice';
+        },
+        updateScoresElement() {
+          // 배열 내부 요소 변경 (deep: false로 설정된 watch에서는 감지되지 않음)
+          this.scores[1] += 5;
+        },
+        updateScoresArray() {
+          // 배열 자체를 새로운 배열로 교체 (참조 변경, deep: false라도 감지됨)
+          this.scores = [100, 200, 300];
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
