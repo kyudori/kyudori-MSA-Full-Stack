@@ -58,12 +58,14 @@
           someObj: {
             handler: function (val, oldVal) {
               console.log(`[someObj] ${val}-${oldVal}`)
-            },                       
+            },
+            deep: true,                       
           }, 
           someAry: {
             handler: function (val, oldVal) {
               console.log(`[someAry] ${val}-${oldVal}`)
-            },                        
+            },
+            deep: true,                        
           },              
         },
         methods: {

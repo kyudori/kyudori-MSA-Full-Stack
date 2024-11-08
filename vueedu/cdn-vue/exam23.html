@@ -47,6 +47,7 @@
       },      
       computed: {
         mydooly() {          
+          console.log("계산된 속성은 한번만 수행됨...")
           return this.name + "-" + this.addr + "-" + this.age;
         }
       },
