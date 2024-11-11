@@ -9,9 +9,10 @@ export default {
 <template>
   <FirstChild />
 </template>
-<style>
-/*h1,
+<style scoped>
+/* 이 스타일 tag 내용은 이 컴포넌트로 한정한다 */
+h1,
 p {
   color: orange !important;
-}*/
+}
 </style>
