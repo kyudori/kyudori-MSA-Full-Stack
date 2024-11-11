@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 
 export const useCounterStore = defineStore('counter', () => {
     const count = ref(0);
-    const name = ref('유니코');
+    const name = ref('한규현');
     const logo = '/images/pinialogo.png';
     
     const myInfo = computed(() => `이름은 ${name.value} 입니다`);
@@ -20,7 +20,7 @@ export const useCounterStore = defineStore('counter', () => {
 Option API 방식의 스토아 구현
 export const useCounterStore = defineStore('counter', {
   state: () => {
-    return { count: 0, name: '유니코', logo: '/images/pinialogo.png' }
+    return { count: 0, name: '한규현', logo: '/images/pinialogo.png' }
   },
   getters: {
     myInfo: (state) => {

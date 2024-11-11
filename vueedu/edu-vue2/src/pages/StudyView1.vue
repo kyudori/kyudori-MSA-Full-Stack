@@ -1,6 +1,6 @@
 <template>
   <div class="study">
-    <h1>유니코의 Vue 학습 페이지-1</h1>
+    <h1>한규현의 Vue 학습 페이지-1</h1>
   </div>
   <hr />
   <EduComp1></EduComp1>

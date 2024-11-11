@@ -16,7 +16,7 @@ import ProvideInjectGrandChild from './ProvideInjectGrandChild.vue';
 const message = inject('pmess');
 const number = inject('pnum');
 const obj = inject('pobj');
-provide("pnum", number.value + 100);
+provide("pnum", number.value + 1000);
 </script>
 
 <style scoped>

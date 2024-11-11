@@ -13,7 +13,7 @@ provide('pmess', '안녕?');
 const count = ref(10);
 provide('pnum', count);
 const obj = reactive({
-  name: "유니코",
+  name: "한규현",
   age: 20
 });
 provide('pobj', obj);
