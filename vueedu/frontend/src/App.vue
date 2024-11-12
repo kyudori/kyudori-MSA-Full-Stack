@@ -6,10 +6,13 @@
 </template>
 
 <script setup>
+const store = useAjaxStore();
+store.getAjaxData();	
 import HeaderComp from './components/HeaderComp.vue'
 import NavComp from './components/NavComp.vue'
 import SectionComp from './components/SectionComp.vue'
 import FooterComp from './components/FooterComp.vue'
+import { useAjaxStore } from '@/stores/ajaxStore'
 </script> 
 
 <style>
@@ -61,6 +64,6 @@ import FooterComp from './components/FooterComp.vue'
 		background-color : lightgray;
 	}
 	h4 {
-		color : blue;
+		color : brown;
 	}
 </style>
