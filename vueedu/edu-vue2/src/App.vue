@@ -5,6 +5,7 @@
     <router-link to="/study2">Study2</router-link> |    
     <router-link to="/study3">Study3</router-link> |      
     <router-link to="/study4">Study4</router-link> |      
+    <router-link to="/work">Work</router-link> |      
   </nav>
   <br>
   <router-view />
