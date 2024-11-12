@@ -43,7 +43,7 @@
             name: '장현수',
             food: '떡볶이',
             srcUrl: '/images/ddochi.jpg',
-            teamNum: 1,
+            teamNum: 2,
             teamName: '먹코살코',
             isShow: true,
           },
@@ -52,7 +52,7 @@
             name: '정지용',
             food: '피자',
             srcUrl: '/images/olaf.jpg',
-            teamNum: 1,
+            teamNum: 3,
             teamName: '먹코살코',
             isShow: true,
           },
@@ -61,7 +61,7 @@
             name: '한규현',
             food: '핫초코',
             srcUrl: '/images/dauner.png',
-            teamNum: 1,
+            teamNum: 4,
             teamName: '먹코살코',
             isShow: true,
           },
@@ -80,13 +80,12 @@
   .work-view {
     text-align: center;
     margin: 20px;
+    color: rgb(255, 51, 0);
   }
+  
   .card-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    gap: 20px; /* 카드 간격 */
   }
   </style>
-  
   
