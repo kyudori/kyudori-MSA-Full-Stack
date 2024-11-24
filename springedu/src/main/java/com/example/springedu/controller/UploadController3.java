@@ -31,7 +31,7 @@ public class UploadController3 {
 		List<MultipartFile> list = mreq.getFiles("mfile");
 		System.out.println(list.size()+"개가 업로드 됨");
 		String resultStr = "";
-		String path = "c:/uploadtest/multi";
+		String path = "/uploadtest/multi";
 		File isDir = new File(path);
 		if (!isDir.isDirectory()) {
 			isDir.mkdirs();
@@ -41,7 +41,7 @@ public class UploadController3 {
 			String fileName = mfile.getOriginalFilename();
 			try {
 				/* CASE 1 */
-				File f = new File("c:/uploadtest/multi/" + fileName);
+				File f = new File("/uploadtest/multi/" + fileName);
 				/* CASE 2
 				String fileInfo = "src/main/resources/static/images/"+fileName;
 				File f = new File(fileInfo);

@@ -15,4 +15,12 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  build: {
+    outDir: "../../springrestedu/src/main/resources/static",
+  }, 
+  server: {
+    proxy: {
+      "": "http://localhost:8088",
+    }, 
+  },
 })

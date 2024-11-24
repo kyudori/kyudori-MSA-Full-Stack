@@ -22,7 +22,7 @@ public class UploadController1 {
 	     mav.setViewName("uploadForm1");
 	     try {
 	    	 content =  vo.getUploadFile().getBytes();
-	    	 File f = new File("c:/uploadtest/"+fileName);
+	    	 File f = new File("/uploadtest/"+fileName);
 	    	 if ( f.exists() ) {
 	    		 mav.addObject("msg", fileName + " : 파일이 이미 존재해요!!");
 	    	 } else {

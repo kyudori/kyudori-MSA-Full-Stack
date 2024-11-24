@@ -12,10 +12,10 @@ public class DataURLController {
 	@RequestMapping(value = "/dataurl", produces="text/plain; charset=US-ASCII")
 	public String getDataURL() {
 		char[] content = null;
-		File f = new File("c:/uploadtest/test.png");
+		File f = new File("/uploadtest/test.png");
 		if (f.exists() && f.length() > 0) {
 			content = new char[(int)f.length()];
-			try (FileReader reader = new FileReader("c:/uploadtest/test.png");) {
+			try (FileReader reader = new FileReader("/uploadtest/test.png");) {
 				reader.read(content);
 			} catch (Exception e) {
 				e.printStackTrace();

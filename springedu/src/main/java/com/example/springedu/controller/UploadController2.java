@@ -17,7 +17,7 @@ public class UploadController2 {
 	public ModelAndView saveFile(FileVO2 vo) {
 	     System.out.println(vo.getUploadFiles().length+"개가 업로드 됨");
 	     String resultStr = "";
-	     String path = "c:/uploadtest/multi";
+	     String path = "/uploadtest/multi";
 		 File isDir = new File(path);
 		 if (!isDir.isDirectory()) {
 			isDir.mkdirs();
@@ -28,7 +28,7 @@ public class UploadController2 {
 	     for (MultipartFile mfile : vo.getUploadFiles()) {
 				String fileName = mfile.getOriginalFilename();
 				try {
-					File f = new File("c:/uploadtest/multi/" + fileName);
+					File f = new File("/uploadtest/multi/" + fileName);
 					if (f.exists()) {
 						resultStr += fileName + " : 파일이 이미 존재해요!!<br>";
 					} else {

@@ -38,6 +38,12 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+bootJar{
+	archivesBaseName = 'springedu'
+	archiveFileName = 'springedu.jar'
+	archiveVersion = "0.0.1"
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

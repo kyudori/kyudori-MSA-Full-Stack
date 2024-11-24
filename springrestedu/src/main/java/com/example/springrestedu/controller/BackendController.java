@@ -14,7 +14,7 @@ import java.util.Locale;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class BackendController {
 	@GetMapping("/day")
 	public ResponseEntity<String> day() {

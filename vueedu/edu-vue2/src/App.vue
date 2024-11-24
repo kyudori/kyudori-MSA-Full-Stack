@@ -4,8 +4,10 @@
     <router-link to="/study1">Study1</router-link> |  
     <router-link to="/study2">Study2</router-link> |    
     <router-link to="/study3">Study3</router-link> |      
-    <router-link to="/study4">Study4</router-link> |      
-    <router-link to="/work">Work</router-link> |      
+    <router-link to="/study4">Study4</router-link> |   
+    <router-link to="/work">Work</router-link> |
+    <router-link to="/study5">Study5(쿠키)</router-link> |     
+    <router-link to="/study6">Study6(헤더)</router-link> |      
   </nav>
   <br>
   <router-view />
@@ -22,7 +24,7 @@
 }
 
 nav {
-  padding: 30px;
+  padding: 10px;
 }
 
 nav a {
